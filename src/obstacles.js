@@ -1,0 +1,72 @@
+import * as pc from '../lib/playcanvas.mjs';
+import {
+    PLAYER_SIZE, OBSTACLE_COUNT, OBSTACLE_MIN_SCALE, OBSTACLE_MAX_SCALE,
+    OBSTACLE_MASS, RESTITUTION, FRICTION, SPAWN_RADIUS, INITIAL_DRIFT, PALETTE
+} from './config.js';
+
+function rand(min, max) {
+    return min + Math.random() * (max - min);
+}
+
+// Spawns OBSTACLE_COUNT colored boxes floating near the origin. Each box has
+// non-uniform dimensions (various shapes) sized 25-50% of the player ship, a
+// bright color, and a dynamic rigidbody so it bounces on collision.
+export function createObstacles(app) {
+    const boxes = [];
+
+    for (let i = 0; i < OBSTACLE_COUNT; i++) {
+        // Independent per-axis scale factor -> varied shapes (slabs, rods, cubes).
+        const sx = PLAYER_SIZE.x * rand(OBSTACLE_MIN_SCALE, OBSTACLE_MAX_SCALE);
+        const sy = PLAYER_SIZE.y * rand(OBSTACLE_MIN_SCALE, OBSTACLE_MAX_SCALE);
+        const sz = PLAYER_SIZE.z * rand(OBSTACLE_MIN_SCALE, OBSTACLE_MAX_SCALE);
+
+        const color = PALETTE[i % PALETTE.length];
+        const material = new pc.StandardMaterial();
+        material.diffuse = color;
+        material.gloss = 0.5;
+        material.metalness = 0.0;
+        material.useMetalness = true;
+        material.update();
+
+        const box = new pc.Entity('obstacle_' + i);
+        box.addComponent('render', { type: 'box', material });
+        box.setLocalScale(sx, sy, sz);
+
+        box.addComponent('collision', {
+            type: 'box',
+            halfExtents: new pc.Vec3(sx * 0.5, sy * 0.5, sz * 0.5)
+        });
+
+        box.addComponent('rigidbody', {
+            type: 'dynamic',
+            mass: OBSTACLE_MASS,
+            restitution: RESTITUTION,
+            friction: FRICTION,
+            linearDamping: 0.05,
+            angularDamping: 0.05
+        });
+
+        // Random position in a spherical shell around the origin (keep clear of
+        // the player's spawn point).
+        const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
+        const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
+        box.setPosition(dir.x * dist, dir.y * dist, dir.z * dist);
+        box.setEulerAngles(rand(0, 360), rand(0, 360), rand(0, 360));
+
+        app.root.addChild(box);
+
+        // Gentle initial drift + tumble.
+        box.rigidbody.linearVelocity = new pc.Vec3(
+            rand(-INITIAL_DRIFT, INITIAL_DRIFT),
+            rand(-INITIAL_DRIFT, INITIAL_DRIFT),
+            rand(-INITIAL_DRIFT, INITIAL_DRIFT)
+        );
+        box.rigidbody.angularVelocity = new pc.Vec3(
+            rand(-1, 1), rand(-1, 1), rand(-1, 1)
+        );
+
+        boxes.push(box);
+    }
+
+    return boxes;
+}
