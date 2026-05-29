@@ -65,6 +65,13 @@ export function createObstacles(app) {
             rand(-1, 1), rand(-1, 1), rand(-1, 1)
         );
 
+        // Keep the boxes drifting forever. The initial drift is below Bullet's
+        // sleep threshold, so by default a body deactivates after a couple of
+        // seconds and the engine stops updating its transform (it freezes in
+        // place until something hits it). DISABLE_DEACTIVATION (4) opts the
+        // body out of sleeping so zero-G drift actually persists.
+        box.rigidbody.body.setActivationState(4);
+
         boxes.push(box);
     }
 
