@@ -15,7 +15,10 @@ export function registerControls(app, ship) {
     canvas.addEventListener('click', () => app.mouse.enablePointerLock());
 
     app.mouse.on(pc.EVENT_MOUSEMOVE, (e) => {
-        if (!app.mouse.isPointerLocked()) return;
+        // isPointerLocked is a static method on pc.Mouse, not an instance
+        // method — calling it as app.mouse.isPointerLocked() threw on every
+        // mouse move, killing steering and stuttering the frame loop.
+        if (!pc.Mouse.isPointerLocked()) return;
         yaw -= e.dx * MOUSE_SENSITIVITY;
         pitch -= e.dy * MOUSE_SENSITIVITY;
         pitch = pc.math.clamp(pitch, -PITCH_LIMIT, PITCH_LIMIT);
