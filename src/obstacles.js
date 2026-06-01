@@ -13,6 +13,7 @@ function rand(min, max) {
 // bright color, and a dynamic rigidbody so it bounces on collision.
 export function createObstacles(app) {
     const boxes = [];
+    const materials = [];
 
     for (let i = 0; i < OBSTACLE_COUNT; i++) {
         // Independent per-axis scale factor -> varied shapes (slabs, rods, cubes).
@@ -23,10 +24,12 @@ export function createObstacles(app) {
         const color = PALETTE[i % PALETTE.length];
         const material = new pc.StandardMaterial();
         material.diffuse = color;
-        material.gloss = 0.5;
+        material.gloss = 0.85;
         material.metalness = 0.0;
         material.useMetalness = true;
+        material.reflectivity = 0.5;
         material.update();
+        materials.push(material);
 
         const box = new pc.Entity('obstacle_' + i);
         box.addComponent('render', { type: 'box', material });
@@ -75,5 +78,5 @@ export function createObstacles(app) {
         boxes.push(box);
     }
 
-    return boxes;
+    return { boxes, materials };
 }

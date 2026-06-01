@@ -9,9 +9,10 @@ import {
 export function createPlayer(app) {
     const material = new pc.StandardMaterial();
     material.diffuse = PLAYER_COLOR;
-    material.gloss = 0.4;
+    material.gloss = 0.85;
     material.metalness = 0.0;
     material.useMetalness = true;
+    material.reflectivity = 0.5;
     material.update();
 
     const ship = new pc.Entity('ship');
@@ -35,5 +36,5 @@ export function createPlayer(app) {
     ship.setPosition(0, 0, 0);
     app.root.addChild(ship);
 
-    return ship;
+    return { ship, material };
 }
