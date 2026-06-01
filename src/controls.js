@@ -3,8 +3,8 @@ import { THRUST_FORCE, VERTICAL_THRUST, MOUSE_SENSITIVITY, PITCH_LIMIT } from '.
 
 // Wires up flight controls:
 //  - Mouse (while pointer-locked) yaws/pitches the ship.
-//  - WASD applies thrust relative to the ship's facing; Q/E = up/down.
-//  - Space brings the ship to a stop.
+//  - WASD applies thrust relative to the ship's facing; E/Q = up/down.
+//  - Space brakes the ship smoothly to a stop at thrust strength.
 // Returns an object with update(dt) to be called each frame.
 export function registerControls(app, ship) {
     let yaw = 0;    // degrees, around world Y
@@ -35,7 +35,7 @@ export function registerControls(app, ship) {
     const btQuat = new Ammo.btQuaternion(0, 0, 0, 1);
     const btTransform = new Ammo.btTransform();
 
-    function update(/* dt */) {
+    function update(dt) {
         const kb = app.keyboard;
 
         // --- Orientation: override ONLY the body's rotation, in place. ---
@@ -61,16 +61,26 @@ export function registerControls(app, ship) {
         if (kb.isPressed(pc.KEY_S)) force.add(tmp.copy(ship.forward).mulScalar(-THRUST_FORCE));
         if (kb.isPressed(pc.KEY_D)) force.add(tmp.copy(ship.right).mulScalar(THRUST_FORCE));
         if (kb.isPressed(pc.KEY_A)) force.add(tmp.copy(ship.right).mulScalar(-THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_Q)) force.add(tmp.copy(ship.up).mulScalar(VERTICAL_THRUST));
-        if (kb.isPressed(pc.KEY_E)) force.add(tmp.copy(ship.up).mulScalar(-VERTICAL_THRUST));
+        if (kb.isPressed(pc.KEY_E)) force.add(tmp.copy(ship.up).mulScalar(VERTICAL_THRUST));
+        if (kb.isPressed(pc.KEY_Q)) force.add(tmp.copy(ship.up).mulScalar(-VERTICAL_THRUST));
+
+        // Brake: push against current velocity at thrust strength. Clamp the
+        // force so a single frame can't overshoot into reverse — once the
+        // remaining speed is below what this frame would cancel, scale down to
+        // land exactly on zero.
+        if (kb.isPressed(pc.KEY_SPACE)) {
+            const v = ship.rigidbody.linearVelocity;
+            const speed = v.length();
+            if (speed > 0) {
+                const mass = ship.rigidbody.mass;
+                const maxDelta = (THRUST_FORCE / mass) * dt;
+                const brake = speed > maxDelta ? THRUST_FORCE : (speed / dt) * mass;
+                force.add(tmp.copy(v).mulScalar(-brake / speed));
+            }
+        }
 
         if (force.lengthSq() > 0) {
             ship.rigidbody.applyForce(force);
-        }
-
-        if (kb.isPressed(pc.KEY_SPACE)) {
-            ship.rigidbody.linearVelocity = pc.Vec3.ZERO;
-            ship.rigidbody.angularVelocity = pc.Vec3.ZERO;
         }
     }
 
