@@ -6,10 +6,11 @@ import * as pc from '../lib/playcanvas.mjs';
 // only the bright reflected sun flares rather than the whole milky void.
 export function setupPostProcess(app, cameraComponent) {
     const cf = new pc.CameraFrame(app, cameraComponent);
-    cf.rendering.toneMapping = pc.TONEMAP_NEUTRAL;
+    cf.rendering.toneMapping = pc.TONEMAP_LINEAR;
     cf.rendering.samples = 4;
-    cf.bloom.intensity = 0.02;
-    cf.bloom.blurLevel = 16;
+    cf.bloom.intensity = 0.035;
+    cf.bloom.blurLevel = 4;
+    cf.vignette.intensity = 0.12;
     cf.update();
     return { cf };
 }

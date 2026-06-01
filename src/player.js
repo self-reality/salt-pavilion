@@ -11,10 +11,10 @@ import { createRoundedBoxMesh } from './roundedbox.js';
 export function createPlayer(app) {
     const material = new pc.StandardMaterial();
     material.diffuse = PLAYER_COLOR;
-    material.gloss = 0.85;
-    material.metalness = 0.0;
+    material.gloss = 0.76;
+    material.metalness = 0.43;
     material.useMetalness = true;
-    material.reflectivity = 0.5;
+    material.reflectivity = 0.57;
     material.update();
 
     const he = new pc.Vec3(PLAYER_SIZE.x * 0.5, PLAYER_SIZE.y * 0.5, PLAYER_SIZE.z * 0.5);

@@ -26,10 +26,10 @@ export function createObstacles(app) {
         const color = PALETTE[i % PALETTE.length];
         const material = new pc.StandardMaterial();
         material.diffuse = color;
-        material.gloss = 0.85;
-        material.metalness = 0.0;
+        material.gloss = 0.76;
+        material.metalness = 0.43;
         material.useMetalness = true;
-        material.reflectivity = 0.5;
+        material.reflectivity = 0.57;
         material.update();
         materials.push(material);
 

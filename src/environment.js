@@ -3,9 +3,9 @@ import * as pc from '../lib/playcanvas.mjs';
 export const DEFAULT_ENV = {
     skyTop: [255, 255, 255],
     skyBottom: [232, 238, 245],
-    sunU: 0.5,
-    sunV: 0.35,
-    sunSize: 0.12,
+    sunU: 0.74,
+    sunV: 0.08,
+    sunSize: 0.09,
     sunBright: 0.7
 };
 
