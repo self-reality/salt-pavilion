@@ -28,14 +28,30 @@ export function registerControls(app, ship) {
     const force = new pc.Vec3();
     const tmp = new pc.Vec3();
 
+    // Reusable Ammo scratch for rewriting the body's orientation in place. Ammo
+    // is loaded before controls are registered, so the global exists here.
+    const Ammo = globalThis.Ammo;
+    const btQuat = new Ammo.btQuaternion(0, 0, 0, 1);
+    const btTransform = new Ammo.btTransform();
+
     function update(/* dt */) {
         const kb = app.keyboard;
 
-        // --- Orientation: drive the dynamic body's rotation directly. ---
+        // --- Orientation: override ONLY the body's rotation, in place. ---
+        // teleport(ship.getPosition(), ...) used to write the interpolated
+        // render position back as the authoritative one, feeding frame-timing
+        // jitter into the physics whenever the ship moved. Here we copy the
+        // body's own (authoritative) origin back unchanged and replace just the
+        // rotation, and never touch the entity transform — so position stays
+        // solver-owned and Bullet's render interpolation stays intact (smooth),
+        // while steering remains instant 1:1 like a direct set.
         desiredRot.setFromEulerAngles(pitch, yaw, 0);
-        // Keep the physics-updated position, override only the rotation so the
-        // player steers while collisions still translate the ship.
-        ship.rigidbody.teleport(ship.getPosition(), desiredRot);
+        const body = ship.rigidbody.body;
+        btTransform.setOrigin(body.getWorldTransform().getOrigin());
+        btQuat.setValue(desiredRot.x, desiredRot.y, desiredRot.z, desiredRot.w);
+        btTransform.setRotation(btQuat);
+        body.setWorldTransform(btTransform);
+        body.activate();
 
         // --- Thrust: sum forces along the ship's local axes. ---
         force.set(0, 0, 0);
