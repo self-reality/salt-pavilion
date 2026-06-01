@@ -3,7 +3,8 @@ import { THRUST_FORCE, VERTICAL_THRUST, MOUSE_SENSITIVITY, PITCH_LIMIT } from '.
 
 // Wires up flight controls:
 //  - Mouse (while pointer-locked) yaws/pitches the ship.
-//  - WASD applies thrust relative to the ship's facing; Space/Shift = up/down.
+//  - WASD applies thrust relative to the ship's facing; Q/E = up/down.
+//  - Space brings the ship to a stop.
 // Returns an object with update(dt) to be called each frame.
 export function registerControls(app, ship) {
     let yaw = 0;    // degrees, around world Y
@@ -60,11 +61,16 @@ export function registerControls(app, ship) {
         if (kb.isPressed(pc.KEY_S)) force.add(tmp.copy(ship.forward).mulScalar(-THRUST_FORCE));
         if (kb.isPressed(pc.KEY_D)) force.add(tmp.copy(ship.right).mulScalar(THRUST_FORCE));
         if (kb.isPressed(pc.KEY_A)) force.add(tmp.copy(ship.right).mulScalar(-THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_SPACE)) force.add(tmp.copy(ship.up).mulScalar(VERTICAL_THRUST));
-        if (kb.isPressed(pc.KEY_SHIFT)) force.add(tmp.copy(ship.up).mulScalar(-VERTICAL_THRUST));
+        if (kb.isPressed(pc.KEY_Q)) force.add(tmp.copy(ship.up).mulScalar(VERTICAL_THRUST));
+        if (kb.isPressed(pc.KEY_E)) force.add(tmp.copy(ship.up).mulScalar(-VERTICAL_THRUST));
 
         if (force.lengthSq() > 0) {
             ship.rigidbody.applyForce(force);
+        }
+
+        if (kb.isPressed(pc.KEY_SPACE)) {
+            ship.rigidbody.linearVelocity = pc.Vec3.ZERO;
+            ship.rigidbody.angularVelocity = pc.Vec3.ZERO;
         }
     }
 
