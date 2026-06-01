@@ -1,7 +1,7 @@
 import { createApp } from './engine.js';
 import { loadAmmo } from './physics.js';
 import { setupScene } from './scene.js';
-import { createEnvironment, DEFAULT_ENV } from './environment.js';
+import { createEnvironment } from './environment.js';
 import { createPlayer } from './player.js';
 import { createObstacles } from './obstacles.js';
 import { registerControls } from './controls.js';
@@ -25,10 +25,8 @@ async function boot() {
 
     const { light } = setupScene(app);
 
-    // Build the reflection atlas before materials first render so glossy
-    // surfaces show reflections from frame one.
-    const env = createEnvironment(app);
-    env.rebuild(DEFAULT_ENV);
+    // Kick off the HDR reflection atlas; it pops in once the map downloads.
+    createEnvironment(app);
 
     const { ship, material: playerMaterial } = createPlayer(app);
     const { boxes: obstacles, materials } = createObstacles(app);
@@ -37,7 +35,7 @@ async function boot() {
     const controls = registerControls(app, ship);
 
     createSidebar({
-        app, scene: app.scene, light, materials, playerMaterial, cf: post.cf, env
+        app, scene: app.scene, light, materials, playerMaterial, cf: post.cf
     });
 
     app.on('update', (dt) => {

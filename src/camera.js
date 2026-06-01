@@ -16,6 +16,11 @@ export function setupCamera(app, ship) {
         fov: 60
     });
 
+    // The HDR env atlas drives glossy reflections, but we don't want it drawn as
+    // the background — the world is a white void. Dropping the skybox layer keeps
+    // the clearColor backdrop while materials still sample the atlas in-shader.
+    camera.camera.layers = camera.camera.layers.filter((id) => id !== pc.LAYERID_SKYBOX);
+
     // Start already behind the ship so the first frame isn't a swoop-in.
     const start = new pc.Vec3()
         .copy(ship.forward).mulScalar(-CAM_TRAIL_DISTANCE)

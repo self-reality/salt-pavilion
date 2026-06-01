@@ -1,5 +1,4 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { DEFAULT_ENV } from './environment.js';
 
 const FOG_TYPES = {
     none: pc.FOG_NONE, linear: pc.FOG_LINEAR, exp: pc.FOG_EXP, exp2: pc.FOG_EXP2
@@ -41,7 +40,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, cf, env } = ctx;
+    const { scene, light, materials, playerMaterial, cf } = ctx;
     const allMaterials = [playerMaterial, ...materials];
 
     const style = document.createElement('style');
@@ -133,24 +132,6 @@ export function createSidebar(ctx) {
     slider(lit, 'Sun yaw', -180, 180, 1, yaw, (v) => { yaw = v; light.setEulerAngles(pitch, yaw, 0); });
     slider(lit, 'Sun pitch', 0, 90, 1, pitch, (v) => { pitch = v; light.setEulerAngles(pitch, yaw, 0); });
     slider(lit, 'Env intensity', 0, 3, 0.01, 1.03, (v) => { scene.skyboxIntensity = v; });
-
-    // ----- Environment (reflection map) -----
-    const envParams = { ...DEFAULT_ENV };
-    let envQueued = false;
-    const rebuildEnv = () => {
-        if (envQueued) return;
-        envQueued = true;
-        requestAnimationFrame(() => { envQueued = false; env.rebuild(envParams); });
-    };
-    const ev = section('Environment (reflections)');
-    color(ev, 'Sky top', rgb2hex(...DEFAULT_ENV.skyTop.map((c) => c / 255)),
-        (h) => { envParams.skyTop = hex2rgb(h).map((c) => Math.round(c * 255)); rebuildEnv(); });
-    color(ev, 'Sky bottom', rgb2hex(...DEFAULT_ENV.skyBottom.map((c) => c / 255)),
-        (h) => { envParams.skyBottom = hex2rgb(h).map((c) => Math.round(c * 255)); rebuildEnv(); });
-    slider(ev, 'Sun X', 0, 1, 0.01, envParams.sunU, (v) => { envParams.sunU = v; rebuildEnv(); });
-    slider(ev, 'Sun Y', 0, 1, 0.01, envParams.sunV, (v) => { envParams.sunV = v; rebuildEnv(); });
-    slider(ev, 'Sun size', 0.02, 0.5, 0.01, envParams.sunSize, (v) => { envParams.sunSize = v; rebuildEnv(); });
-    slider(ev, 'Sun bright', 0, 1, 0.01, envParams.sunBright, (v) => { envParams.sunBright = v; rebuildEnv(); });
 
     // ----- Materials -----
     const mat = section('Materials');
