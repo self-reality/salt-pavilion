@@ -19,6 +19,11 @@ export const ANGULAR_DAMPING = 0.95;  // high -> collisions don't spin the ship 
 export const RESTITUTION = 0.75;
 export const FRICTION = 0.4;
 
+// Rounded edges. Bevel radius = smallest half-extent * this fraction; segments
+// control how many facets smooth each rounded band (higher = rounder).
+export const EDGE_RADIUS_FRACTION = 0.28;
+export const EDGE_SEGMENTS = 6;
+
 // Obstacles.
 export const OBSTACLE_COUNT = 20;
 export const OBSTACLE_MIN_SCALE = 0.25; // 25% of player size

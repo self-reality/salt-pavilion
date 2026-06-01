@@ -1,8 +1,10 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
     PLAYER_SIZE, OBSTACLE_COUNT, OBSTACLE_MIN_SCALE, OBSTACLE_MAX_SCALE,
-    OBSTACLE_MASS, RESTITUTION, FRICTION, SPAWN_RADIUS, INITIAL_DRIFT, PALETTE
+    OBSTACLE_MASS, RESTITUTION, FRICTION, SPAWN_RADIUS, INITIAL_DRIFT, PALETTE,
+    EDGE_RADIUS_FRACTION, EDGE_SEGMENTS
 } from './config.js';
+import { createRoundedBoxMesh } from './roundedbox.js';
 
 function rand(min, max) {
     return min + Math.random() * (max - min);
@@ -31,9 +33,14 @@ export function createObstacles(app) {
         material.update();
         materials.push(material);
 
+        const he = new pc.Vec3(sx * 0.5, sy * 0.5, sz * 0.5);
+        const radius = Math.min(he.x, he.y, he.z) * EDGE_RADIUS_FRACTION;
+        const mesh = createRoundedBoxMesh(app.graphicsDevice, he, radius, EDGE_SEGMENTS);
+
         const box = new pc.Entity('obstacle_' + i);
-        box.addComponent('render', { type: 'box', material });
-        box.setLocalScale(sx, sy, sz);
+        box.addComponent('render', {
+            meshInstances: [new pc.MeshInstance(mesh, material)]
+        });
 
         box.addComponent('collision', {
             type: 'box',
