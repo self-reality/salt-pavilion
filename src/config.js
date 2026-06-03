@@ -4,10 +4,19 @@ import * as pc from '../lib/playcanvas.mjs';
 // All tunable parameters live here so the rest of the code reads cleanly.
 // ---------------------------------------------------------------------------
 
-// Player ship (a black right parallelepiped). Non-cubic so "forward" is obvious.
+// Player ship: a black van model. PLAYER_SIZE no longer sizes the ship (the
+// collision box is derived from the loaded van), but obstacles still scale
+// relative to it, so it stays as the reference size.
 export const PLAYER_SIZE = new pc.Vec3(1.4, 0.8, 2.4); // x=width, y=height, z=length
 export const PLAYER_COLOR = new pc.Color(0.05, 0.05, 0.05);
 export const PLAYER_MASS = 5;
+
+// Van model (replaces the old box). Loaded untextured and recolored to
+// PLAYER_COLOR. Scaled uniformly so its longest axis equals VAN_TARGET_LEN
+// (proportions preserved). VAN_YAW points the nose down the ship's forward (-Z).
+export const VAN_URL = 'assets/Van.glb';
+export const VAN_TARGET_LEN = 2.4;
+export const VAN_YAW = 90; // van's length runs along its local X; rotate onto -Z
 
 // Movement: forces applied for thrust (zero-G inertia / drift feel).
 export const THRUST_FORCE = 60;       // forward/back/strafe
