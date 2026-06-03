@@ -16,7 +16,7 @@ export const PLAYER_MASS = 5;
 // (proportions preserved). VAN_YAW points the nose down the ship's forward (-Z).
 export const VAN_URL = 'assets/Van.glb';
 export const VAN_TARGET_LEN = 2.4;
-export const VAN_YAW = 90; // van's length runs along its local X; rotate onto -Z
+export const VAN_YAW = -90; // van's length runs along its local X; rotate onto -Z
 
 // Movement: forces applied for thrust (zero-G inertia / drift feel).
 export const THRUST_FORCE = 60;       // forward/back/strafe
