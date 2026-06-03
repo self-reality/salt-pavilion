@@ -1,5 +1,6 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { PLAYER_COLOR, VAN_YAW, VAN_PITCH } from './config.js';
+import { PLAYER_COLOR, VAN_PITCH } from './config.js';
+import { setVanPitch } from './player.js';
 
 const FOG_TYPES = {
     none: pc.FOG_NONE, linear: pc.FOG_LINEAR, exp: pc.FOG_EXP, exp2: pc.FOG_EXP2
@@ -110,8 +111,8 @@ export function createSidebar(ctx) {
 
     // ----- Van -----
     const vanSec = section('Van');
-    slider(vanSec, 'Angle (up/down)', -45, 45, 1, VAN_PITCH,
-        (v) => van.setLocalEulerAngles(v, VAN_YAW, 0));
+    slider(vanSec, 'Pitch (up/down)', -45, 45, 1, VAN_PITCH,
+        (v) => setVanPitch(van, v));
     color(vanSec, 'Color', rgb2hex(PLAYER_COLOR.r, PLAYER_COLOR.g, PLAYER_COLOR.b),
         (h) => { playerMaterial.diffuse.set(...hex2rgb(h)); playerMaterial.update(); });
 

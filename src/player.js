@@ -5,6 +5,17 @@ import {
     VAN_URL, VAN_TARGET_LEN, VAN_YAW, VAN_PITCH
 } from './config.js';
 
+// Sets the van's nose-up/down tilt (PITCH, not roll). The van is yawed so its
+// length faces -Z, so a pitch must turn about the ship's X (left/right) axis
+// AFTER that yaw: compose as pitch * yaw. Folding the angle into the X slot of
+// setLocalEulerAngles instead spins the van about its own length axis, which
+// reads as ROLL. Positive pitchDeg lifts the nose.
+export function setVanPitch(van, pitchDeg) {
+    const yaw = new pc.Quat().setFromEulerAngles(0, VAN_YAW, 0);
+    const pitch = new pc.Quat().setFromEulerAngles(pitchDeg, 0, 0);
+    van.setLocalRotation(pitch.mul(yaw)); // yaw first, then pitch about ship X
+}
+
 // Creates the black spaceship: the van GLB, loaded untextured and recolored to
 // PLAYER_COLOR, riding a dynamic rigidbody. The visual keeps the van's natural
 // proportions (uniform scale); the box collider is sized from the scaled van's
@@ -64,7 +75,7 @@ export async function createPlayer(app) {
 
     // Cosmetic nose tilt, applied after the collider is measured from the
     // yaw-only orientation so the box stays axis-aligned with the ship.
-    model.setLocalEulerAngles(VAN_PITCH, VAN_YAW, 0);
+    setVanPitch(model, VAN_PITCH);
 
     ship.addComponent('collision', { type: 'box', halfExtents });
     ship.addComponent('rigidbody', {
