@@ -28,14 +28,14 @@ async function boot() {
     // Kick off the HDR reflection atlas; it pops in once the map downloads.
     createEnvironment(app);
 
-    const { ship, material: playerMaterial } = await createPlayer(app);
+    const { ship, material: playerMaterial, van } = await createPlayer(app);
     const { boxes: obstacles, materials } = createObstacles(app);
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
     const controls = registerControls(app, ship);
 
     createSidebar({
-        app, scene: app.scene, light, materials, playerMaterial, cf: post.cf
+        app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf
     });
 
     app.on('update', (dt) => {

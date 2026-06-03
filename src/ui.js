@@ -1,4 +1,5 @@
 import * as pc from '../lib/playcanvas.mjs';
+import { PLAYER_COLOR, VAN_YAW, VAN_PITCH } from './config.js';
 
 const FOG_TYPES = {
     none: pc.FOG_NONE, linear: pc.FOG_LINEAR, exp: pc.FOG_EXP, exp2: pc.FOG_EXP2
@@ -40,7 +41,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, cf } = ctx;
+    const { scene, light, materials, playerMaterial, van, cf } = ctx;
     const allMaterials = [playerMaterial, ...materials];
 
     const style = document.createElement('style');
@@ -106,6 +107,13 @@ export function createSidebar(ctx) {
         row.appendChild(sel);
         parent.appendChild(row);
     }
+
+    // ----- Van -----
+    const vanSec = section('Van');
+    slider(vanSec, 'Angle (up/down)', -45, 45, 1, VAN_PITCH,
+        (v) => van.setLocalEulerAngles(v, VAN_YAW, 0));
+    color(vanSec, 'Color', rgb2hex(PLAYER_COLOR.r, PLAYER_COLOR.g, PLAYER_COLOR.b),
+        (h) => { playerMaterial.diffuse.set(...hex2rgb(h)); playerMaterial.update(); });
 
     // ----- Atmosphere (fog) -----
     const atm = section('Atmosphere');

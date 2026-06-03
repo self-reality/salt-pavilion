@@ -2,7 +2,7 @@ import * as pc from '../lib/playcanvas.mjs';
 import {
     PLAYER_COLOR, PLAYER_MASS,
     RESTITUTION, FRICTION, LINEAR_DAMPING, ANGULAR_DAMPING,
-    VAN_URL, VAN_TARGET_LEN, VAN_YAW
+    VAN_URL, VAN_TARGET_LEN, VAN_YAW, VAN_PITCH
 } from './config.js';
 
 // Creates the black spaceship: the van GLB, loaded untextured and recolored to
@@ -62,6 +62,10 @@ export async function createPlayer(app) {
     );
     const halfExtents = new pc.Vec3(he.x * scale, he.y * scale, he.z * scale);
 
+    // Cosmetic nose tilt, applied after the collider is measured from the
+    // yaw-only orientation so the box stays axis-aligned with the ship.
+    model.setLocalEulerAngles(VAN_PITCH, VAN_YAW, 0);
+
     ship.addComponent('collision', { type: 'box', halfExtents });
     ship.addComponent('rigidbody', {
         type: 'dynamic',
@@ -72,5 +76,5 @@ export async function createPlayer(app) {
         angularDamping: ANGULAR_DAMPING
     });
 
-    return { ship, material };
+    return { ship, material, van: model };
 }

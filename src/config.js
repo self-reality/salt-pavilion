@@ -17,6 +17,7 @@ export const PLAYER_MASS = 5;
 export const VAN_URL = 'assets/Van.glb';
 export const VAN_TARGET_LEN = 2.4;
 export const VAN_YAW = -90; // van's length runs along its local X; rotate onto -Z
+export const VAN_PITCH = 0; // nose up/down tilt about the ship's local X (cosmetic)
 
 // Movement: forces applied for thrust (zero-G inertia / drift feel).
 export const THRUST_FORCE = 60;       // forward/back/strafe
