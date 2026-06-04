@@ -182,21 +182,11 @@ export function createDiscoBall(app, cameraEntity, ship) {
     // tint here = a bright mirror; black would reflect nothing.
     mat.diffuse = DISCO.mirrorColor;
     mat.cubeMap = cube; // takes priority over scene.envAtlas -> reflects the scene
-    // Box-projected (local) cubemap: the probe is captured once at the sphere
-    // centre, and the shader reprojects the reflection ray per surface point
-    // against this box. Without it the cubemap is treated as infinitely far, so
-    // a tile reflects "what sits in the reflected direction from the probe"
-    // rather than the van's real position across the room — and looking straight
-    // at a far tile samples behind the camera (the void) instead of the van.
-    mat.cubeMapProjection = pc.CUBEPROJ_BOX;
-    // Half-extent clears the outermost tile (radius + radial jitter) so every
-    // mirror face sits inside the box; a surface on/outside it breaks the
-    // reprojection.
-    const boxHalf = DISCO.radius + DISCO.radialJitter + 1;
-    mat.cubeMapProjectionBox = new pc.BoundingBox(
-        new pc.Vec3(0, 0, 0),
-        new pc.Vec3(boxHalf, boxHalf, boxHalf)
-    );
+    // No box projection: it assumes the reflected content lives on the box
+    // surface, but the van orbits the centre while the box would have to enclose
+    // the far tiles — so it pastes the van onto the distant wall (tiny, and with
+    // the parallax collapsed to an infinite-environment lookup). Plain direction
+    // sampling against a centre-pinned probe reads the van's true bearing.
     mat.useFog = true;  // distant tiles fade into the void like everything else
     mat.update();
 
