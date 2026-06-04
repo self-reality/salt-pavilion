@@ -65,3 +65,29 @@ export const CAM_LERP = 6;             // higher = snappier follow
 
 // World.
 export const BG_COLOR = new pc.Color(1, 1, 1); // white void
+
+// Inverted disco ball: a huge sphere tiled on the INSIDE with thick mirror
+// squares, enclosing the whole scene. The wall sits past fog range so the
+// centre still reads as white void; fly out and the tiles emerge, glinting,
+// reflecting the van live (see the camera-following cubemap probe in
+// discoball.js). The van soft-stops at the wall and cannot pass through.
+export const DISCO = {
+    radius: 55,            // huge; > fog end (46) so the centre stays a void
+    tileCount: 1600,       // mirror squares spread over the inner surface
+    tileSize: 1.6,         // edge length of a tile (world units)
+    tileThickness: 0.18,   // real depth, like a cut mirror
+    sizeJitter: 0.22,      // +/- fraction of tileSize
+    posJitter: 0.012,      // tangential nudge (fraction of unit sphere)
+    radialJitter: 0.5,     // in/out wobble of the gluing depth (units)
+    tiltJitter: 9,         // off-tangent lean (degrees)
+    // roll is always a full random 0..360 spin in the tile's plane
+
+    mirrorMetalness: 1.0,
+    mirrorGloss: 0.97,     // near-mirror sharpness
+    mirrorReflectivity: 1.0,
+    mirrorColor: new pc.Color(0.86, 0.88, 0.93), // faint cool glass tint
+
+    reflectCubeSize: 128,  // per-face resolution of the live reflection probe
+    boundaryMargin: 1.5,   // van soft-stops this far inside the radius
+    seed: 1337             // fixed so the wall looks identical across reloads
+};
