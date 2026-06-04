@@ -19,11 +19,11 @@ export function setupScene(app) {
     light.setEulerAngles(10, -53, 0);
     app.root.addChild(light);
 
-    // Milk diluted with water: a near-white linear fog that only softens the
-    // distance, leaving the white clearColor as the background.
+    // Pure-white linear fog matching the white clearColor, so distant geometry
+    // dissolves seamlessly into the background instead of greying against it.
     const fog = app.scene.fog;
     fog.type = pc.FOG_LINEAR;
-    fog.color = new pc.Color(0.93, 0.95, 0.97);
+    fog.color = new pc.Color(1, 1, 1);
     fog.start = 3.5;
     fog.end = 46;
     fog.density = 0.096;
