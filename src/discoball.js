@@ -182,6 +182,21 @@ export function createDiscoBall(app, cameraEntity, ship) {
     // tint here = a bright mirror; black would reflect nothing.
     mat.diffuse = DISCO.mirrorColor;
     mat.cubeMap = cube; // takes priority over scene.envAtlas -> reflects the scene
+    // Box-projected (local) cubemap: the probe is captured once at the sphere
+    // centre, and the shader reprojects the reflection ray per surface point
+    // against this box. Without it the cubemap is treated as infinitely far, so
+    // a tile reflects "what sits in the reflected direction from the probe"
+    // rather than the van's real position across the room — and looking straight
+    // at a far tile samples behind the camera (the void) instead of the van.
+    mat.cubeMapProjection = pc.CUBEPROJ_BOX;
+    // Half-extent clears the outermost tile (radius + radial jitter) so every
+    // mirror face sits inside the box; a surface on/outside it breaks the
+    // reprojection.
+    const boxHalf = DISCO.radius + DISCO.radialJitter + 1;
+    mat.cubeMapProjectionBox = new pc.BoundingBox(
+        new pc.Vec3(0, 0, 0),
+        new pc.Vec3(boxHalf, boxHalf, boxHalf)
+    );
     mat.useFog = true;  // distant tiles fade into the void like everything else
     mat.update();
 
@@ -202,9 +217,11 @@ export function createDiscoBall(app, cameraEntity, ship) {
     entity.addComponent('render', { meshInstances: [new pc.MeshInstance(mesh, mat)], layers: [discoLayer.id] });
     app.root.addChild(entity);
 
-    // Probe camera: sits at the main camera, renders only the WORLD layer (van +
-    // boxes + white void) into the cube. Priority < 0 so it renders before the
-    // main camera each frame.
+    // Probe camera: pinned at the sphere centre (the focal point every mirror
+    // faces, and the centre of the projection box above). Renders only the WORLD
+    // layer (van + boxes + white void) into the cube. Priority < 0 so it renders
+    // before the main camera each frame. It is the van that moves inside the
+    // fixed sphere, so the probe never needs to follow the camera.
     const probe = new pc.Entity('discoProbe');
     probe.addComponent('camera', {
         fov: 90,
@@ -217,6 +234,7 @@ export function createDiscoBall(app, cameraEntity, ship) {
     });
     probe.camera.aspectRatioMode = pc.ASPECT_MANUAL;
     probe.camera.aspectRatio = 1;
+    probe.setPosition(0, 0, 0);
     app.root.addChild(probe);
 
     let face = 0;
@@ -225,8 +243,7 @@ export function createDiscoBall(app, cameraEntity, ship) {
     const _v = new pc.Vec3();
 
     function update() {
-        // Refresh one cube face per frame from the camera's vantage point.
-        probe.setPosition(cameraEntity.getPosition());
+        // Refresh one cube face per frame from the sphere centre.
         probe.setRotation(FACE_ROT[face]);
         probe.camera.renderTarget = faces[face];
         face = (face + 1) % 6;
