@@ -186,9 +186,16 @@ export function createDiscoBall(app, cameraEntity, ship) {
     mat.update();
 
     // Own layer so the probe camera can exclude the ball (no mirror feedback,
-    // and the ball's far walls don't clutter the reflection).
+    // and the ball's far walls don't clutter the reflection). Insert it into the
+    // scene group right after World (i.e. before the Immediate layer) so the tiles
+    // render inside CameraFrame's HDR scene pass, sharing its depth buffer with the
+    // van. Pushing to the end of the list instead lands them in the post-compose
+    // after-pass, which clears to a fresh depth buffer — there the tiles paint over
+    // the van regardless of which is actually nearer.
     const discoLayer = new pc.Layer({ name: 'DiscoBall' });
-    app.scene.layers.push(discoLayer);
+    const layers = app.scene.layers;
+    const worldLayer = layers.getLayerById(pc.LAYERID_WORLD);
+    layers.insert(discoLayer, layers.layerList.lastIndexOf(worldLayer) + 1);
     cameraEntity.camera.layers = [...cameraEntity.camera.layers, discoLayer.id];
 
     const entity = new pc.Entity('discoBall');

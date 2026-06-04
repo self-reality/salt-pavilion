@@ -79,7 +79,7 @@ export const DISCO = {
     sizeJitter: 0.22,      // +/- fraction of tileSize
     posJitter: 0.012,      // tangential nudge (fraction of unit sphere)
     radialJitter: 0.5,     // in/out wobble of the gluing depth (units)
-    tiltJitter: 9,         // off-tangent lean (degrees)
+    tiltJitter: 0,         // off-tangent lean (deg); 0 -> every mirror faces center
     // roll is always a full random 0..360 spin in the tile's plane
 
     mirrorMetalness: 1.0,
