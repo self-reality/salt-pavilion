@@ -148,20 +148,47 @@ function bakeDiscoBall(device, tiles, cfg) {
     return pc.Mesh.fromGeometry(device, geom);
 }
 
-// Custom reflection chunk (overrides `reflectionCubePS`). The disco wall is a
-// planar mirror: a second camera renders the van + cans reflected across the
-// wall plane into uReflectionTex, aligned to screen space. Each tile just reads
-// that texture at its own screen position — a real reflection (true side, scale
-// and parallax), tinted by the glass colour. The void in the texture is white,
-// so empty mirror reads as the tint.
-const PLANAR_REFLECTION_CHUNK = `
+// Custom reflection chunk (overrides `reflectionCubePS`). A second camera renders
+// the van + cans into uReflectionTex from the mirror of the main camera across
+// the wall plane. The flat way to read it is each tile sampling its own screen
+// pixel — but that makes the whole wall one FLAT mirror, since the tile's normal
+// never enters the lookup. A real sphere is curved: each point bends its reflected
+// ray by its own normal, magnifying and wrapping the image.
+//
+// So we reconstruct the curved reflection. For each fragment we take its true
+// reflected ray (reflDir, already bent by the tile's normal), intersect it with a
+// focal plane through the scene centre (where the van + cans live), and look THAT
+// point up in the reflection render via the mirror camera's view-projection. Tiles
+// facing slightly different ways now sample different parts of the scene, so the
+// sphere enlarges and curves the reflection like a true spherical mirror. The flat
+// per-pixel read is kept as a fallback and blended by uCurveAmount (0 = flat,
+// 1 = full sphere); rays that miss the focal plane fall back to flat too.
+const SPHERE_REFLECTION_CHUNK = `
 uniform sampler2D uReflectionTex;
 uniform vec2 uReflectTexel;        // (1/width, 1/height) of the screen render
+uniform mat4 uReflectViewProj;     // mirror camera's view-projection
+uniform vec3 uFocalNormal;         // main camera forward; orients the focal plane
+uniform float uCurveAmount;        // 0 = flat mirror, 1 = full spherical curvature
 uniform float material_reflectivity;
 uniform vec3 uMirrorTint;
 uniform float uMirrorTintStrength;
 vec3 calcReflection(vec3 reflDir, float gloss) {
-    vec2 uv = gl_FragCoord.xy * uReflectTexel;
+    vec2 flatUv = gl_FragCoord.xy * uReflectTexel;
+    vec2 uv = flatUv;
+    // Intersect the reflected ray with the focal plane through the origin, then
+    // project the hit into the mirror render. The plane equation's sign cancels in
+    // the ratio, so uFocalNormal's orientation doesn't matter.
+    float denom = dot(reflDir, uFocalNormal);
+    if (abs(denom) > 1e-3) {
+        float t = dot(-vPositionW, uFocalNormal) / denom;
+        if (t > 0.0) {
+            vec4 clip = uReflectViewProj * vec4(vPositionW + reflDir * t, 1.0);
+            if (clip.w > 0.0) {
+                vec2 sphereUv = clip.xy / clip.w * 0.5 + 0.5;
+                uv = mix(flatUv, sphereUv, uCurveAmount);
+            }
+        }
+    }
     vec3 refl = texture2D(uReflectionTex, uv).rgb;
     return refl * uMirrorTint * uMirrorTintStrength;
 }
@@ -236,9 +263,10 @@ export function createDiscoBall(app, cameraEntity, ship) {
         name: 'discoDummyCube', cubemap: true, width: 1, height: 1,
         format: pc.PIXELFORMAT_RGBA8, mipmaps: false
     });
-    mat.getShaderChunks(pc.SHADERLANGUAGE_GLSL).set('reflectionCubePS', PLANAR_REFLECTION_CHUNK);
+    mat.getShaderChunks(pc.SHADERLANGUAGE_GLSL).set('reflectionCubePS', SPHERE_REFLECTION_CHUNK);
     mat.setParameter('uReflectionTex', reflectRT.colorBuffer);
     mat.setParameter('uReflectTexel', [1 / rtW, 1 / rtH]);
+    mat.setParameter('uCurveAmount', DISCO.curveAmount);
     const tint = DISCO.mirrorColor;
     mat.setParameter('uMirrorTint', [tint.r, tint.g, tint.b]);
     mat.setParameter('uMirrorTintStrength', DISCO.mirrorTintStrength);
@@ -266,6 +294,8 @@ export function createDiscoBall(app, cameraEntity, ship) {
     const _look = new pc.Vec3();
     const _n = new pc.Vec3();
     const _refl = new pc.Mat4();
+    const _viewInv = new pc.Mat4();
+    const _viewProj = new pc.Mat4();
     const R = DISCO.radius;
 
     function updateReflection() {
@@ -296,6 +326,14 @@ export function createDiscoBall(app, cameraEntity, ship) {
         // specular on the reflected van is computed from the right vantage.
         _refl.transformPoint(_eye, _eye);
         reflectCam.setPosition(_eye);
+
+        // Hand the curved-reflection chunk the mirror camera's view-projection and
+        // the focal-plane orientation, so each tile can project its reflected ray's
+        // hit point back into this frame's reflection render.
+        _viewInv.copy(reflectWorld).invert();
+        _viewProj.mul2(reflectCam.camera.projectionMatrix, _viewInv);
+        mat.setParameter('uReflectViewProj', _viewProj.data);
+        mat.setParameter('uFocalNormal', [_fwd.x, _fwd.y, _fwd.z]);
     }
 
     function update() {
@@ -323,6 +361,7 @@ export function createDiscoBall(app, cameraEntity, ship) {
         material: mat,
         update,
         setMirrorTint: (r, g, b) => mat.setParameter('uMirrorTint', [r, g, b]),
-        setTintStrength: (v) => mat.setParameter('uMirrorTintStrength', v)
+        setTintStrength: (v) => mat.setParameter('uMirrorTintStrength', v),
+        setCurveAmount: (v) => mat.setParameter('uCurveAmount', v)
     };
 }

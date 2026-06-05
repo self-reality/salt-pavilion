@@ -88,6 +88,7 @@ export const DISCO = {
     mirrorReflectivity: 1.0,
     mirrorColor: new pc.Color(0.86, 0.88, 0.93), // glass tint multiplied over the reflection
     mirrorTintStrength: 1.0, // brightness of the mirror tint
+    curveAmount: 1.0,        // 0 = flat mirror, 1 = full spherical-mirror magnification
 
     boundaryMargin: 1.5,   // van soft-stops this far inside the radius
     seed: 1337             // fixed so the wall looks identical across reloads

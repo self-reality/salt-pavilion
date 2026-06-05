@@ -160,6 +160,8 @@ export function createSidebar(ctx) {
         (v) => disco.setTintStrength(v));
     slider(mir, 'Reflectivity', 0, 1, 0.01, DISCO.mirrorReflectivity,
         (v) => { disco.material.reflectivity = v; disco.material.update(); });
+    slider(mir, 'Curvature', 0, 1, 0.01, DISCO.curveAmount,
+        (v) => disco.setCurveAmount(v));
 
     // ----- Post -----
     const post = section('Post (halo)');
