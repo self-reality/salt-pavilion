@@ -1,5 +1,5 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { DISCO } from './config.js';
+import { DISCO, BG_COLOR } from './config.js';
 
 // Inverted disco ball — the edge of the world. A huge sphere tiled on the
 // INSIDE with thick mirror squares enclosing the whole scene. The wall sits
@@ -148,128 +148,110 @@ function bakeDiscoBall(device, tiles, cfg) {
     return pc.Mesh.fromGeometry(device, geom);
 }
 
-// GLSL float literal: GLSL ES needs a decimal point on float constants.
-const glf = (x) => (Number.isInteger(x) ? x.toFixed(1) : String(x));
-
-// Custom reflection chunk (overrides `reflectionCubePS`). Marches the reflection
-// ray in world space, stepping through the scene depth grab; on a depth crossing
-// it samples the scene colour grab — that's the van/cans reflected at their true
-// on-screen scale. Misses and off-screen rays fall back to the mirror tint. The
-// tiles are excluded from the grabs, so rays only ever hit the van + cans.
-function ssrReflectionChunk(cfg, floatDepth) {
-    return `
-// CameraFrame's depth prepass stores LINEAR view depth (R32F, or packed RGBA8
-// where float render targets aren't available), so select the matching
-// getLinearScreenDepth() branch — the engine can't infer it for an override.
-#define SCENE_DEPTHMAP_LINEAR
-${floatDepth ? '#define SCENE_DEPTHMAP_FLOAT' : ''}
-#include "screenDepthPS"
-uniform sampler2D uSceneColorMap;
-uniform mat4 matrix_viewProjection;
+// Custom reflection chunk (overrides `reflectionCubePS`). The disco wall is a
+// planar mirror: a second camera renders the van + cans reflected across the
+// wall plane into uReflectionTex, aligned to screen space. Each tile just reads
+// that texture at its own screen position — a real reflection (true side, scale
+// and parallax), tinted by the glass colour. The void in the texture is white,
+// so empty mirror reads as the tint.
+const PLANAR_REFLECTION_CHUNK = `
+uniform sampler2D uReflectionTex;
+uniform vec2 uReflectTexel;        // (1/width, 1/height) of the screen render
 uniform float material_reflectivity;
 uniform vec3 uMirrorTint;
 uniform float uMirrorTintStrength;
-#define SSR_STEPS ${Math.max(1, Math.round(cfg.ssrSteps))}
-#define SSR_STEP ${glf(cfg.ssrStep)}
-#define SSR_THICKNESS ${glf(cfg.ssrThickness)}
-
-// March the reflection ray, tracking the previous depth gap. A hit is a genuine
-// crossing — the ray was in front of (or level with) the scene last step and is
-// now JUST behind it (gap within SSR_THICKNESS). Requiring the sign change, and
-// keeping the thickness tight, stops the march from registering several hits at
-// stepped depths along the same surface, which is what smears the van into
-// layered ghost copies. A binary search then converges on the contact so the
-// hit position is continuous rather than snapped to the coarse step.
 vec3 calcReflection(vec3 reflDir, float gloss) {
-    vec3 tint = uMirrorTint * uMirrorTintStrength;
-    float t = SSR_STEP;
-    float prevT = 0.0;
-    float prevDiff = -1e6;             // start firmly "in front"
-    vec2 hitUv = vec2(0.0);
-    bool hit = false;
-
-    for (int i = 0; i < SSR_STEPS; i++) {
-        vec3 p = vPositionW + reflDir * t;
-        vec4 clip = matrix_viewProjection * vec4(p, 1.0);
-        if (clip.w <= 0.0) break;                      // behind the camera
-        vec2 uv = (clip.xy / clip.w) * 0.5 + 0.5;
-        if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) break; // off-screen
-
-        float diff = getLinearDepth(p) - getLinearScreenDepth(uv); // >0 = behind surface
-        if (prevDiff <= 0.0 && diff > 0.0 && diff < SSR_THICKNESS) {
-            float lo = prevT, hi = t;                  // bracket the contact, refine
-            hitUv = uv;
-            for (int j = 0; j < 8; j++) {
-                float mid = 0.5 * (lo + hi);
-                vec3 pm = vPositionW + reflDir * mid;
-                vec4 cm = matrix_viewProjection * vec4(pm, 1.0);
-                vec2 um = (cm.xy / cm.w) * 0.5 + 0.5;
-                if (getLinearDepth(pm) - getLinearScreenDepth(um) > 0.0) { hi = mid; hitUv = um; }
-                else lo = mid;
-            }
-            hit = true;
-            break;
-        }
-        prevDiff = diff;
-        prevT = t;
-        t += SSR_STEP;
-    }
-
-    if (!hit) return tint;
-    return texture2D(uSceneColorMap, hitUv).rgb * uMirrorTint;
+    vec2 uv = gl_FragCoord.xy * uReflectTexel;
+    vec3 refl = texture2D(uReflectionTex, uv).rgb;
+    return refl * uMirrorTint * uMirrorTintStrength;
 }
-
 void addReflection(vec3 reflDir, float gloss) {
     dReflection += vec4(calcReflection(reflDir, gloss), material_reflectivity);
 }
 `;
+
+// 4x4 reflection across the plane n·x + d = 0 (n unit), column-major. The 3x3
+// block is symmetric; the last column is the -2d·n translation.
+function reflectionMatrix(out, n, d) {
+    const x = n.x, y = n.y, z = n.z;
+    out.set([
+        1 - 2 * x * x, -2 * x * y, -2 * x * z, 0,
+        -2 * x * y, 1 - 2 * y * y, -2 * y * z, 0,
+        -2 * x * z, -2 * y * z, 1 - 2 * z * z, 0,
+        -2 * x * d, -2 * y * d, -2 * z * d, 1
+    ]);
+    return out;
 }
 
-export function createDiscoBall(app, cameraEntity, ship, cf) {
+export function createDiscoBall(app, cameraEntity, ship) {
     const device = app.graphicsDevice;
     const rng = mulberry32(DISCO.seed);
     const mesh = bakeDiscoBall(device, buildTiles(DISCO, rng), DISCO);
 
-    // The camera renders through CameraFrame, which owns its render passes — so
-    // the per-camera requestScene*Map path is bypassed and the grabs must be
-    // enabled on CameraFrame instead. sceneDepthMap adds a linear-depth prepass
-    // (uSceneDepthMap); sceneColorMap grabs the lit scene (uSceneColorMap). The
-    // tile shader ray-marches both to reflect the van + cans.
-    cf.rendering.sceneColorMap = true;
-    cf.rendering.sceneDepthMap = true;
-    cf.update();
+    // Render target the reflection camera draws the van + cans into, sampled by
+    // the tiles in screen space. Sized to the screen, recreated on resize.
+    function makeReflectRT(w, h) {
+        const colorBuffer = new pc.Texture(device, {
+            name: 'discoReflectTex', width: w, height: h, format: pc.PIXELFORMAT_RGBA8,
+            mipmaps: false, minFilter: pc.FILTER_LINEAR, magFilter: pc.FILTER_LINEAR,
+            addressU: pc.ADDRESS_CLAMP_TO_EDGE, addressV: pc.ADDRESS_CLAMP_TO_EDGE
+        });
+        return new pc.RenderTarget({ name: 'discoReflectRT', colorBuffer, depth: true });
+    }
+    let rtW = Math.max(1, device.width), rtH = Math.max(1, device.height);
+    let reflectRT = makeReflectRT(rtW, rtH);
+
+    // Reflection camera: a mirror image of the main camera across the wall plane.
+    // calculateTransform feeds it the reflected world matrix; flipFaces undoes the
+    // winding inversion a mirror causes (otherwise the van shows inside-out). It
+    // renders only the World layer (van + cans + white void) ahead of the main
+    // camera, into reflectRT.
+    const reflectWorld = new pc.Mat4();
+    const reflectCam = new pc.Entity('discoReflectCam');
+    reflectCam.addComponent('camera', {
+        clearColor: BG_COLOR,
+        layers: [pc.LAYERID_WORLD],
+        priority: -10,
+        renderTarget: reflectRT,
+        fov: cameraEntity.camera.fov,
+        nearClip: cameraEntity.camera.nearClip,
+        farClip: cameraEntity.camera.farClip
+    });
+    reflectCam.camera.flipFaces = true;
+    reflectCam.camera.calculateTransform = (mat) => mat.copy(reflectWorld);
+    app.root.addChild(reflectCam);
 
     const mat = new pc.StandardMaterial();
     mat.useMetalness = true;
     mat.metalness = DISCO.mirrorMetalness;
     mat.gloss = DISCO.mirrorGloss;
     mat.reflectivity = DISCO.mirrorReflectivity;
-    // Metalness workflow: a metal's reflection colour IS its albedo. A bright
-    // tint here = a bright mirror; black would reflect nothing.
-    mat.diffuse = DISCO.mirrorColor;
+    // White albedo: with metalness the reflection colour is the albedo, so a tint
+    // here would double up with uMirrorTint applied in the chunk. Keep it neutral
+    // and let the chunk (and the sidebar slider) own the tint.
+    mat.diffuse = new pc.Color(1, 1, 1);
     // A 1x1 dummy cubemap is never sampled — it only forces the material onto the
-    // REFLECTIONSRC_CUBEMAP path so our overridden `reflectionCubePS` (the SSR
-    // ray-march) is the reflection code that runs.
+    // REFLECTIONSRC_CUBEMAP path so our overridden `reflectionCubePS` runs.
     mat.cubeMap = new pc.Texture(device, {
         name: 'discoDummyCube', cubemap: true, width: 1, height: 1,
         format: pc.PIXELFORMAT_RGBA8, mipmaps: false
     });
-    mat.getShaderChunks(pc.SHADERLANGUAGE_GLSL).set('reflectionCubePS', ssrReflectionChunk(DISCO, device.textureFloatRenderable));
+    mat.getShaderChunks(pc.SHADERLANGUAGE_GLSL).set('reflectionCubePS', PLANAR_REFLECTION_CHUNK);
+    mat.setParameter('uReflectionTex', reflectRT.colorBuffer);
+    mat.setParameter('uReflectTexel', [1 / rtW, 1 / rtH]);
     const tint = DISCO.mirrorColor;
     mat.setParameter('uMirrorTint', [tint.r, tint.g, tint.b]);
     mat.setParameter('uMirrorTintStrength', DISCO.mirrorTintStrength);
     mat.useFog = true;  // distant tiles fade into the void like everything else
     mat.update();
 
-    // Own layer, inserted right AFTER the DEPTH layer so the colour/depth grabs
-    // (which run at DEPTH) capture the van + cans but NOT the tiles — the tiles
-    // therefore sample a self-free scene, and never reflect each other. It still
-    // sits inside CameraFrame's HDR scene pass (before Skybox/Immediate), sharing
-    // the world depth buffer so the van occludes tiles correctly.
+    // Own layer so the reflection camera can exclude the ball (no mirror-in-mirror).
+    // Inserted right after World so the tiles render inside CameraFrame's HDR scene
+    // pass, sharing the world depth buffer (the van occludes tiles correctly).
     const discoLayer = new pc.Layer({ name: 'DiscoBall' });
     const layers = app.scene.layers;
-    const depthLayer = layers.getLayerById(pc.LAYERID_DEPTH);
-    layers.insert(discoLayer, layers.layerList.lastIndexOf(depthLayer) + 1);
+    const worldLayer = layers.getLayerById(pc.LAYERID_WORLD);
+    layers.insert(discoLayer, layers.layerList.lastIndexOf(worldLayer) + 1);
     cameraEntity.camera.layers = [...cameraEntity.camera.layers, discoLayer.id];
 
     const entity = new pc.Entity('discoBall');
@@ -277,24 +259,62 @@ export function createDiscoBall(app, cameraEntity, ship, cf) {
     app.root.addChild(entity);
 
     const _p = new pc.Vec3();
-    const _n = new pc.Vec3();
+    const _bn = new pc.Vec3();
     const _v = new pc.Vec3();
+    const _eye = new pc.Vec3();
+    const _fwd = new pc.Vec3();
+    const _look = new pc.Vec3();
+    const _n = new pc.Vec3();
+    const _refl = new pc.Mat4();
+    const R = DISCO.radius;
+
+    function updateReflection() {
+        if (device.width !== rtW || device.height !== rtH) {
+            rtW = Math.max(1, device.width); rtH = Math.max(1, device.height);
+            reflectRT.destroy();
+            reflectRT = makeReflectRT(rtW, rtH);
+            reflectCam.camera.renderTarget = reflectRT;
+            mat.setParameter('uReflectionTex', reflectRT.colorBuffer);
+            mat.setParameter('uReflectTexel', [1 / rtW, 1 / rtH]);
+        }
+
+        // Reflection plane = sphere's tangent where the camera looks. Intersect the
+        // view ray with the wall sphere; the plane normal is the inward radius there.
+        _eye.copy(cameraEntity.getPosition());
+        _fwd.copy(cameraEntity.forward);
+        const b = 2 * _eye.dot(_fwd);
+        const c = _eye.lengthSq() - R * R;
+        const disc = b * b - 4 * c;
+        const t = disc > 0 ? (-b + Math.sqrt(disc)) * 0.5 : R;
+        _look.copy(_fwd).mulScalar(t).add(_eye);          // point on the wall
+        _n.copy(_look).mulScalar(-1).normalize();         // inward normal
+        const d = -_n.dot(_look);                         // plane: n·x + d = 0
+
+        reflectionMatrix(_refl, _n, d);
+        reflectWorld.mul2(_refl, cameraEntity.getWorldTransform());
+        // Node position only feeds the view-position uniform; mirror the eye so
+        // specular on the reflected van is computed from the right vantage.
+        _refl.transformPoint(_eye, _eye);
+        reflectCam.setPosition(_eye);
+    }
 
     function update() {
+        updateReflection();
+
         // Spherical boundary: at the wall, kill outward velocity and clamp back.
         _p.copy(ship.getPosition());
         const dist = _p.length();
         const limit = DISCO.radius - DISCO.boundaryMargin;
         if (dist > limit && dist > 1e-4) {
             const rb = ship.rigidbody;
-            _n.copy(_p).mulScalar(1 / dist); // outward unit
+            _bn.copy(_p).mulScalar(1 / dist); // outward unit
             _v.copy(rb.linearVelocity);
-            const vr = _v.dot(_n);
+            const vr = _v.dot(_bn);
             if (vr > 0) {
-                _v.x -= _n.x * vr; _v.y -= _n.y * vr; _v.z -= _n.z * vr;
+                _v.x -= _bn.x * vr; _v.y -= _bn.y * vr; _v.z -= _bn.z * vr;
                 rb.linearVelocity = _v;
             }
-            rb.teleport(_n.x * limit, _n.y * limit, _n.z * limit);
+            rb.teleport(_bn.x * limit, _bn.y * limit, _bn.z * limit);
         }
     }
 
