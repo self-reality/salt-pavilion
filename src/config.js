@@ -73,14 +73,15 @@ export const BG_COLOR = new pc.Color(1, 1, 1); // white void
 // discoball.js). The van soft-stops at the wall and cannot pass through.
 export const DISCO = {
     radius: 55,            // huge; > fog end (46) so the centre stays a void
-    tileCount: 1600,       // mirror squares spread over the inner surface
-    tileSize: 1.6,         // edge length of a tile (world units)
+    // Tiles are laid in horizontal rings (parallels), equal size, packed nearly
+    // edge-to-edge. Ring count and per-ring count are derived from tileSize, so
+    // the whole surface fills like a real glued disco ball.
+    tileSize: 2.4,         // edge length of a tile (world units)
     tileThickness: 0.18,   // real depth, like a cut mirror
-    sizeJitter: 0.22,      // +/- fraction of tileSize
-    posJitter: 0.012,      // tangential nudge (fraction of unit sphere)
+    gap: 0.04,             // fractional grout spacing between tiles
     radialJitter: 0.5,     // in/out wobble of the gluing depth (units)
-    tiltJitter: 0,         // off-tangent lean (deg); 0 -> every mirror faces center
-    // roll is always a full random 0..360 spin in the tile's plane
+    tiltJitter: 5,         // off-tangent lean (deg) so tiles catch light unevenly
+    rollJitter: 5,         // in-plane roll (deg); small lean, not a full spin
 
     mirrorMetalness: 1.0,
     mirrorGloss: 0.97,     // near-mirror sharpness

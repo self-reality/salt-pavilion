@@ -8,8 +8,8 @@ import { DISCO, BG_COLOR } from './config.js';
 // wall and cannot pass through.
 //
 // Three pieces:
-//   1. A single baked mesh of all tiles (Fibonacci-spiral placement + jitter so
-//      they look hand-glued, each a thin cuboid with real thickness).
+//   1. A single baked mesh of all tiles (laid in latitude rings + slight tilt
+//      so they look hand-glued, each a thin cuboid with real thickness).
 //   2. A camera-following cubemap probe that re-renders one face per frame, so
 //      the van — sitting just ahead of the camera — shows up in nearby tiles.
 //   3. A spherical boundary that cancels the van's outward velocity at the wall.
@@ -24,45 +24,49 @@ function mulberry32(a) {
     };
 }
 
-const GOLDEN = Math.PI * (3 - Math.sqrt(5)); // golden angle
-
-// Place tileCount points evenly on the sphere via the golden spiral, then add
-// per-tile jitter (tangential nudge, in/out gluing depth, off-tangent lean,
-// full in-plane roll, size variance) so the grid never reads as a grid.
+// Lay equal-size tiles in horizontal rings (parallels), like a real glued disco
+// ball. A square of edge s tangent to radius R subtends angle 2*atan(s/2R); that
+// sets both the pole-to-pole ring step and the spacing within each ring, so the
+// whole sphere fills with only a thin grout gap. Per tile: a small gluing-depth
+// wobble plus a slight off-tangent lean and in-plane roll.
 function buildTiles(cfg, rng) {
     const tiles = [];
-    const N = cfg.tileCount;
-    for (let i = 0; i < N; i++) {
-        const y = 1 - (i + 0.5) * (2 / N);
-        const ring = Math.sqrt(Math.max(0, 1 - y * y));
-        const theta = i * GOLDEN;
-        let nx = Math.cos(theta) * ring;
-        let ny = y;
-        let nz = Math.sin(theta) * ring;
+    const R = cfg.radius;
+    const s = cfg.tileSize * (1 + cfg.gap);          // effective size incl. grout
+    const alpha = 2 * Math.atan(s / (2 * R));        // tile angular size
+    const ringCount = Math.max(1, Math.round(Math.PI / alpha));
+    const dTheta = Math.PI / ringCount;              // even pole-to-pole step
 
-        nx += (rng() * 2 - 1) * cfg.posJitter;
-        ny += (rng() * 2 - 1) * cfg.posJitter;
-        nz += (rng() * 2 - 1) * cfg.posJitter;
-        const inv = 1 / Math.hypot(nx, ny, nz);
-        nx *= inv; ny *= inv; nz *= inv;
+    for (let ir = 0; ir < ringCount; ir++) {
+        const theta = (ir + 0.5) * dTheta;           // ring band centre, avoids exact poles
+        const ny = Math.cos(theta);
+        const r = Math.sin(theta);                   // unit ring radius
+        const phiW = 2 * Math.atan(s / (2 * R * r)); // tile angular width around the axis
+        const n = Math.max(1, Math.floor((2 * Math.PI) / phiW));
 
-        const radius = cfg.radius + (rng() * 2 - 1) * cfg.radialJitter;
+        for (let it = 0; it < n; it++) {
+            const phi = it * (2 * Math.PI / n);
+            const nx = Math.cos(phi) * r;
+            const nz = Math.sin(phi) * r;
+            const radius = cfg.radius + (rng() * 2 - 1) * cfg.radialJitter;
 
-        // Inward normal (the mirror face looks at the scene centre) and a
-        // right-handed tangent basis (tx, ty, inward).
-        const inward = new pc.Vec3(-nx, -ny, -nz);
-        const up = Math.abs(ny) > 0.99 ? new pc.Vec3(1, 0, 0) : new pc.Vec3(0, 1, 0);
-        const tx = new pc.Vec3().cross(up, inward).normalize();
-        const ty = new pc.Vec3().cross(inward, tx).normalize();
+            // Inward normal (the mirror face looks at the scene centre) and a
+            // right-handed tangent basis: tx runs east (horizontal edge), ty
+            // runs along the meridian (vertical edge).
+            const inward = new pc.Vec3(-nx, -ny, -nz);
+            const up = Math.abs(ny) > 0.99 ? new pc.Vec3(1, 0, 0) : new pc.Vec3(0, 1, 0);
+            const tx = new pc.Vec3().cross(up, inward).normalize();
+            const ty = new pc.Vec3().cross(inward, tx).normalize();
 
-        tiles.push({
-            center: new pc.Vec3(nx * radius, ny * radius, nz * radius),
-            tx, ty, inward,
-            tiltX: (rng() * 2 - 1) * cfg.tiltJitter,
-            tiltY: (rng() * 2 - 1) * cfg.tiltJitter,
-            roll: rng() * 360,
-            size: cfg.tileSize * (1 + (rng() * 2 - 1) * cfg.sizeJitter)
-        });
+            tiles.push({
+                center: new pc.Vec3(nx * radius, ny * radius, nz * radius),
+                tx, ty, inward,
+                tiltX: (rng() * 2 - 1) * cfg.tiltJitter,
+                tiltY: (rng() * 2 - 1) * cfg.tiltJitter,
+                roll: (rng() * 2 - 1) * cfg.rollJitter,
+                size: cfg.tileSize
+            });
+        }
     }
     return tiles;
 }
