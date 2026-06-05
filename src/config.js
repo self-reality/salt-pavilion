@@ -87,8 +87,16 @@ export const DISCO = {
     mirrorGloss: 0.97,     // near-mirror sharpness
     mirrorReflectivity: 1.0,
     mirrorColor: new pc.Color(0.86, 0.88, 0.93), // faint cool glass tint
+    mirrorTintStrength: 1.0, // brightness of the flat tint shown on an SSR miss
 
-    reflectCubeSize: 128,  // per-face resolution of the live reflection probe
+    // Screen-space reflections: each tile marches its reflection ray through the
+    // scene depth grab (which holds the van + cans) and samples the colour grab
+    // on a hit. Rays that miss or leave the screen fall back to the mirror tint.
+    ssrSteps: 56,          // max ray-march samples
+    ssrStep: 0.9,          // world-units advanced per step (~50u reach)
+    ssrThickness: 2.0,     // max depth gap that still counts as a surface hit
+    ssrBias: 0.05,         // min depth gap before a hit registers (self-hit guard)
+
     boundaryMargin: 1.5,   // van soft-stops this far inside the radius
     seed: 1337             // fixed so the wall looks identical across reloads
 };

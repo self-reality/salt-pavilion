@@ -1,5 +1,5 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { DISCO, BG_COLOR } from './config.js';
+import { DISCO } from './config.js';
 
 // Inverted disco ball — the edge of the world. A huge sphere tiled on the
 // INSIDE with thick mirror squares enclosing the whole scene. The wall sits
@@ -10,8 +10,11 @@ import { DISCO, BG_COLOR } from './config.js';
 // Three pieces:
 //   1. A single baked mesh of all tiles (laid in latitude rings + slight tilt
 //      so they look hand-glued, each a thin cuboid with real thickness).
-//   2. A camera-following cubemap probe that re-renders one face per frame, so
-//      the van — sitting just ahead of the camera — shows up in nearby tiles.
+//   2. Screen-space reflections: the tile material's reflection chunk is replaced
+//      with a world-space ray-march through the camera's scene depth/colour grabs
+//      (which hold the van + cans, not the tiles), so reflections have true scale
+//      and parallax. Rays that miss or leave the screen fall back to a flat,
+//      tweakable mirror tint.
 //   3. A spherical boundary that cancels the van's outward velocity at the wall.
 
 // Small seeded RNG so the wall looks identical across reloads.
@@ -145,37 +148,88 @@ function bakeDiscoBall(device, tiles, cfg) {
     return pc.Mesh.fromGeometry(device, geom);
 }
 
-// Camera rotations for the 6 cubemap faces, matching the engine's own point-
-// light convention (LightCamera.pointLightRotations).
-const FACE_ROT = [
-    new pc.Quat().setFromEulerAngles(0, 90, 180),
-    new pc.Quat().setFromEulerAngles(0, -90, 180),
-    new pc.Quat().setFromEulerAngles(90, 0, 0),
-    new pc.Quat().setFromEulerAngles(-90, 0, 0),
-    new pc.Quat().setFromEulerAngles(0, 180, 180),
-    new pc.Quat().setFromEulerAngles(0, 0, 180)
-];
+// GLSL float literal: GLSL ES needs a decimal point on float constants.
+const glf = (x) => (Number.isInteger(x) ? x.toFixed(1) : String(x));
 
-export function createDiscoBall(app, cameraEntity, ship) {
+// Custom reflection chunk (overrides `reflectionCubePS`). Marches the reflection
+// ray in world space, stepping through the scene depth grab; on a depth crossing
+// it samples the scene colour grab — that's the van/cans reflected at their true
+// on-screen scale. Misses and off-screen rays fall back to the mirror tint. The
+// tiles are excluded from the grabs, so rays only ever hit the van + cans.
+function ssrReflectionChunk(cfg, floatDepth) {
+    return `
+// CameraFrame's depth prepass stores LINEAR view depth (R32F, or packed RGBA8
+// where float render targets aren't available), so select the matching
+// getLinearScreenDepth() branch — the engine can't infer it for an override.
+#define SCENE_DEPTHMAP_LINEAR
+${floatDepth ? '#define SCENE_DEPTHMAP_FLOAT' : ''}
+#include "screenDepthPS"
+uniform sampler2D uSceneColorMap;
+uniform mat4 matrix_viewProjection;
+uniform float material_reflectivity;
+uniform vec3 uMirrorTint;
+uniform float uMirrorTintStrength;
+#define SSR_STEPS ${Math.max(1, Math.round(cfg.ssrSteps))}
+#define SSR_STEP ${glf(cfg.ssrStep)}
+#define SSR_BIAS ${glf(cfg.ssrBias)}
+#define SSR_THICKNESS ${glf(cfg.ssrThickness)}
+
+vec3 calcReflection(vec3 reflDir, float gloss) {
+    vec3 tint = uMirrorTint * uMirrorTintStrength;
+    float t = SSR_STEP;
+    float prevT = 0.0;
+    vec2 hitUv = vec2(0.0);
+    bool hit = false;
+
+    for (int i = 0; i < SSR_STEPS; i++) {
+        vec3 p = vPositionW + reflDir * t;
+        vec4 clip = matrix_viewProjection * vec4(p, 1.0);
+        if (clip.w <= 0.0) break;                      // behind the camera
+        vec2 uv = (clip.xy / clip.w) * 0.5 + 0.5;
+        if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) break; // off-screen
+
+        float diff = getLinearDepth(p) - getLinearScreenDepth(uv);
+        if (diff > SSR_BIAS && diff < SSR_THICKNESS) { // ray crossed a surface
+            float lo = prevT, hi = t;                  // refine for a sharp contact
+            for (int j = 0; j < 4; j++) {
+                float mid = 0.5 * (lo + hi);
+                vec3 pm = vPositionW + reflDir * mid;
+                vec4 cm = matrix_viewProjection * vec4(pm, 1.0);
+                vec2 um = (cm.xy / cm.w) * 0.5 + 0.5;
+                if (getLinearDepth(pm) - getLinearScreenDepth(um) > SSR_BIAS) { hi = mid; uv = um; }
+                else lo = mid;
+            }
+            hitUv = uv;
+            hit = true;
+            break;
+        }
+        prevT = t;
+        t += SSR_STEP;
+    }
+
+    if (!hit) return tint;
+    return texture2D(uSceneColorMap, hitUv).rgb * uMirrorTint;
+}
+
+void addReflection(vec3 reflDir, float gloss) {
+    dReflection += vec4(calcReflection(reflDir, gloss), material_reflectivity);
+}
+`;
+}
+
+export function createDiscoBall(app, cameraEntity, ship, cf) {
     const device = app.graphicsDevice;
     const rng = mulberry32(DISCO.seed);
     const mesh = bakeDiscoBall(device, buildTiles(DISCO, rng), DISCO);
 
-    // Live reflection cubemap, refreshed one face per frame by the probe camera.
-    const cube = new pc.Texture(device, {
-        name: 'discoReflect',
-        cubemap: true,
-        width: DISCO.reflectCubeSize,
-        height: DISCO.reflectCubeSize,
-        format: pc.PIXELFORMAT_RGBA8,
-        addressU: pc.ADDRESS_CLAMP_TO_EDGE,
-        addressV: pc.ADDRESS_CLAMP_TO_EDGE,
-        mipmaps: false // a near-mirror samples level 0; no stale-mip blur
-    });
-    const faces = [];
-    for (let f = 0; f < 6; f++) {
-        faces.push(new pc.RenderTarget({ name: `disco-face-${f}`, colorBuffer: cube, face: f, depth: true }));
-    }
+    // The camera renders through CameraFrame, which owns its render passes — so
+    // the per-camera requestScene*Map path is bypassed and the grabs must be
+    // enabled on CameraFrame instead. sceneDepthMap adds a linear-depth prepass
+    // (uSceneDepthMap); sceneColorMap grabs the lit scene (uSceneColorMap). The
+    // tile shader ray-marches both to reflect the van + cans.
+    cf.rendering.sceneColorMap = true;
+    cf.rendering.sceneDepthMap = true;
+    cf.update();
 
     const mat = new pc.StandardMaterial();
     mat.useMetalness = true;
@@ -185,63 +239,40 @@ export function createDiscoBall(app, cameraEntity, ship) {
     // Metalness workflow: a metal's reflection colour IS its albedo. A bright
     // tint here = a bright mirror; black would reflect nothing.
     mat.diffuse = DISCO.mirrorColor;
-    mat.cubeMap = cube; // takes priority over scene.envAtlas -> reflects the scene
-    // No box projection: it assumes the reflected content lives on the box
-    // surface, but the van orbits the centre while the box would have to enclose
-    // the far tiles — so it pastes the van onto the distant wall (tiny, and with
-    // the parallax collapsed to an infinite-environment lookup). Plain direction
-    // sampling against a centre-pinned probe reads the van's true bearing.
+    // A 1x1 dummy cubemap is never sampled — it only forces the material onto the
+    // REFLECTIONSRC_CUBEMAP path so our overridden `reflectionCubePS` (the SSR
+    // ray-march) is the reflection code that runs.
+    mat.cubeMap = new pc.Texture(device, {
+        name: 'discoDummyCube', cubemap: true, width: 1, height: 1,
+        format: pc.PIXELFORMAT_RGBA8, mipmaps: false
+    });
+    mat.getShaderChunks(pc.SHADERLANGUAGE_GLSL).set('reflectionCubePS', ssrReflectionChunk(DISCO, device.textureFloatRenderable));
+    const tint = DISCO.mirrorColor;
+    mat.setParameter('uMirrorTint', [tint.r, tint.g, tint.b]);
+    mat.setParameter('uMirrorTintStrength', DISCO.mirrorTintStrength);
     mat.useFog = true;  // distant tiles fade into the void like everything else
     mat.update();
 
-    // Own layer so the probe camera can exclude the ball (no mirror feedback,
-    // and the ball's far walls don't clutter the reflection). Insert it into the
-    // scene group right after World (i.e. before the Immediate layer) so the tiles
-    // render inside CameraFrame's HDR scene pass, sharing its depth buffer with the
-    // van. Pushing to the end of the list instead lands them in the post-compose
-    // after-pass, which clears to a fresh depth buffer — there the tiles paint over
-    // the van regardless of which is actually nearer.
+    // Own layer, inserted right AFTER the DEPTH layer so the colour/depth grabs
+    // (which run at DEPTH) capture the van + cans but NOT the tiles — the tiles
+    // therefore sample a self-free scene, and never reflect each other. It still
+    // sits inside CameraFrame's HDR scene pass (before Skybox/Immediate), sharing
+    // the world depth buffer so the van occludes tiles correctly.
     const discoLayer = new pc.Layer({ name: 'DiscoBall' });
     const layers = app.scene.layers;
-    const worldLayer = layers.getLayerById(pc.LAYERID_WORLD);
-    layers.insert(discoLayer, layers.layerList.lastIndexOf(worldLayer) + 1);
+    const depthLayer = layers.getLayerById(pc.LAYERID_DEPTH);
+    layers.insert(discoLayer, layers.layerList.lastIndexOf(depthLayer) + 1);
     cameraEntity.camera.layers = [...cameraEntity.camera.layers, discoLayer.id];
 
     const entity = new pc.Entity('discoBall');
     entity.addComponent('render', { meshInstances: [new pc.MeshInstance(mesh, mat)], layers: [discoLayer.id] });
     app.root.addChild(entity);
 
-    // Probe camera: pinned at the sphere centre (the focal point every mirror
-    // faces, and the centre of the projection box above). Renders only the WORLD
-    // layer (van + boxes + white void) into the cube. Priority < 0 so it renders
-    // before the main camera each frame. It is the van that moves inside the
-    // fixed sphere, so the probe never needs to follow the camera.
-    const probe = new pc.Entity('discoProbe');
-    probe.addComponent('camera', {
-        fov: 90,
-        nearClip: 0.1,
-        farClip: DISCO.radius * 2.5,
-        clearColor: BG_COLOR,
-        layers: [pc.LAYERID_WORLD],
-        priority: -10,
-        renderTarget: faces[0]
-    });
-    probe.camera.aspectRatioMode = pc.ASPECT_MANUAL;
-    probe.camera.aspectRatio = 1;
-    probe.setPosition(0, 0, 0);
-    app.root.addChild(probe);
-
-    let face = 0;
     const _p = new pc.Vec3();
     const _n = new pc.Vec3();
     const _v = new pc.Vec3();
 
     function update() {
-        // Refresh one cube face per frame from the sphere centre.
-        probe.setRotation(FACE_ROT[face]);
-        probe.camera.renderTarget = faces[face];
-        face = (face + 1) % 6;
-
         // Spherical boundary: at the wall, kill outward velocity and clamp back.
         _p.copy(ship.getPosition());
         const dist = _p.length();
@@ -259,5 +290,11 @@ export function createDiscoBall(app, cameraEntity, ship) {
         }
     }
 
-    return { entity, material: mat, update };
+    return {
+        entity,
+        material: mat,
+        update,
+        setMirrorTint: (r, g, b) => mat.setParameter('uMirrorTint', [r, g, b]),
+        setTintStrength: (v) => mat.setParameter('uMirrorTintStrength', v)
+    };
 }

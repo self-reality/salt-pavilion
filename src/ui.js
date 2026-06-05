@@ -1,5 +1,5 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { PLAYER_COLOR, VAN_PITCH } from './config.js';
+import { PLAYER_COLOR, VAN_PITCH, DISCO } from './config.js';
 import { setVanPitch } from './player.js';
 
 const FOG_TYPES = {
@@ -42,7 +42,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, van, cf } = ctx;
+    const { scene, light, materials, playerMaterial, van, cf, disco } = ctx;
     const allMaterials = [playerMaterial, ...materials];
 
     const style = document.createElement('style');
@@ -150,6 +150,16 @@ export function createSidebar(ctx) {
     slider(mat, 'Gloss', 0, 1, 0.01, 0.76, (v) => applyMat('gloss', v));
     slider(mat, 'Metalness', 0, 1, 0.01, 0.43, (v) => applyMat('metalness', v));
     slider(mat, 'Reflectivity', 0, 1, 0.01, 0.57, (v) => applyMat('reflectivity', v));
+
+    // ----- Mirrors (disco ball) -----
+    const mir = section('Mirrors');
+    const mc = DISCO.mirrorColor;
+    color(mir, 'Mirror tint', rgb2hex(mc.r, mc.g, mc.b),
+        (h) => disco.setMirrorTint(...hex2rgb(h)));
+    slider(mir, 'Tint strength', 0, 2, 0.01, DISCO.mirrorTintStrength,
+        (v) => disco.setTintStrength(v));
+    slider(mir, 'Reflectivity', 0, 1, 0.01, DISCO.mirrorReflectivity,
+        (v) => { disco.material.reflectivity = v; disco.material.update(); });
 
     // ----- Post -----
     const post = section('Post (halo)');
