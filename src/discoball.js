@@ -171,13 +171,20 @@ uniform vec3 uMirrorTint;
 uniform float uMirrorTintStrength;
 #define SSR_STEPS ${Math.max(1, Math.round(cfg.ssrSteps))}
 #define SSR_STEP ${glf(cfg.ssrStep)}
-#define SSR_BIAS ${glf(cfg.ssrBias)}
 #define SSR_THICKNESS ${glf(cfg.ssrThickness)}
 
+// March the reflection ray, tracking the previous depth gap. A hit is a genuine
+// crossing — the ray was in front of (or level with) the scene last step and is
+// now JUST behind it (gap within SSR_THICKNESS). Requiring the sign change, and
+// keeping the thickness tight, stops the march from registering several hits at
+// stepped depths along the same surface, which is what smears the van into
+// layered ghost copies. A binary search then converges on the contact so the
+// hit position is continuous rather than snapped to the coarse step.
 vec3 calcReflection(vec3 reflDir, float gloss) {
     vec3 tint = uMirrorTint * uMirrorTintStrength;
     float t = SSR_STEP;
     float prevT = 0.0;
+    float prevDiff = -1e6;             // start firmly "in front"
     vec2 hitUv = vec2(0.0);
     bool hit = false;
 
@@ -188,21 +195,22 @@ vec3 calcReflection(vec3 reflDir, float gloss) {
         vec2 uv = (clip.xy / clip.w) * 0.5 + 0.5;
         if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) break; // off-screen
 
-        float diff = getLinearDepth(p) - getLinearScreenDepth(uv);
-        if (diff > SSR_BIAS && diff < SSR_THICKNESS) { // ray crossed a surface
-            float lo = prevT, hi = t;                  // refine for a sharp contact
-            for (int j = 0; j < 4; j++) {
+        float diff = getLinearDepth(p) - getLinearScreenDepth(uv); // >0 = behind surface
+        if (prevDiff <= 0.0 && diff > 0.0 && diff < SSR_THICKNESS) {
+            float lo = prevT, hi = t;                  // bracket the contact, refine
+            hitUv = uv;
+            for (int j = 0; j < 8; j++) {
                 float mid = 0.5 * (lo + hi);
                 vec3 pm = vPositionW + reflDir * mid;
                 vec4 cm = matrix_viewProjection * vec4(pm, 1.0);
                 vec2 um = (cm.xy / cm.w) * 0.5 + 0.5;
-                if (getLinearDepth(pm) - getLinearScreenDepth(um) > SSR_BIAS) { hi = mid; uv = um; }
+                if (getLinearDepth(pm) - getLinearScreenDepth(um) > 0.0) { hi = mid; hitUv = um; }
                 else lo = mid;
             }
-            hitUv = uv;
             hit = true;
             break;
         }
+        prevDiff = diff;
         prevT = t;
         t += SSR_STEP;
     }

@@ -92,10 +92,11 @@ export const DISCO = {
     // Screen-space reflections: each tile marches its reflection ray through the
     // scene depth grab (which holds the van + cans) and samples the colour grab
     // on a hit. Rays that miss or leave the screen fall back to the mirror tint.
-    ssrSteps: 56,          // max ray-march samples
-    ssrStep: 0.9,          // world-units advanced per step (~50u reach)
-    ssrThickness: 2.0,     // max depth gap that still counts as a surface hit
-    ssrBias: 0.05,         // min depth gap before a hit registers (self-hit guard)
+    ssrSteps: 64,          // max ray-march samples
+    ssrStep: 0.5,          // world-units advanced per step (~32u reach)
+    ssrThickness: 1.5,     // depth window for a crossing; only the FIRST crossing
+                           // per ray is taken, so this fills grazing gaps without
+                           // re-introducing layered ghost copies
 
     boundaryMargin: 1.5,   // van soft-stops this far inside the radius
     seed: 1337             // fixed so the wall looks identical across reloads
