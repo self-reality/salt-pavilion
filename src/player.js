@@ -24,10 +24,10 @@ export function setVanPitch(van, pitchDeg) {
 export async function createPlayer(app) {
     const material = new pc.StandardMaterial();
     material.diffuse = PLAYER_COLOR;
-    material.gloss = 0.76;
-    material.metalness = 0.43;
+    material.gloss = 0.83;
+    material.metalness = 0.84;
     material.useMetalness = true;
-    material.reflectivity = 0.57;
+    material.reflectivity = 1.0;
     material.update();
 
     const ship = new pc.Entity('ship');

@@ -120,10 +120,10 @@ export function createSidebar(ctx) {
     const atm = section('Atmosphere');
     select(atm, 'Fog type', ['none', 'linear', 'exp', 'exp2'], 'linear',
         (v) => { scene.fog.type = FOG_TYPES[v]; });
-    color(atm, 'Fog color', rgb2hex(0.93, 0.95, 0.97),
+    color(atm, 'Fog color', rgb2hex(1, 1, 1),
         (h) => scene.fog.color.set(...hex2rgb(h)));
-    slider(atm, 'Fog start', 0, 40, 0.5, 3.5, (v) => { scene.fog.start = v; });
-    slider(atm, 'Fog end', 5, 120, 1, 46, (v) => { scene.fog.end = v; });
+    slider(atm, 'Fog start', 0, 40, 0.5, 21.5, (v) => { scene.fog.start = v; });
+    slider(atm, 'Fog end', 5, 120, 1, 82, (v) => { scene.fog.end = v; });
     slider(atm, 'Fog density', 0, 0.1, 0.001, 0.096, (v) => { scene.fog.density = v; });
 
     // ----- Lighting -----
@@ -147,9 +147,9 @@ export function createSidebar(ctx) {
     const applyMat = (prop, v) => {
         for (const m of allMaterials) { m[prop] = v; m.update(); }
     };
-    slider(mat, 'Gloss', 0, 1, 0.01, 0.76, (v) => applyMat('gloss', v));
-    slider(mat, 'Metalness', 0, 1, 0.01, 0.43, (v) => applyMat('metalness', v));
-    slider(mat, 'Reflectivity', 0, 1, 0.01, 0.57, (v) => applyMat('reflectivity', v));
+    slider(mat, 'Gloss', 0, 1, 0.01, 0.83, (v) => applyMat('gloss', v));
+    slider(mat, 'Metalness', 0, 1, 0.01, 0.84, (v) => applyMat('metalness', v));
+    slider(mat, 'Reflectivity', 0, 1, 0.01, 1, (v) => applyMat('reflectivity', v));
 
     // ----- Mirrors (disco ball) -----
     const mir = section('Mirrors');
@@ -167,9 +167,9 @@ export function createSidebar(ctx) {
     const post = section('Post (halo)');
     select(post, 'Tone map', ['linear', 'neutral', 'aces', 'filmic'], 'linear',
         (v) => { cf.rendering.toneMapping = TONE_MAPS[v]; cf.update(); });
-    slider(post, 'Bloom intensity', 0, 0.2, 0.005, 0.035, (v) => { cf.bloom.intensity = v; cf.update(); });
-    slider(post, 'Bloom blur', 1, 16, 1, 4, (v) => { cf.bloom.blurLevel = v; cf.update(); });
-    slider(post, 'Vignette', 0, 1, 0.01, 0.12, (v) => { cf.vignette.intensity = v; cf.update(); });
+    slider(post, 'Bloom intensity', 0, 0.2, 0.005, 0.03, (v) => { cf.bloom.intensity = v; cf.update(); });
+    slider(post, 'Bloom blur', 1, 16, 1, 3, (v) => { cf.bloom.blurLevel = v; cf.update(); });
+    slider(post, 'Vignette', 0, 1, 0.01, 0, (v) => { cf.vignette.intensity = v; cf.update(); });
     select(post, 'MSAA', ['1', '2', '4'], '4',
         (v) => { cf.rendering.samples = parseInt(v, 10); cf.update(); });
 }

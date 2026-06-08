@@ -8,9 +8,9 @@ export function setupPostProcess(app, cameraComponent) {
     const cf = new pc.CameraFrame(app, cameraComponent);
     cf.rendering.toneMapping = pc.TONEMAP_LINEAR;
     cf.rendering.samples = 4;
-    cf.bloom.intensity = 0.035;
-    cf.bloom.blurLevel = 4;
-    cf.vignette.intensity = 0.12;
+    cf.bloom.intensity = 0.03;
+    cf.bloom.blurLevel = 3;
+    cf.vignette.intensity = 0;
     cf.update();
     return { cf };
 }

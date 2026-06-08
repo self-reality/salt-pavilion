@@ -24,8 +24,8 @@ export function setupScene(app) {
     const fog = app.scene.fog;
     fog.type = pc.FOG_LINEAR;
     fog.color = new pc.Color(1, 1, 1);
-    fog.start = 3.5;
-    fog.end = 46;
+    fog.start = 21.5;
+    fog.end = 82;
     fog.density = 0.096;
 
     // Zero-G: nothing falls.

@@ -86,7 +86,7 @@ export const DISCO = {
     mirrorMetalness: 1.0,
     mirrorGloss: 0.97,     // near-mirror sharpness
     mirrorReflectivity: 1.0,
-    mirrorColor: new pc.Color(0.86, 0.88, 0.93), // glass tint multiplied over the reflection
+    mirrorColor: new pc.Color(179 / 255, 200 / 255, 255 / 255), // 179,200,255 glass tint multiplied over the reflection
     mirrorTintStrength: 1.0, // brightness of the mirror tint
     curveAmount: 1.0,        // 0 = flat mirror, 1 = full spherical-mirror magnification
 
