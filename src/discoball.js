@@ -187,13 +187,15 @@ vec3 calcReflection(vec3 reflDir, float gloss) {
     // branch, so the warp steps only at the grout lines.
     vec3 nrm = normalize(vNormalW);
     vec3 centerW = -nrm * uWallRadius;
-    vec3 reflDirTile = reflect(normalize(centerW - uEye), nrm);
+    vec3 viewDir = normalize(centerW - uEye);   // eye -> tile
+    float facing = -dot(viewDir, nrm);          // 1 = head-on, -> 0 at grazing
+    vec3 reflDirTile = reflect(viewDir, nrm);
     // Intersect the tile's reflected ray with the focal plane through the origin,
     // then project both the hit and the centre to get the per-tile sample shift.
     // The plane equation's sign cancels in the ratio, so uFocalNormal's orientation
     // doesn't matter.
     float denom = dot(reflDirTile, uFocalNormal);
-    if (abs(denom) > 1e-3) {
+    if (facing > 0.0 && abs(denom) > 0.05) {
         float t = dot(-centerW, uFocalNormal) / denom;
         if (t > 0.0) {
             vec4 sphereClip = uReflectViewProj * vec4(centerW + reflDirTile * t, 1.0);
@@ -201,7 +203,15 @@ vec3 calcReflection(vec3 reflDir, float gloss) {
             if (sphereClip.w > 0.0 && flatClip.w > 0.0) {
                 vec2 sphereUv = sphereClip.xy / sphereClip.w * 0.5 + 0.5;
                 vec2 flatUvCenter = flatClip.xy / flatClip.w * 0.5 + 0.5;
-                uv = flatUv + (sphereUv - flatUvCenter) * uCurveAmount;
+                // The reflection render only holds the on-screen scene, so fade the
+                // curve back to a plain flat mirror where it has no data: at grazing
+                // angles and as the sample drifts off-screen (else uv clamps to the
+                // texture edge and smears into streaks). Both weights vary smoothly
+                // with the camera, so tiles no longer pop as they cross the edge.
+                float wFace = smoothstep(0.1, 0.45, facing);
+                vec2 edge = abs(sphereUv - 0.5) * 2.0;
+                float wEdge = 1.0 - smoothstep(0.85, 1.1, max(edge.x, edge.y));
+                uv = flatUv + (sphereUv - flatUvCenter) * (uCurveAmount * wFace * wEdge);
             }
         }
     }
