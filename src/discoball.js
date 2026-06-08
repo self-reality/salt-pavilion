@@ -152,22 +152,29 @@ function bakeDiscoBall(device, tiles, cfg) {
 // the van + cans into uReflectionTex from the mirror of the main camera across
 // the wall plane. The flat way to read it is each tile sampling its own screen
 // pixel — but that makes the whole wall one FLAT mirror, since the tile's normal
-// never enters the lookup. A real sphere is curved: each point bends its reflected
-// ray by its own normal, magnifying and wrapping the image.
+// never enters the lookup. A real disco ball is faceted: each flat tile reflects
+// a slice of the scene shifted by its own orientation, and the image steps at the
+// grout lines between tiles.
 //
-// So we reconstruct the curved reflection. For each fragment we take its true
-// reflected ray (reflDir, already bent by the tile's normal), intersect it with a
-// focal plane through the scene centre (where the van + cans live), and look THAT
-// point up in the reflection render via the mirror camera's view-projection. Tiles
-// facing slightly different ways now sample different parts of the scene, so the
-// sphere enlarges and curves the reflection like a true spherical mirror. The flat
-// per-pixel read is kept as a fallback and blended by uCurveAmount (0 = flat,
-// 1 = full sphere); rays that miss the focal plane fall back to flat too.
+// So we curve the reflection PER TILE, not per pixel. Driving the warp from the
+// fragment's own ray makes the guards below (denom / t / clip.w) flip partway
+// across a tile, tearing the reflection inside a single facet. Instead we derive
+// everything from per-tile-CONSTANT inputs: the tile centre and its face normal.
+// vNormalW is constant across a flat face and points inward, so the tile centre
+// is -normalize(vNormalW) * radius. We reflect the eye→centre ray off that normal,
+// intersect a focal plane through the scene centre, and project the hit into the
+// mirror render — giving one sphere sample point for the whole tile. The shift
+// between that and where the centre samples flat is a per-tile constant `delta`;
+// every fragment reads the flat mirror offset by delta * uCurveAmount, so the
+// crop is smooth within a tile and only steps at the borders.
 const SPHERE_REFLECTION_CHUNK = `
 uniform sampler2D uReflectionTex;
 uniform vec2 uReflectTexel;        // (1/width, 1/height) of the screen render
 uniform mat4 uReflectViewProj;     // mirror camera's view-projection
+uniform mat4 uMainViewProj;        // main camera's view-projection
 uniform vec3 uFocalNormal;         // main camera forward; orients the focal plane
+uniform vec3 uEye;                 // main camera world position
+uniform float uWallRadius;         // sphere radius the tile centres sit on
 uniform float uCurveAmount;        // 0 = flat mirror, 1 = full spherical curvature
 uniform float material_reflectivity;
 uniform vec3 uMirrorTint;
@@ -175,17 +182,26 @@ uniform float uMirrorTintStrength;
 vec3 calcReflection(vec3 reflDir, float gloss) {
     vec2 flatUv = gl_FragCoord.xy * uReflectTexel;
     vec2 uv = flatUv;
-    // Intersect the reflected ray with the focal plane through the origin, then
-    // project the hit into the mirror render. The plane equation's sign cancels in
-    // the ratio, so uFocalNormal's orientation doesn't matter.
-    float denom = dot(reflDir, uFocalNormal);
+    // Reconstruct the tile centre and the tile-constant reflected ray. Using the
+    // face normal (constant per tile) keeps every fragment of the tile on the same
+    // branch, so the warp steps only at the grout lines.
+    vec3 nrm = normalize(vNormalW);
+    vec3 centerW = -nrm * uWallRadius;
+    vec3 reflDirTile = reflect(normalize(centerW - uEye), nrm);
+    // Intersect the tile's reflected ray with the focal plane through the origin,
+    // then project both the hit and the centre to get the per-tile sample shift.
+    // The plane equation's sign cancels in the ratio, so uFocalNormal's orientation
+    // doesn't matter.
+    float denom = dot(reflDirTile, uFocalNormal);
     if (abs(denom) > 1e-3) {
-        float t = dot(-vPositionW, uFocalNormal) / denom;
+        float t = dot(-centerW, uFocalNormal) / denom;
         if (t > 0.0) {
-            vec4 clip = uReflectViewProj * vec4(vPositionW + reflDir * t, 1.0);
-            if (clip.w > 0.0) {
-                vec2 sphereUv = clip.xy / clip.w * 0.5 + 0.5;
-                uv = mix(flatUv, sphereUv, uCurveAmount);
+            vec4 sphereClip = uReflectViewProj * vec4(centerW + reflDirTile * t, 1.0);
+            vec4 flatClip = uMainViewProj * vec4(centerW, 1.0);
+            if (sphereClip.w > 0.0 && flatClip.w > 0.0) {
+                vec2 sphereUv = sphereClip.xy / sphereClip.w * 0.5 + 0.5;
+                vec2 flatUvCenter = flatClip.xy / flatClip.w * 0.5 + 0.5;
+                uv = flatUv + (sphereUv - flatUvCenter) * uCurveAmount;
             }
         }
     }
@@ -267,6 +283,7 @@ export function createDiscoBall(app, cameraEntity, ship) {
     mat.setParameter('uReflectionTex', reflectRT.colorBuffer);
     mat.setParameter('uReflectTexel', [1 / rtW, 1 / rtH]);
     mat.setParameter('uCurveAmount', DISCO.curveAmount);
+    mat.setParameter('uWallRadius', DISCO.radius);
     const tint = DISCO.mirrorColor;
     mat.setParameter('uMirrorTint', [tint.r, tint.g, tint.b]);
     mat.setParameter('uMirrorTintStrength', DISCO.mirrorTintStrength);
@@ -296,6 +313,7 @@ export function createDiscoBall(app, cameraEntity, ship) {
     const _refl = new pc.Mat4();
     const _viewInv = new pc.Mat4();
     const _viewProj = new pc.Mat4();
+    const _mainViewProj = new pc.Mat4();
     const R = DISCO.radius;
 
     function updateReflection() {
@@ -312,6 +330,11 @@ export function createDiscoBall(app, cameraEntity, ship) {
         // view ray with the wall sphere; the plane normal is the inward radius there.
         _eye.copy(cameraEntity.getPosition());
         _fwd.copy(cameraEntity.forward);
+        // Per-tile curvature reads the scene from the real eye through the main
+        // camera's view-projection (set before _eye is mirrored below).
+        mat.setParameter('uEye', [_eye.x, _eye.y, _eye.z]);
+        _mainViewProj.mul2(cameraEntity.camera.projectionMatrix, _viewInv.copy(cameraEntity.getWorldTransform()).invert());
+        mat.setParameter('uMainViewProj', _mainViewProj.data);
         const b = 2 * _eye.dot(_fwd);
         const c = _eye.lengthSq() - R * R;
         const disc = b * b - 4 * c;
