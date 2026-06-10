@@ -12,8 +12,8 @@ export function setupCamera(app, ship) {
     const camera = new pc.Entity('camera');
     camera.addComponent('camera', {
         clearColor: BG_COLOR,
-        // Tight far plane (world radius is 55; opposite wall ~110 away) so the
-        // depth grab keeps precision for the disco-ball screen-space reflections.
+        // Tight far plane: the world radius is 55, so the opposite wall sits
+        // at most ~110 away — no need to spend depth precision beyond it.
         farClip: 150,
         fov: 60
     });
