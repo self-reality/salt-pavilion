@@ -34,7 +34,7 @@ async function boot() {
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
     const controls = registerControls(app, ship);
-    const disco = createDiscoBall(app, camera.camera, ship);
+    const disco = createDiscoBall(app, camera.camera, ship, obstacles);
 
     createSidebar({
         app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf, disco

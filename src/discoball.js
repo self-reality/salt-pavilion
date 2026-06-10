@@ -15,7 +15,8 @@ import { DISCO, BG_COLOR } from './config.js';
 //      (which hold the van + cans, not the tiles), so reflections have true scale
 //      and parallax. Rays that miss or leave the screen fall back to a flat,
 //      tweakable mirror tint.
-//   3. A spherical boundary that cancels the van's outward velocity at the wall.
+//   3. A spherical boundary: the van's outward velocity is cancelled at the
+//      wall; the cans reflect off it elastically (mirror bounce, speed kept).
 
 // Small seeded RNG so the wall looks identical across reloads.
 function mulberry32(a) {
@@ -206,7 +207,7 @@ function reflectionMatrix(out, n, d) {
     return out;
 }
 
-export function createDiscoBall(app, cameraEntity, ship) {
+export function createDiscoBall(app, cameraEntity, ship, obstacles = []) {
     const device = app.graphicsDevice;
     const rng = mulberry32(DISCO.seed);
     const mesh = bakeDiscoBall(device, buildTiles(DISCO, rng), DISCO);
@@ -348,6 +349,27 @@ export function createDiscoBall(app, cameraEntity, ship) {
                 rb.linearVelocity = _v;
             }
             rb.teleport(_bn.x * limit, _bn.y * limit, _bn.z * limit);
+        }
+
+        // Cans bounce off the mirror like light: reflect the velocity about the
+        // wall's tangent plane (v' = v - 2(v·n)n). Same speed in as out — purely
+        // elastic, no energy added or lost.
+        for (const can of obstacles) {
+            _p.copy(can.getPosition());
+            const cd = _p.length();
+            if (cd > limit && cd > 1e-4) {
+                const crb = can.rigidbody;
+                _bn.copy(_p).mulScalar(1 / cd); // outward unit
+                _v.copy(crb.linearVelocity);
+                const cvr = _v.dot(_bn);
+                if (cvr > 0) {
+                    _v.x -= 2 * _bn.x * cvr;
+                    _v.y -= 2 * _bn.y * cvr;
+                    _v.z -= 2 * _bn.z * cvr;
+                    crb.linearVelocity = _v;
+                }
+                crb.teleport(_bn.x * limit, _bn.y * limit, _bn.z * limit);
+            }
         }
     }
 
