@@ -1,8 +1,9 @@
 # SPAM — PlayCanvas Physics Test
 
 A tiny 3D physics sandbox built on the PlayCanvas engine. You pilot a black
-"spaceship" (a box) through a white void filled with 20 smaller, brightly
-colored boxes. Ram them and they bounce away — zero-G, with inertia.
+"spaceship" (a van model) through a white void filled with 20 floating,
+textured spam cans — each a distinct prerendered artwork picked at random on
+every load. Ram them and they bounce away — zero-G, with inertia.
 
 ## Controls
 
@@ -47,7 +48,7 @@ src/
   physics.js         # ammo loader
   scene.js           # lighting + zero gravity
   player.js          # black ship: dynamic rigidbody box
-  obstacles.js       # 20 colored physics boxes
+  obstacles.js       # 20 floating spam-can GLBs (random pick from assets/cans)
   controls.js        # pointer-lock steering + force-based thrust
   camera.js          # third-person chase camera
 ```

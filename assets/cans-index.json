@@ -1,0 +1,4555 @@
+{
+  "generatedAt": "2026-06-10",
+  "source": "queue/most-expensive-artworks.json",
+  "output": "model-textured",
+  "textureSize": 1024,
+  "fbxSource": "original can FBX (lib/can.js)",
+  "count": 505,
+  "entries": [
+    {
+      "base": "0009__8815061c__d-sent",
+      "model": "models-textured/0009__8815061c__d-sent.glb",
+      "title": "dəˈsent",
+      "author": "0009",
+      "width": 9000,
+      "height": 11373,
+      "bytes": 1428576
+    },
+    {
+      "base": "0xdgb__c2c2c22f__the-getaway",
+      "model": "models-textured/0xdgb__c2c2c22f__the-getaway.glb",
+      "title": "The Getaway",
+      "author": "0xdgb",
+      "width": 4838,
+      "height": 8600,
+      "bytes": 1248628
+    },
+    {
+      "base": "1999flyboy__3f179a4e__the-burnt-out-kids",
+      "model": "models-textured/1999flyboy__3f179a4e__the-burnt-out-kids.glb",
+      "title": "The Burnt Out Kids",
+      "author": "1999flyboy",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1267608
+    },
+    {
+      "base": "1dontknows__d0255403__carpe-diem",
+      "model": "models-textured/1dontknows__d0255403__carpe-diem.glb",
+      "title": "Carpe diem ",
+      "author": "1dontknows",
+      "width": 5000,
+      "height": 7500,
+      "bytes": 1423256
+    },
+    {
+      "base": "3puck__dc915a8c__world-camp",
+      "model": "models-textured/3puck__dc915a8c__world-camp.glb",
+      "title": "WORLD CAMP",
+      "author": "3puck",
+      "width": 4806,
+      "height": 3335,
+      "bytes": 1479936
+    },
+    {
+      "base": "a-javaloyas__bd6ab7c8__flatlines-beyond-the-last-station",
+      "model": "models-textured/a-javaloyas__bd6ab7c8__flatlines-beyond-the-last-station.glb",
+      "title": "Flatlines Beyond The Last Station",
+      "author": "a_javaloyas",
+      "width": 5000,
+      "height": 6500,
+      "bytes": 1408476
+    },
+    {
+      "base": "a-mashiro__0a990f10__delight",
+      "model": "models-textured/a-mashiro__0a990f10__delight.glb",
+      "title": "Delight",
+      "author": "a-mashiro",
+      "width": 4148,
+      "height": 6000,
+      "bytes": 1442300
+    },
+    {
+      "base": "absolutekingjay__5b0d2991__lunar",
+      "model": "models-textured/absolutekingjay__5b0d2991__lunar.glb",
+      "title": "LUNAR",
+      "author": "absolutekingjay",
+      "width": 13146,
+      "height": 9286,
+      "bytes": 1397996
+    },
+    {
+      "base": "adaezeokaro__a42e8df3__for-the-love",
+      "model": "models-textured/adaezeokaro__a42e8df3__for-the-love.glb",
+      "title": "For The Love.",
+      "author": "adaezeokaro",
+      "width": 4400,
+      "height": 6600,
+      "bytes": 1404560
+    },
+    {
+      "base": "adamyates27__e7b1f71d__balancing-out-reality-from-day-dreams",
+      "model": "models-textured/adamyates27__e7b1f71d__balancing-out-reality-from-day-dreams.glb",
+      "title": "Balancing Out Reality from Day Dreams",
+      "author": "adamyates27",
+      "width": 3613,
+      "height": 4675,
+      "bytes": 1452416
+    },
+    {
+      "base": "adapainter__ff5228c4__doors-of-perception",
+      "model": "models-textured/adapainter__ff5228c4__doors-of-perception.glb",
+      "title": "Doors of perception",
+      "author": "adapainter",
+      "width": 3600,
+      "height": 2700,
+      "bytes": 1450524
+    },
+    {
+      "base": "adelepazani__a5d29cf2__hanged-man-xii",
+      "model": "models-textured/adelepazani__a5d29cf2__hanged-man-xii.glb",
+      "title": "Hanged Man XII",
+      "author": "adelepazani",
+      "width": 2837,
+      "height": 3859,
+      "bytes": 1271560
+    },
+    {
+      "base": "adrianocadau85__1b7fee13__magic-rhino",
+      "model": "models-textured/adrianocadau85__1b7fee13__magic-rhino.glb",
+      "title": "Magic rhino",
+      "author": "adrianocadau85",
+      "width": 2000,
+      "height": 2400,
+      "bytes": 1399200
+    },
+    {
+      "base": "adxmboni1__4ef2cf50__2dispersion",
+      "model": "models-textured/adxmboni1__4ef2cf50__2dispersion.glb",
+      "title": "///2DISPERSION",
+      "author": "adxmboni1",
+      "width": 2400,
+      "height": 3000,
+      "bytes": 1385504
+    },
+    {
+      "base": "aee__649e2872__us-and-them",
+      "model": "models-textured/aee__649e2872__us-and-them.glb",
+      "title": "Us and Them",
+      "author": "aee",
+      "width": 5500,
+      "height": 5500,
+      "bytes": 1383796
+    },
+    {
+      "base": "ahmedelgammal__3fa3b8e5__faceless-portrait-1",
+      "model": "models-textured/ahmedelgammal__3fa3b8e5__faceless-portrait-1.glb",
+      "title": "Faceless Portrait #1",
+      "author": "ahmedelgammal",
+      "width": 18000,
+      "height": 18000,
+      "bytes": 1396960
+    },
+    {
+      "base": "ahmedpartey__b971bf01__birth",
+      "model": "models-textured/ahmedpartey__b971bf01__birth.glb",
+      "title": "Birth",
+      "author": "ahmedpartey",
+      "width": 5478,
+      "height": 5143,
+      "bytes": 1393684
+    },
+    {
+      "base": "alberto-carbonell__4ae23179__espai-verd",
+      "model": "models-textured/alberto-carbonell__4ae23179__espai-verd.glb",
+      "title": "Espai Verd",
+      "author": "alberto_carbonell",
+      "width": 6500,
+      "height": 7800,
+      "bytes": 1424828
+    },
+    {
+      "base": "albertooliveira__180f32a9__untitled-from-philosias-serie",
+      "model": "models-textured/albertooliveira__180f32a9__untitled-from-philosias-serie.glb",
+      "title": "Untitled (From Philosias serie)",
+      "author": "albertooliveira",
+      "width": 4429,
+      "height": 5906,
+      "bytes": 1321160
+    },
+    {
+      "base": "alecttn__b7d4fcfb__i-want-to-feel-something",
+      "model": "models-textured/alecttn__b7d4fcfb__i-want-to-feel-something.glb",
+      "title": "I want to feel something",
+      "author": "alecttn",
+      "width": 3543,
+      "height": 3543,
+      "bytes": 1413988
+    },
+    {
+      "base": "aleqth__091734af__junyaxd-2-png",
+      "model": "models-textured/aleqth__091734af__junyaxd-2-png.glb",
+      "title": "JunyAxD_2.png",
+      "author": "aleqth",
+      "width": 2212,
+      "height": 2977,
+      "bytes": 1429544
+    },
+    {
+      "base": "alexkittoe__12973c55__always-watching",
+      "model": "models-textured/alexkittoe__12973c55__always-watching.glb",
+      "title": "Always Watching",
+      "author": "alexkittoe",
+      "width": 2075,
+      "height": 3130,
+      "bytes": 1404576
+    },
+    {
+      "base": "alijahanara__0e5ffcf3__fading-memories",
+      "model": "models-textured/alijahanara__0e5ffcf3__fading-memories.glb",
+      "title": "Fading Memories",
+      "author": "alijahanara",
+      "width": 3024,
+      "height": 4032,
+      "bytes": 1371128
+    },
+    {
+      "base": "almendrabertoni__d0b97a7a__this-year-i-devour",
+      "model": "models-textured/almendrabertoni__d0b97a7a__this-year-i-devour.glb",
+      "title": "This Year I Devour",
+      "author": "almendrabertoni",
+      "width": 4644,
+      "height": 6340,
+      "bytes": 1383444
+    },
+    {
+      "base": "alterlier__bff67771__liquify-me",
+      "model": "models-textured/alterlier__bff67771__liquify-me.glb",
+      "title": "Liquify Me",
+      "author": "alterlier",
+      "width": 4847,
+      "height": 4841,
+      "bytes": 1446600
+    },
+    {
+      "base": "ambervittoria__d09e5d9c__beyond-our-wildest-dreams",
+      "model": "models-textured/ambervittoria__d09e5d9c__beyond-our-wildest-dreams.glb",
+      "title": "Beyond Our Wildest Dreams",
+      "author": "ambervittoria",
+      "width": 4680,
+      "height": 5850,
+      "bytes": 1384920
+    },
+    {
+      "base": "amirhfallah__e3bc9341__immortal",
+      "model": "models-textured/amirhfallah__e3bc9341__immortal.glb",
+      "title": "Immortal",
+      "author": "amirhfallah",
+      "width": 6881,
+      "height": 12213,
+      "bytes": 1383916
+    },
+    {
+      "base": "andreachiampo__6185355b__limbus",
+      "model": "models-textured/andreachiampo__6185355b__limbus.glb",
+      "title": "LIMBUS",
+      "author": "andreachiampo",
+      "width": 2181,
+      "height": 3000,
+      "bytes": 1447532
+    },
+    {
+      "base": "andreewallin__3ccd51c6__cthulhu-awakens",
+      "model": "models-textured/andreewallin__3ccd51c6__cthulhu-awakens.glb",
+      "title": "Cthulhu Awakens",
+      "author": "andreewallin",
+      "width": 6000,
+      "height": 2776,
+      "bytes": 1405820
+    },
+    {
+      "base": "andresdelvecchio__5e527379__as-within-so-without",
+      "model": "models-textured/andresdelvecchio__5e527379__as-within-so-without.glb",
+      "title": "AS WITHIN, SO WITHOUT",
+      "author": "andresdelvecchio",
+      "width": 7200,
+      "height": 10800,
+      "bytes": 1430284
+    },
+    {
+      "base": "android-jones__69a45209__humming-dragon",
+      "model": "models-textured/android-jones__69a45209__humming-dragon.glb",
+      "title": "Humming Dragon ",
+      "author": "android_jones",
+      "width": 2000,
+      "height": 931,
+      "bytes": 1456512
+    },
+    {
+      "base": "andy__e3579b1e__miami-jack",
+      "model": "models-textured/andy__e3579b1e__miami-jack.glb",
+      "title": "Miami Jack",
+      "author": "andy",
+      "width": 3450,
+      "height": 4950,
+      "bytes": 1317144
+    },
+    {
+      "base": "andyschwetz__5641f85e__solitary-faith",
+      "model": "models-textured/andyschwetz__5641f85e__solitary-faith.glb",
+      "title": "Solitary Faith",
+      "author": "andyschwetz",
+      "width": 5061,
+      "height": 3372,
+      "bytes": 1341352
+    },
+    {
+      "base": "angiemathot__181187d5__lighthouse-at-dawn",
+      "model": "models-textured/angiemathot__181187d5__lighthouse-at-dawn.glb",
+      "title": "Lighthouse at Dawn",
+      "author": "angiemathot",
+      "width": 1200,
+      "height": 1200,
+      "bytes": 1421260
+    },
+    {
+      "base": "angietaylor__38c644de__repressed-expressionism",
+      "model": "models-textured/angietaylor__38c644de__repressed-expressionism.glb",
+      "title": "Repressed Expressionism",
+      "author": "angietaylor",
+      "width": 1949,
+      "height": 2664,
+      "bytes": 1427828
+    },
+    {
+      "base": "animatttic__c72b2db8__melting-point",
+      "model": "models-textured/animatttic__c72b2db8__melting-point.glb",
+      "title": "Melting Point",
+      "author": "animatttic",
+      "width": 7000,
+      "height": 8748,
+      "bytes": 1408784
+    },
+    {
+      "base": "anjoladave__6f9bc874__a-mask-won-t-hide-who-you-are-inside",
+      "model": "models-textured/anjoladave__6f9bc874__a-mask-won-t-hide-who-you-are-inside.glb",
+      "title": "A Mask Won't Hide Who You Are Inside.",
+      "author": "anjoladave",
+      "width": 1800,
+      "height": 2250,
+      "bytes": 1414096
+    },
+    {
+      "base": "annibale-inward__7f7ec03d__drive-me",
+      "model": "models-textured/annibale-inward__7f7ec03d__drive-me.glb",
+      "title": "Drive me",
+      "author": "annibale_inward",
+      "width": 2400,
+      "height": 3000,
+      "bytes": 1452592
+    },
+    {
+      "base": "anosha__f46ffbd4__journey-to-self-actualization-clouded-sky",
+      "model": "models-textured/anosha__f46ffbd4__journey-to-self-actualization-clouded-sky.glb",
+      "title": "Journey to Self-Actualization: Clouded Sky",
+      "author": "anosha",
+      "width": 3889,
+      "height": 4855,
+      "bytes": 1464352
+    },
+    {
+      "base": "anthonyazekwoharchived__65bc3579__the-red-man",
+      "model": "models-textured/anthonyazekwoharchived__65bc3579__the-red-man.glb",
+      "title": "The Red Man",
+      "author": "anthonyazekwoharchived",
+      "width": 2972,
+      "height": 3962,
+      "bytes": 1351040
+    },
+    {
+      "base": "antondee__e6003cd0__what-a-wonderful-world",
+      "model": "models-textured/antondee__e6003cd0__what-a-wonderful-world.glb",
+      "title": "What A Wonderful World",
+      "author": "antondee",
+      "width": 2828,
+      "height": 4242,
+      "bytes": 1391752
+    },
+    {
+      "base": "antpantone__141041cc__system-error-404",
+      "model": "models-textured/antpantone__141041cc__system-error-404.glb",
+      "title": "System Error 404",
+      "author": "antpantone",
+      "width": 3100,
+      "height": 4500,
+      "bytes": 1439700
+    },
+    {
+      "base": "archived-osiris__aa24c283__piu-caprim-the-american-dream",
+      "model": "models-textured/archived-osiris__aa24c283__piu-caprim-the-american-dream.glb",
+      "title": "Piu Caprim, The American Dream",
+      "author": "archived_osiris",
+      "width": 3193,
+      "height": 3918,
+      "bytes": 1454404
+    },
+    {
+      "base": "arrogantkei__d6f66ed5__let-your-mind-run-free",
+      "model": "models-textured/arrogantkei__d6f66ed5__let-your-mind-run-free.glb",
+      "title": "Let Your Mind Run Free",
+      "author": "arrogantkei",
+      "width": 3000,
+      "height": 3800,
+      "bytes": 1407488
+    },
+    {
+      "base": "artbyeleven__595a9c9c__sincerely-yours-melancholy",
+      "model": "models-textured/artbyeleven__595a9c9c__sincerely-yours-melancholy.glb",
+      "title": "sincerely yours, melancholy",
+      "author": "artbyeleven",
+      "width": 2500,
+      "height": 2500,
+      "bytes": 1314576
+    },
+    {
+      "base": "artearis__4fa8bc8b__under-the-iceberg",
+      "model": "models-textured/artearis__4fa8bc8b__under-the-iceberg.glb",
+      "title": "Under the Iceberg",
+      "author": "artearis",
+      "width": 6400,
+      "height": 8000,
+      "bytes": 1458064
+    },
+    {
+      "base": "artistx__f371cca8__willfull-negligence",
+      "model": "models-textured/artistx__f371cca8__willfull-negligence.glb",
+      "title": "Willfull Negligence",
+      "author": "artistx",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1401784
+    },
+    {
+      "base": "artonomous__ee5d797f__artonomous-study-36",
+      "model": "models-textured/artonomous__ee5d797f__artonomous-study-36.glb",
+      "title": "artonomous study #36",
+      "author": "artonomous",
+      "width": 3500,
+      "height": 3500,
+      "bytes": 1421864
+    },
+    {
+      "base": "artside__c7001c8d__purify",
+      "model": "models-textured/artside__c7001c8d__purify.glb",
+      "title": "Purify",
+      "author": "artside",
+      "width": 3470,
+      "height": 4460,
+      "bytes": 1400644
+    },
+    {
+      "base": "arturfalcao__6f39f287__big-fish",
+      "model": "models-textured/arturfalcao__6f39f287__big-fish.glb",
+      "title": "Big Fish",
+      "author": "arturfalcao",
+      "width": 6453,
+      "height": 10118,
+      "bytes": 1458668
+    },
+    {
+      "base": "artwithbryn__5a7e0a33__freefall",
+      "model": "models-textured/artwithbryn__5a7e0a33__freefall.glb",
+      "title": "Freefall",
+      "author": "artwithbryn",
+      "width": 2900,
+      "height": 4500,
+      "bytes": 1435204
+    },
+    {
+      "base": "arzenaers__f39f1c83__solitude-room",
+      "model": "models-textured/arzenaers__f39f1c83__solitude-room.glb",
+      "title": "Solitude Room",
+      "author": "arzenaers",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1410308
+    },
+    {
+      "base": "ashwhite__b17bd113__good-morning",
+      "model": "models-textured/ashwhite__b17bd113__good-morning.glb",
+      "title": "Good morning.",
+      "author": "ashwhite",
+      "width": 7816,
+      "height": 10808,
+      "bytes": 1380192
+    },
+    {
+      "base": "automobilist__e4815c89__a-swede-swerves-through-sicilians",
+      "model": "models-textured/automobilist__e4815c89__a-swede-swerves-through-sicilians.glb",
+      "title": "A Swede Swerves Through Sicilians",
+      "author": "automobilist",
+      "width": 4000,
+      "height": 1702,
+      "bytes": 1434708
+    },
+    {
+      "base": "away-i-flew__8e76120a__amorphous",
+      "model": "models-textured/away-i-flew__8e76120a__amorphous.glb",
+      "title": "Amorphous",
+      "author": "away_i_flew",
+      "width": 4805,
+      "height": 7200,
+      "bytes": 1282676
+    },
+    {
+      "base": "awfuleye__9381cef2__duel-of-destiny",
+      "model": "models-textured/awfuleye__9381cef2__duel-of-destiny.glb",
+      "title": "Duel of Destiny",
+      "author": "awfuleye",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 1362992
+    },
+    {
+      "base": "awildmackody__02c25fb9__shirt-and-tie",
+      "model": "models-textured/awildmackody__02c25fb9__shirt-and-tie.glb",
+      "title": "Shirt and Tie",
+      "author": "awildmackody",
+      "width": 2274,
+      "height": 1520,
+      "bytes": 1262888
+    },
+    {
+      "base": "axelcorjon__d67aa30a__hong-kong-6",
+      "model": "models-textured/axelcorjon__d67aa30a__hong-kong-6.glb",
+      "title": "Hong Kong #6",
+      "author": "axelcorjon",
+      "width": 4237,
+      "height": 6356,
+      "bytes": 1422620
+    },
+    {
+      "base": "axstone__592a0c60__score",
+      "model": "models-textured/axstone__592a0c60__score.glb",
+      "title": "Score",
+      "author": "axstone",
+      "width": 4134,
+      "height": 4130,
+      "bytes": 1447408
+    },
+    {
+      "base": "aydinmustafa-old__5cdd182b__star-cluster-within-the-carina-nebula",
+      "model": "models-textured/aydinmustafa-old__5cdd182b__star-cluster-within-the-carina-nebula.glb",
+      "title": "Star Cluster within the Carina Nebula",
+      "author": "aydinmustafa_old",
+      "width": 2914,
+      "height": 2914,
+      "bytes": 1367984
+    },
+    {
+      "base": "bahrullmarta__08b95ca7__wound",
+      "model": "models-textured/bahrullmarta__08b95ca7__wound.glb",
+      "title": "Wound",
+      "author": "bahrullmarta",
+      "width": 3600,
+      "height": 4700,
+      "bytes": 1228748
+    },
+    {
+      "base": "bakaarts__09a3081f__judgement",
+      "model": "models-textured/bakaarts__09a3081f__judgement.glb",
+      "title": "Judgement",
+      "author": "bakaarts",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1394460
+    },
+    {
+      "base": "barbaracrvalho__bd4cdfdd__saudade-the-feeling-of-missing",
+      "model": "models-textured/barbaracrvalho__bd4cdfdd__saudade-the-feeling-of-missing.glb",
+      "title": "Saudade: the feeling of missing (…)",
+      "author": "barbaracrvalho",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1320900
+    },
+    {
+      "base": "bardionson__f99f6cd0__american-tapestry-one",
+      "model": "models-textured/bardionson__f99f6cd0__american-tapestry-one.glb",
+      "title": "American Tapestry One",
+      "author": "bardionson",
+      "width": 3144,
+      "height": 9717,
+      "bytes": 1442784
+    },
+    {
+      "base": "beeartem__b13f5d41__mama-i-m-coming-home",
+      "model": "models-textured/beeartem__b13f5d41__mama-i-m-coming-home.glb",
+      "title": "Mama, I'm Coming Home",
+      "author": "beeartem",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1444096
+    },
+    {
+      "base": "beercandid__68f9c855__along-the-westminster-bridge",
+      "model": "models-textured/beercandid__68f9c855__along-the-westminster-bridge.glb",
+      "title": "Along the Westminster Bridge",
+      "author": "beercandid",
+      "width": 4983,
+      "height": 7428,
+      "bytes": 1391732
+    },
+    {
+      "base": "beissu__636cde38__the-invasion",
+      "model": "models-textured/beissu__636cde38__the-invasion.glb",
+      "title": "The Invasion",
+      "author": "beissu",
+      "width": 4500,
+      "height": 6000,
+      "bytes": 1415928
+    },
+    {
+      "base": "benbauchau__18207807__a-shape-in-the-sky",
+      "model": "models-textured/benbauchau__18207807__a-shape-in-the-sky.glb",
+      "title": "A Shape In The Sky",
+      "author": "benbauchau",
+      "width": 4839,
+      "height": 6859,
+      "bytes": 1416864
+    },
+    {
+      "base": "benjamingrandi__745d0d32__andes-interior",
+      "model": "models-textured/benjamingrandi__745d0d32__andes-interior.glb",
+      "title": "Andes Interior",
+      "author": "benjamingrandi",
+      "width": 6000,
+      "height": 6695,
+      "bytes": 1392816
+    },
+    {
+      "base": "benmauro__63c21af9__xeno",
+      "model": "models-textured/benmauro__63c21af9__xeno.glb",
+      "title": "Xeno",
+      "author": "benmauro",
+      "width": 2881,
+      "height": 3500,
+      "bytes": 1387668
+    },
+    {
+      "base": "benridgwayart__0489069b__inner-being",
+      "model": "models-textured/benridgwayart__0489069b__inner-being.glb",
+      "title": "Inner Being",
+      "author": "benridgwayart",
+      "width": 1425,
+      "height": 1900,
+      "bytes": 1480288
+    },
+    {
+      "base": "benzank__f723af8d__i-think-i-m-falling-for-you",
+      "model": "models-textured/benzank__f723af8d__i-think-i-m-falling-for-you.glb",
+      "title": "I think I'm falling for you",
+      "author": "benzank",
+      "width": 9569,
+      "height": 7655,
+      "bytes": 1409748
+    },
+    {
+      "base": "beyondbola__64dc71d8__zero-dawn",
+      "model": "models-textured/beyondbola__64dc71d8__zero-dawn.glb",
+      "title": "Zero Dawn",
+      "author": "beyondbola",
+      "width": 2500,
+      "height": 2817,
+      "bytes": 1402216
+    },
+    {
+      "base": "bhare__e29f825b__i-ve-always-hated-the-idea-of-the-ocean",
+      "model": "models-textured/bhare__e29f825b__i-ve-always-hated-the-idea-of-the-ocean.glb",
+      "title": "i've always hated the idea of the ocean",
+      "author": "bhare",
+      "width": 2480,
+      "height": 3506,
+      "bytes": 1404524
+    },
+    {
+      "base": "billydinh__770e6470__this-is-our-moment",
+      "model": "models-textured/billydinh__770e6470__this-is-our-moment.glb",
+      "title": "This is Our Moment",
+      "author": "billydinh",
+      "width": 4121,
+      "height": 5151,
+      "bytes": 1440696
+    },
+    {
+      "base": "bilnd__a50e2c84__the-figure-3",
+      "model": "models-textured/bilnd__a50e2c84__the-figure-3.glb",
+      "title": "The Figure #3",
+      "author": "bilnd",
+      "width": 8670,
+      "height": 5480,
+      "bytes": 1344572
+    },
+    {
+      "base": "blackboxdotart__1a73b53a__the-forgotten-dialect-of-the-heart",
+      "model": "models-textured/blackboxdotart__1a73b53a__the-forgotten-dialect-of-the-heart.glb",
+      "title": "The Forgotten Dialect of the Heart",
+      "author": "blackboxdotart",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1355248
+    },
+    {
+      "base": "blake__48a5c526__victory",
+      "model": "models-textured/blake__48a5c526__victory.glb",
+      "title": "victory",
+      "author": "blake",
+      "width": 1920,
+      "height": 1440,
+      "bytes": 1465820
+    },
+    {
+      "base": "borispelcerart__b5aae4f3__rebirth",
+      "model": "models-textured/borispelcerart__b5aae4f3__rebirth.glb",
+      "title": "Rebirth",
+      "author": "borispelcerart",
+      "width": 4800,
+      "height": 6000,
+      "bytes": 1456604
+    },
+    {
+      "base": "botto__398e26a9__scene-precede",
+      "model": "models-textured/botto__398e26a9__scene-precede.glb",
+      "title": "Scene Precede",
+      "author": "botto",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1449756
+    },
+    {
+      "base": "braydenhall__9d911900__open-world",
+      "model": "models-textured/braydenhall__9d911900__open-world.glb",
+      "title": "Open World",
+      "author": "braydenhall",
+      "width": 6000,
+      "height": 7500,
+      "bytes": 1391192
+    },
+    {
+      "base": "bronwynlundberg__e0d708d7__the-many-lisa",
+      "model": "models-textured/bronwynlundberg__e0d708d7__the-many-lisa.glb",
+      "title": "The Many Lisa",
+      "author": "bronwynlundberg",
+      "width": 10259,
+      "height": 6654,
+      "bytes": 1421764
+    },
+    {
+      "base": "broslavskiy__3357ad60__guises-of-war",
+      "model": "models-textured/broslavskiy__3357ad60__guises-of-war.glb",
+      "title": "⠃ guises of war",
+      "author": "broslavskiy",
+      "width": 7973,
+      "height": 10630,
+      "bytes": 1446864
+    },
+    {
+      "base": "bryanminear__d3b3fb75__l-v-n-a-r",
+      "model": "models-textured/bryanminear__d3b3fb75__l-v-n-a-r.glb",
+      "title": "L V N A R",
+      "author": "bryanminear",
+      "width": 4125,
+      "height": 5500,
+      "bytes": 1332048
+    },
+    {
+      "base": "brynnaliseschmidt__e2b76ab4__matriarch",
+      "model": "models-textured/brynnaliseschmidt__e2b76ab4__matriarch.glb",
+      "title": "Matriarch ",
+      "author": "brynnaliseschmidt",
+      "width": 3737,
+      "height": 2365,
+      "bytes": 1415244
+    },
+    {
+      "base": "busrasuhaydar__d2e0e25e__aurora-in-egypt",
+      "model": "models-textured/busrasuhaydar__d2e0e25e__aurora-in-egypt.glb",
+      "title": "AURORA IN EGYPT",
+      "author": "busrasuhaydar",
+      "width": 10000,
+      "height": 13333,
+      "bytes": 1423124
+    },
+    {
+      "base": "bykellymcd__d59517e0__adeus-tristeza",
+      "model": "models-textured/bykellymcd__d59517e0__adeus-tristeza.glb",
+      "title": "adeus tristeza",
+      "author": "bykellymcd",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1424384
+    },
+    {
+      "base": "cakepiano__9bbf6337__when-the-sun-and-planes-align",
+      "model": "models-textured/cakepiano__9bbf6337__when-the-sun-and-planes-align.glb",
+      "title": "When the sun and planes align",
+      "author": "cakepiano",
+      "width": 3748,
+      "height": 3748,
+      "bytes": 1355804
+    },
+    {
+      "base": "canyon-castator__a42afc69__don-t-get-caught-hodling-the-hot-naut",
+      "model": "models-textured/canyon-castator__a42afc69__don-t-get-caught-hodling-the-hot-naut.glb",
+      "title": "DON'T GET CAUGHT HODLING THE HOT 'NAUT",
+      "author": "canyon_castator",
+      "width": 5280,
+      "height": 7090,
+      "bytes": 1435540
+    },
+    {
+      "base": "caramuru__cdebcb3c__goddess-of-desires",
+      "model": "models-textured/caramuru__cdebcb3c__goddess-of-desires.glb",
+      "title": "GODDESS OF DESIRES",
+      "author": "caramuru",
+      "width": 6932,
+      "height": 9646,
+      "bytes": 1476144
+    },
+    {
+      "base": "carloseduardopx__8d137b47__chariot",
+      "model": "models-textured/carloseduardopx__8d137b47__chariot.glb",
+      "title": "Chariot",
+      "author": "carloseduardopx",
+      "width": 6000,
+      "height": 6000,
+      "bytes": 1243248
+    },
+    {
+      "base": "cartoonadvisory__2d6eef6d__scorpion",
+      "model": "models-textured/cartoonadvisory__2d6eef6d__scorpion.glb",
+      "title": "Scorpion",
+      "author": "cartoonadvisory",
+      "width": 4320,
+      "height": 4320,
+      "bytes": 1425968
+    },
+    {
+      "base": "cassiopeus__7bd30cee__angst",
+      "model": "models-textured/cassiopeus__7bd30cee__angst.glb",
+      "title": "Angst",
+      "author": "cassiopeus",
+      "width": 6573,
+      "height": 8265,
+      "bytes": 1363856
+    },
+    {
+      "base": "catelloo__fc3a02f0__regards-asimov",
+      "model": "models-textured/catelloo__fc3a02f0__regards-asimov.glb",
+      "title": "regards.asimov",
+      "author": "catelloo",
+      "width": 2666,
+      "height": 3333,
+      "bytes": 1315664
+    },
+    {
+      "base": "cathsimard__48b254d3__freehawaiiphoto",
+      "model": "models-textured/cathsimard__48b254d3__freehawaiiphoto.glb",
+      "title": "#FreeHawaiiPhoto",
+      "author": "cathsimard",
+      "width": 4063,
+      "height": 5079,
+      "bytes": 1392980
+    },
+    {
+      "base": "chepertom__4b8ac32f__sandstorm-rad",
+      "model": "models-textured/chepertom__4b8ac32f__sandstorm-rad.glb",
+      "title": "Sandstorm.RAD",
+      "author": "chepertom",
+      "width": 2304,
+      "height": 3396,
+      "bytes": 1432196
+    },
+    {
+      "base": "chewys__25195779__self-portrait-after-a-mental-breakdown",
+      "model": "models-textured/chewys__25195779__self-portrait-after-a-mental-breakdown.glb",
+      "title": "Self Portrait After a Mental Breakdown",
+      "author": "chewys",
+      "width": 3000,
+      "height": 4000,
+      "bytes": 1395616
+    },
+    {
+      "base": "chissweetart86__e2f5ec9f__a-letter-to-my-abusive-ex",
+      "model": "models-textured/chissweetart86__e2f5ec9f__a-letter-to-my-abusive-ex.glb",
+      "title": "A Letter to my Abusive Ex",
+      "author": "chissweetart86",
+      "width": 1198,
+      "height": 2572,
+      "bytes": 1350480
+    },
+    {
+      "base": "christophh__ba5162c5__euphoria",
+      "model": "models-textured/christophh__ba5162c5__euphoria.glb",
+      "title": "EUPHORIA",
+      "author": "christophh",
+      "width": 3000,
+      "height": 4000,
+      "bytes": 1437596
+    },
+    {
+      "base": "clairesilver12__410ad9d5__c-l-a-i-r-e",
+      "model": "models-textured/clairesilver12__410ad9d5__c-l-a-i-r-e.glb",
+      "title": "c l a i r e",
+      "author": "clairesilver12",
+      "width": 1322,
+      "height": 2036,
+      "bytes": 1434760
+    },
+    {
+      "base": "codyconk__911ae1cc__we-stay-fly",
+      "model": "models-textured/codyconk__911ae1cc__we-stay-fly.glb",
+      "title": "We Stay Fly",
+      "author": "codyconk",
+      "width": 3627,
+      "height": 4534,
+      "bytes": 1412640
+    },
+    {
+      "base": "coins__c2cc5f51__font-ii",
+      "model": "models-textured/coins__c2cc5f51__font-ii.glb",
+      "title": "Font II",
+      "author": "coins",
+      "width": 2261,
+      "height": 2992,
+      "bytes": 1400620
+    },
+    {
+      "base": "connorgrasso__953b1b12__you-see-right-through-me",
+      "model": "models-textured/connorgrasso__953b1b12__you-see-right-through-me.glb",
+      "title": "you see right through me",
+      "author": "connorgrasso",
+      "width": 3840,
+      "height": 2561,
+      "bytes": 1365396
+    },
+    {
+      "base": "cosmosastroart__c77d048f__luna",
+      "model": "models-textured/cosmosastroart__c77d048f__luna.glb",
+      "title": "Luna",
+      "author": "cosmosastroart",
+      "width": 7888,
+      "height": 4820,
+      "bytes": 1285440
+    },
+    {
+      "base": "crea-st__bb3e1f4e__droid-nn3s20",
+      "model": "models-textured/crea-st__bb3e1f4e__droid-nn3s20.glb",
+      "title": "Droid NN3S20",
+      "author": "crea_st",
+      "width": 2160,
+      "height": 2700,
+      "bytes": 1303116
+    },
+    {
+      "base": "criscoart__b140b851__love-against-everything",
+      "model": "models-textured/criscoart__b140b851__love-against-everything.glb",
+      "title": "Love against everything.",
+      "author": "criscoart",
+      "width": 1080,
+      "height": 1350,
+      "bytes": 1406512
+    },
+    {
+      "base": "crypto-hart__ceaa2295__crypto-hart-01",
+      "model": "models-textured/crypto-hart__ceaa2295__crypto-hart-01.glb",
+      "title": "CRYPTO_HART 01",
+      "author": "crypto_hart",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 1455756
+    },
+    {
+      "base": "cryptopom__30880548__insecure",
+      "model": "models-textured/cryptopom__30880548__insecure.glb",
+      "title": "\"Insecure\"",
+      "author": "cryptopom",
+      "width": 2502,
+      "height": 3072,
+      "bytes": 1462200
+    },
+    {
+      "base": "cullenhassel__40b74527__night-swim",
+      "model": "models-textured/cullenhassel__40b74527__night-swim.glb",
+      "title": "Night Swim",
+      "author": "cullenhassel",
+      "width": 3840,
+      "height": 1840,
+      "bytes": 1380716
+    },
+    {
+      "base": "customhorror__f5a1bdfb__joy-of-joes",
+      "model": "models-textured/customhorror__f5a1bdfb__joy-of-joes.glb",
+      "title": "Joy Of Joes",
+      "author": "customhorror",
+      "width": 4488,
+      "height": 6544,
+      "bytes": 1354240
+    },
+    {
+      "base": "cydrfanacc__669ee0f8__late-night-junk",
+      "model": "models-textured/cydrfanacc__669ee0f8__late-night-junk.glb",
+      "title": "late night junk",
+      "author": "cydrfanacc",
+      "width": 5000,
+      "height": 2367,
+      "bytes": 1462472
+    },
+    {
+      "base": "damnengine__5a00b38f__a-safe-place",
+      "model": "models-textured/damnengine__5a00b38f__a-safe-place.glb",
+      "title": "A Safe Place",
+      "author": "damnengine",
+      "width": 6000,
+      "height": 8000,
+      "bytes": 1333600
+    },
+    {
+      "base": "danielkoeth__c00868b5__blue-sky-30",
+      "model": "models-textured/danielkoeth__c00868b5__blue-sky-30.glb",
+      "title": "Blue Sky #30",
+      "author": "danielkoeth",
+      "width": 3448,
+      "height": 4310,
+      "bytes": 1271824
+    },
+    {
+      "base": "daniella-doodle__89dc7736__cape-town-night",
+      "model": "models-textured/daniella-doodle__89dc7736__cape-town-night.glb",
+      "title": "Cape Town: Night",
+      "author": "daniella_doodle",
+      "width": 4540,
+      "height": 5275,
+      "bytes": 1457964
+    },
+    {
+      "base": "danieltaylor__c48ca6f0__i-thought-we-lost-it-all",
+      "model": "models-textured/danieltaylor__c48ca6f0__i-thought-we-lost-it-all.glb",
+      "title": "I Thought We Lost It All",
+      "author": "danieltaylor",
+      "width": 1697,
+      "height": 2400,
+      "bytes": 1373220
+    },
+    {
+      "base": "danilofala__c5c5eac1__memento",
+      "model": "models-textured/danilofala__c5c5eac1__memento.glb",
+      "title": "Memento",
+      "author": "danilofala",
+      "width": 5464,
+      "height": 8192,
+      "bytes": 1288200
+    },
+    {
+      "base": "danilpan0__3bde592e__n-e-x-u-s",
+      "model": "models-textured/danilpan0__3bde592e__n-e-x-u-s.glb",
+      "title": "N E X U S / /",
+      "author": "danilpan0",
+      "width": 4200,
+      "height": 4800,
+      "bytes": 1381224
+    },
+    {
+      "base": "danoramas__bf49f493__guadalajara-cathedral-abstract-dream",
+      "model": "models-textured/danoramas__bf49f493__guadalajara-cathedral-abstract-dream.glb",
+      "title": "Guadalajara Cathedral Abstract Dream",
+      "author": "danoramas",
+      "width": 7680,
+      "height": 7680,
+      "bytes": 1458220
+    },
+    {
+      "base": "daridivya__85574526__inconstancy",
+      "model": "models-textured/daridivya__85574526__inconstancy.glb",
+      "title": "INCONSTANCY",
+      "author": "daridivya",
+      "width": 2688,
+      "height": 2704,
+      "bytes": 1490208
+    },
+    {
+      "base": "darkmarkart__631adb69__the-guardian-angel",
+      "model": "models-textured/darkmarkart__631adb69__the-guardian-angel.glb",
+      "title": "The Guardian Angel",
+      "author": "darkmarkart",
+      "width": 7000,
+      "height": 5254,
+      "bytes": 1304684
+    },
+    {
+      "base": "davekrugman__6f03fcef__neo-noir-new-york-reveries",
+      "model": "models-textured/davekrugman__6f03fcef__neo-noir-new-york-reveries.glb",
+      "title": "Neo Noir New York: Reveries",
+      "author": "davekrugman",
+      "width": 2000,
+      "height": 2500,
+      "bytes": 1405396
+    },
+    {
+      "base": "dblasphemy__ac067157__fluorescence-6-2000",
+      "model": "models-textured/dblasphemy__ac067157__fluorescence-6-2000.glb",
+      "title": "Fluorescence [6] (2000)",
+      "author": "dblasphemy",
+      "width": 4800,
+      "height": 3000,
+      "bytes": 1339124
+    },
+    {
+      "base": "decentartwork__61b80cb0__cupcake",
+      "model": "models-textured/decentartwork__61b80cb0__cupcake.glb",
+      "title": "Cupcake",
+      "author": "decentartwork",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1327188
+    },
+    {
+      "base": "declanrmc__91604b3c__bridge-the-gap",
+      "model": "models-textured/declanrmc__91604b3c__bridge-the-gap.glb",
+      "title": "Bridge The Gap",
+      "author": "declanrmc",
+      "width": 4111,
+      "height": 5139,
+      "bytes": 1388868
+    },
+    {
+      "base": "deconstruct__3f08b8a3__word-8-nineteen-eighty-four",
+      "model": "models-textured/deconstruct__3f08b8a3__word-8-nineteen-eighty-four.glb",
+      "title": "Word. 8 - // Nineteen Eighty-Four ",
+      "author": "deconstruct",
+      "width": 3600,
+      "height": 4800,
+      "bytes": 1442824
+    },
+    {
+      "base": "dehiscenceart__2bfc1c0a__dazzle",
+      "model": "models-textured/dehiscenceart__2bfc1c0a__dazzle.glb",
+      "title": "Dazzle",
+      "author": "dehiscenceart",
+      "width": 5400,
+      "height": 7200,
+      "bytes": 1417428
+    },
+    {
+      "base": "deltasauce__41145445__pre-flight",
+      "model": "models-textured/deltasauce__41145445__pre-flight.glb",
+      "title": "Pre-Flight",
+      "author": "deltasauce",
+      "width": 9300,
+      "height": 5231,
+      "bytes": 1387756
+    },
+    {
+      "base": "dielamaharanie__edb2e64b__the-founding-mothers",
+      "model": "models-textured/dielamaharanie__edb2e64b__the-founding-mothers.glb",
+      "title": "The Founding Mothers",
+      "author": "dielamaharanie",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1394636
+    },
+    {
+      "base": "diethylamidevisuals__1d2b745a__dreamfasting",
+      "model": "models-textured/diethylamidevisuals__1d2b745a__dreamfasting.glb",
+      "title": "Dreamfasting",
+      "author": "diethylamidevisuals",
+      "width": 3840,
+      "height": 2160,
+      "bytes": 1436848
+    },
+    {
+      "base": "diewiththemostlikes__37bd690b__our-last-hibachi",
+      "model": "models-textured/diewiththemostlikes__37bd690b__our-last-hibachi.glb",
+      "title": "our last hibachi",
+      "author": "diewiththemostlikes",
+      "width": 2481,
+      "height": 1536,
+      "bytes": 1384600
+    },
+    {
+      "base": "diftype__16b61f25__vriden",
+      "model": "models-textured/diftype__16b61f25__vriden.glb",
+      "title": "Vriden",
+      "author": "diftype",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1331356
+    },
+    {
+      "base": "dipanjanp__550d899b__midnight-glory",
+      "model": "models-textured/dipanjanp__550d899b__midnight-glory.glb",
+      "title": "Midnight Glory",
+      "author": "dipanjanp",
+      "width": 4000,
+      "height": 6000,
+      "bytes": 1325412
+    },
+    {
+      "base": "dkleine__dadf1144__og-robness",
+      "model": "models-textured/dkleine__dadf1144__og-robness.glb",
+      "title": "OG: ROBNESS",
+      "author": "dkleine",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1382932
+    },
+    {
+      "base": "dmitricherniak__59afbec7__a-slight-lack-of-symmetry-can-cause-so-much-pain",
+      "model": "models-textured/dmitricherniak__59afbec7__a-slight-lack-of-symmetry-can-cause-so-much-pain.glb",
+      "title": "A slight lack of symmetry can cause so much pain",
+      "author": "dmitricherniak",
+      "width": 6000,
+      "height": 6000,
+      "bytes": 1255132
+    },
+    {
+      "base": "donmarqvez__20292ce3__outliers-01",
+      "model": "models-textured/donmarqvez__20292ce3__outliers-01.glb",
+      "title": "Outliers #01",
+      "author": "donmarqvez",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1401892
+    },
+    {
+      "base": "dustn__2ec8b431__who-am-i-what-have-i-become",
+      "model": "models-textured/dustn__2ec8b431__who-am-i-what-have-i-become.glb",
+      "title": "Who am I, What Have I Become",
+      "author": "dustn",
+      "width": 2257,
+      "height": 2964,
+      "bytes": 1434632
+    },
+    {
+      "base": "eceertrey__937811a7__untitled",
+      "model": "models-textured/eceertrey__937811a7__untitled.glb",
+      "title": " |*\\()(|{{|={|_|_{|*\\ ",
+      "author": "eceertrey",
+      "width": 3440,
+      "height": 6000,
+      "bytes": 1367928
+    },
+    {
+      "base": "egodead__f596a418__cracking-under-pressure",
+      "model": "models-textured/egodead__f596a418__cracking-under-pressure.glb",
+      "title": "Cracking Under Pressure",
+      "author": "egodead",
+      "width": 6500,
+      "height": 7500,
+      "bytes": 1468424
+    },
+    {
+      "base": "ekaitza__4e6fa5d2__a-tribute-to-all-stars",
+      "model": "models-textured/ekaitza__4e6fa5d2__a-tribute-to-all-stars.glb",
+      "title": "A tribute to All Stars",
+      "author": "ekaitza",
+      "width": 3500,
+      "height": 3500,
+      "bytes": 1338872
+    },
+    {
+      "base": "elektra__8ef2574a__dancing-with-fire",
+      "model": "models-textured/elektra__8ef2574a__dancing-with-fire.glb",
+      "title": "Dancing With Fire",
+      "author": "elektra",
+      "width": 3884,
+      "height": 5697,
+      "bytes": 1364576
+    },
+    {
+      "base": "eliseohz__8441bb72__hope",
+      "model": "models-textured/eliseohz__8441bb72__hope.glb",
+      "title": "Hope ",
+      "author": "eliseohz",
+      "width": 5668,
+      "height": 7086,
+      "bytes": 1409420
+    },
+    {
+      "base": "eloh__6e4f2be2__king-of-kings",
+      "model": "models-textured/eloh__6e4f2be2__king-of-kings.glb",
+      "title": "King of Kings",
+      "author": "eloh",
+      "width": 9900,
+      "height": 6600,
+      "bytes": 1462308
+    },
+    {
+      "base": "elrokk__e099cb68__leap-of-faith",
+      "model": "models-textured/elrokk__e099cb68__leap-of-faith.glb",
+      "title": "Leap of Faith",
+      "author": "elrokk",
+      "width": 2480,
+      "height": 3508,
+      "bytes": 1386336
+    },
+    {
+      "base": "emaily__540558dd__voluminous",
+      "model": "models-textured/emaily__540558dd__voluminous.glb",
+      "title": "Voluminous",
+      "author": "emaily",
+      "width": 5400,
+      "height": 7549,
+      "bytes": 1404156
+    },
+    {
+      "base": "emanueleferrariph__5c52a486__made-in-italy",
+      "model": "models-textured/emanueleferrariph__5c52a486__made-in-italy.glb",
+      "title": "Made in Italy",
+      "author": "emanueleferrariph",
+      "width": 5000,
+      "height": 3333,
+      "bytes": 1358408
+    },
+    {
+      "base": "emma-webster__12829138__les-fleurs-du-mal",
+      "model": "models-textured/emma-webster__12829138__les-fleurs-du-mal.glb",
+      "title": "Les Fleurs du Mal",
+      "author": "emma_webster",
+      "width": 6000,
+      "height": 7500,
+      "bytes": 1443536
+    },
+    {
+      "base": "emsar__9bf1cb31__hummingbird",
+      "model": "models-textured/emsar__9bf1cb31__hummingbird.glb",
+      "title": "Hummingbird",
+      "author": "emsar",
+      "width": 1515,
+      "height": 2200,
+      "bytes": 1345924
+    },
+    {
+      "base": "enixsta__d70fcad1__naiad",
+      "model": "models-textured/enixsta__d70fcad1__naiad.glb",
+      "title": "naiad",
+      "author": "enixsta",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 1358392
+    },
+    {
+      "base": "ericpause__241598de__hang-on-to-yourself",
+      "model": "models-textured/ericpause__241598de__hang-on-to-yourself.glb",
+      "title": "Hang On To Yourself",
+      "author": "ericpause",
+      "width": 4156,
+      "height": 5576,
+      "bytes": 1382008
+    },
+    {
+      "base": "erikly__17a723ef__obsession",
+      "model": "models-textured/erikly__17a723ef__obsession.glb",
+      "title": "Obsession",
+      "author": "erikly",
+      "width": 5700,
+      "height": 3900,
+      "bytes": 1421008
+    },
+    {
+      "base": "erubes1__465364d7__one-dream-away",
+      "model": "models-textured/erubes1__465364d7__one-dream-away.glb",
+      "title": "One Dream Away",
+      "author": "erubes1",
+      "width": 1696,
+      "height": 2120,
+      "bytes": 1456912
+    },
+    {
+      "base": "espen-kluge__cf56d9bd__she-really-thinks-about-it",
+      "model": "models-textured/espen-kluge__cf56d9bd__she-really-thinks-about-it.glb",
+      "title": "she really thinks about it",
+      "author": "espen_kluge",
+      "width": 2250,
+      "height": 2813,
+      "bytes": 1311236
+    },
+    {
+      "base": "etienecrauss__c0c58563__fallen-angel",
+      "model": "models-textured/etienecrauss__c0c58563__fallen-angel.glb",
+      "title": "Fallen Angel",
+      "author": "etienecrauss",
+      "width": 3300,
+      "height": 4200,
+      "bytes": 1359448
+    },
+    {
+      "base": "exitsimulation__a6f407df__entity-encounter",
+      "model": "models-textured/exitsimulation__a6f407df__entity-encounter.glb",
+      "title": "Entity Encounter",
+      "author": "exitsimulation",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1446308
+    },
+    {
+      "base": "exolorian__49714037__the-huntsman",
+      "model": "models-textured/exolorian__49714037__the-huntsman.glb",
+      "title": "The Huntsman",
+      "author": "exolorian",
+      "width": 4096,
+      "height": 2160,
+      "bytes": 1411888
+    },
+    {
+      "base": "ezekielart__d7117bd0__me-and-my-demon",
+      "model": "models-textured/ezekielart__d7117bd0__me-and-my-demon.glb",
+      "title": "Me and My Demon",
+      "author": "ezekielart",
+      "width": 4740,
+      "height": 6960,
+      "bytes": 1409356
+    },
+    {
+      "base": "faithlove__059479b5__kisses-by-moonlight",
+      "model": "models-textured/faithlove__059479b5__kisses-by-moonlight.glb",
+      "title": "Kisses by moonlight",
+      "author": "faithlove",
+      "width": 2047,
+      "height": 1489,
+      "bytes": 1395084
+    },
+    {
+      "base": "fakito__b3e231cf__dimension",
+      "model": "models-textured/fakito__b3e231cf__dimension.glb",
+      "title": "DIMENSION",
+      "author": "fakito",
+      "width": 2500,
+      "height": 3000,
+      "bytes": 1340244
+    },
+    {
+      "base": "favorleo__4ac0cdef__tinnitus",
+      "model": "models-textured/favorleo__4ac0cdef__tinnitus.glb",
+      "title": "Tinnitus ",
+      "author": "favorleo",
+      "width": 2905,
+      "height": 3231,
+      "bytes": 1409688
+    },
+    {
+      "base": "femzor__6e076413__excursion",
+      "model": "models-textured/femzor__6e076413__excursion.glb",
+      "title": "Excursion",
+      "author": "femzor",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1369872
+    },
+    {
+      "base": "ferdebuenart__526708fe__the-four-seasons",
+      "model": "models-textured/ferdebuenart__526708fe__the-four-seasons.glb",
+      "title": "The Four Seasons",
+      "author": "ferdebuenart",
+      "width": 7740,
+      "height": 7740,
+      "bytes": 1476400
+    },
+    {
+      "base": "ferjart__7902118b__the-new-life",
+      "model": "models-textured/ferjart__7902118b__the-new-life.glb",
+      "title": "The new life",
+      "author": "ferjart",
+      "width": 2500,
+      "height": 3750,
+      "bytes": 1427856
+    },
+    {
+      "base": "fesq__44d1c0e3__epiphany",
+      "model": "models-textured/fesq__44d1c0e3__epiphany.glb",
+      "title": "Epiphany",
+      "author": "fesq",
+      "width": 2160,
+      "height": 2700,
+      "bytes": 1449028
+    },
+    {
+      "base": "finn__fb2c49aa__the-whale-s-mouth",
+      "model": "models-textured/finn__fb2c49aa__the-whale-s-mouth.glb",
+      "title": "The Whale's Mouth",
+      "author": "finn",
+      "width": 5000,
+      "height": 3571,
+      "bytes": 1403912
+    },
+    {
+      "base": "fllunt__7d8f7395__daydream",
+      "model": "models-textured/fllunt__7d8f7395__daydream.glb",
+      "title": "DAYDREAM",
+      "author": "fllunt",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1396052
+    },
+    {
+      "base": "flowerblocks__057257bd__natural-skies",
+      "model": "models-textured/flowerblocks__057257bd__natural-skies.glb",
+      "title": "Natural Skies",
+      "author": "flowerblocks",
+      "width": 3840,
+      "height": 5760,
+      "bytes": 1436876
+    },
+    {
+      "base": "fox__ff0f0a8b__parvos-solis",
+      "model": "models-textured/fox__ff0f0a8b__parvos-solis.glb",
+      "title": "Parvos Solis",
+      "author": "fox",
+      "width": 7200,
+      "height": 7200,
+      "bytes": 1456184
+    },
+    {
+      "base": "francescomai__6dfd0dd5__reassembling-the-dark-david",
+      "model": "models-textured/francescomai__6dfd0dd5__reassembling-the-dark-david.glb",
+      "title": "\"Reassembling the Dark David\"",
+      "author": "francescomai",
+      "width": 4800,
+      "height": 6000,
+      "bytes": 1462508
+    },
+    {
+      "base": "frankxtown__f58ceb13__you-ve-reached-the-end-and-you-re-alone",
+      "model": "models-textured/frankxtown__f58ceb13__you-ve-reached-the-end-and-you-re-alone.glb",
+      "title": "you've reached the end and you're alone.",
+      "author": "frankxtown",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1481652
+    },
+    {
+      "base": "frankynines__89c941e2__puss-in-boots-more-like-puss-in-sneaks",
+      "model": "models-textured/frankynines__89c941e2__puss-in-boots-more-like-puss-in-sneaks.glb",
+      "title": "Puss in Boots... more like Puss in Sneaks!",
+      "author": "frankynines",
+      "width": 3300,
+      "height": 5100,
+      "bytes": 1420580
+    },
+    {
+      "base": "freemann__98324144__great-time",
+      "model": "models-textured/freemann__98324144__great-time.glb",
+      "title": "Great time",
+      "author": "freemann",
+      "width": 3770,
+      "height": 4350,
+      "bytes": 1404272
+    },
+    {
+      "base": "friend-five__1009cd73__young-medusa",
+      "model": "models-textured/friend-five__1009cd73__young-medusa.glb",
+      "title": "YOUNG MEDUSA",
+      "author": "friend_five",
+      "width": 3565,
+      "height": 5785,
+      "bytes": 1364612
+    },
+    {
+      "base": "furio-tedeschi__6a567357__dormant",
+      "model": "models-textured/furio-tedeschi__6a567357__dormant.glb",
+      "title": "Dormant",
+      "author": "furio_tedeschi",
+      "width": 2364,
+      "height": 2095,
+      "bytes": 1418592
+    },
+    {
+      "base": "gabscanu__7df7aeb0__oasis",
+      "model": "models-textured/gabscanu__7df7aeb0__oasis.glb",
+      "title": "Oasis",
+      "author": "gabscanu",
+      "width": 2394,
+      "height": 2992,
+      "bytes": 1443032
+    },
+    {
+      "base": "gdr__d21fe369__bacchus",
+      "model": "models-textured/gdr__d21fe369__bacchus.glb",
+      "title": "BACCHUS",
+      "author": "gdr",
+      "width": 6938,
+      "height": 6938,
+      "bytes": 1357608
+    },
+    {
+      "base": "gelo__84582742__destination",
+      "model": "models-textured/gelo__84582742__destination.glb",
+      "title": "Destination",
+      "author": "gelo",
+      "width": 7200,
+      "height": 2104,
+      "bytes": 1313440
+    },
+    {
+      "base": "georgeboya__a1719473__dark-swan",
+      "model": "models-textured/georgeboya__a1719473__dark-swan.glb",
+      "title": "Dark Swan",
+      "author": "georgeboya",
+      "width": 3774,
+      "height": 3524,
+      "bytes": 1397668
+    },
+    {
+      "base": "geren__1bbe8ceb__i-trust",
+      "model": "models-textured/geren__1bbe8ceb__i-trust.glb",
+      "title": "I. Trust",
+      "author": "geren",
+      "width": 5000,
+      "height": 6250,
+      "bytes": 1404304
+    },
+    {
+      "base": "giselx__03bba46c__may-peace-reign",
+      "model": "models-textured/giselx__03bba46c__may-peace-reign.glb",
+      "title": "MAY PEACE REIGN",
+      "author": "giselx",
+      "width": 6930,
+      "height": 10390,
+      "bytes": 1437344
+    },
+    {
+      "base": "giulioaprin__7efe8d2a__the-scholars",
+      "model": "models-textured/giulioaprin__7efe8d2a__the-scholars.glb",
+      "title": "The Scholars",
+      "author": "giulioaprin",
+      "width": 7000,
+      "height": 3937,
+      "bytes": 1457548
+    },
+    {
+      "base": "gmunk__9d9057ff__ultraviolet-wave",
+      "model": "models-textured/gmunk__9d9057ff__ultraviolet-wave.glb",
+      "title": "Ultraviolet Wave",
+      "author": "gmunk",
+      "width": 8192,
+      "height": 5461,
+      "bytes": 1358108
+    },
+    {
+      "base": "goldweard__41ddb45a__kintsugi",
+      "model": "models-textured/goldweard__41ddb45a__kintsugi.glb",
+      "title": "Kintsugi",
+      "author": "goldweard",
+      "width": 2536,
+      "height": 2748,
+      "bytes": 1390232
+    },
+    {
+      "base": "graphica__a9a0bd9f__once-upon-the-time-in-the-digital-eden",
+      "model": "models-textured/graphica__a9a0bd9f__once-upon-the-time-in-the-digital-eden.glb",
+      "title": "Once upon the time in the Digital Eden",
+      "author": "graphica",
+      "width": 7000,
+      "height": 3000,
+      "bytes": 1422372
+    },
+    {
+      "base": "grebenshyo__ee920589__mordellidae-emit-whackom",
+      "model": "models-textured/grebenshyo__ee920589__mordellidae-emit-whackom.glb",
+      "title": "mordellidae emit whackom",
+      "author": "grebenshyo",
+      "width": 3276,
+      "height": 4096,
+      "bytes": 1475956
+    },
+    {
+      "base": "griffcrypto__33c58899__parousia",
+      "model": "models-textured/griffcrypto__33c58899__parousia.glb",
+      "title": "Parousia",
+      "author": "griffcrypto",
+      "width": 2000,
+      "height": 2828,
+      "bytes": 1377380
+    },
+    {
+      "base": "guido__adfc8f0a__cut-the-cord",
+      "model": "models-textured/guido__adfc8f0a__cut-the-cord.glb",
+      "title": "Cut The Cord",
+      "author": "guido",
+      "width": 4000,
+      "height": 6000,
+      "bytes": 1288280
+    },
+    {
+      "base": "habibagreen__cc040588__ophelia",
+      "model": "models-textured/habibagreen__cc040588__ophelia.glb",
+      "title": "Ophelia",
+      "author": "habibagreen",
+      "width": 5039,
+      "height": 6211,
+      "bytes": 1362120
+    },
+    {
+      "base": "hairofmedusa__f96200cb__the-late-day-lament",
+      "model": "models-textured/hairofmedusa__f96200cb__the-late-day-lament.glb",
+      "title": "The Late Day Lament ",
+      "author": "hairofmedusa",
+      "width": 5292,
+      "height": 3947,
+      "bytes": 1437132
+    },
+    {
+      "base": "haningwaslost__6a93b4b7__haning-chaos",
+      "model": "models-textured/haningwaslost__6a93b4b7__haning-chaos.glb",
+      "title": "Haning_CHAOS",
+      "author": "haningwaslost",
+      "width": 5000,
+      "height": 5000,
+      "bytes": 1438328
+    },
+    {
+      "base": "hans01__31fbc004__fragtor",
+      "model": "models-textured/hans01__31fbc004__fragtor.glb",
+      "title": "FRAGTOR",
+      "author": "hans01",
+      "width": 1480,
+      "height": 2601,
+      "bytes": 1278220
+    },
+    {
+      "base": "harshitrnnh__f570262c__machinic-situatedness-3",
+      "model": "models-textured/harshitrnnh__f570262c__machinic-situatedness-3.glb",
+      "title": "Machinic Situatedness 3",
+      "author": "harshitrnnh",
+      "width": 5600,
+      "height": 5600,
+      "bytes": 1416572
+    },
+    {
+      "base": "hasangoktepe__e6136fc6__autumn-in-babylon",
+      "model": "models-textured/hasangoktepe__e6136fc6__autumn-in-babylon.glb",
+      "title": "Autumn in Babylon",
+      "author": "hasangoktepe",
+      "width": 5000,
+      "height": 3333,
+      "bytes": 1492344
+    },
+    {
+      "base": "hedixandt__a2c315bb__koschei-the-deathless",
+      "model": "models-textured/hedixandt__a2c315bb__koschei-the-deathless.glb",
+      "title": "Koschei The Deathless",
+      "author": "hedixandt",
+      "width": 3428,
+      "height": 4800,
+      "bytes": 1368232
+    },
+    {
+      "base": "highdemand__5a0304fa__keep-the-wolves-away",
+      "model": "models-textured/highdemand__5a0304fa__keep-the-wolves-away.glb",
+      "title": "Keep the Wolves Away",
+      "author": "highdemand",
+      "width": 3853,
+      "height": 5163,
+      "bytes": 1421636
+    },
+    {
+      "base": "hilengodoy__c73b1c3f__it-feels-like-a-fantasy",
+      "model": "models-textured/hilengodoy__c73b1c3f__it-feels-like-a-fantasy.glb",
+      "title": "It feels like a fantasy",
+      "author": "hilengodoy",
+      "width": 4500,
+      "height": 4500,
+      "bytes": 1400676
+    },
+    {
+      "base": "hillelart__b2377a9e__radiate",
+      "model": "models-textured/hillelart__b2377a9e__radiate.glb",
+      "title": "Radiate",
+      "author": "hillelart",
+      "width": 2222,
+      "height": 2716,
+      "bytes": 1393676
+    },
+    {
+      "base": "hinajairaj__982ac7ce__incredible-india-ooty",
+      "model": "models-textured/hinajairaj__982ac7ce__incredible-india-ooty.glb",
+      "title": "Incredible India - Ooty",
+      "author": "hinajairaj",
+      "width": 6012,
+      "height": 2618,
+      "bytes": 1428872
+    },
+    {
+      "base": "holalou__46dc2534__ra",
+      "model": "models-textured/holalou__46dc2534__ra.glb",
+      "title": "Ra.",
+      "author": "holalou",
+      "width": 3000,
+      "height": 3500,
+      "bytes": 1316216
+    },
+    {
+      "base": "hoodass__36677c2a__vandal",
+      "model": "models-textured/hoodass__36677c2a__vandal.glb",
+      "title": "Vandal",
+      "author": "hoodass",
+      "width": 3200,
+      "height": 4000,
+      "bytes": 1412856
+    },
+    {
+      "base": "hossein-goshtasbi__0e8ae16e__the-last-song",
+      "model": "models-textured/hossein-goshtasbi__0e8ae16e__the-last-song.glb",
+      "title": "The last song",
+      "author": "hossein_goshtasbi",
+      "width": 4174,
+      "height": 4095,
+      "bytes": 1343996
+    },
+    {
+      "base": "hrantkhachatryan__1b72501f__grace",
+      "model": "models-textured/hrantkhachatryan__1b72501f__grace.glb",
+      "title": "Grace",
+      "author": "hrantkhachatryan",
+      "width": 5356,
+      "height": 5356,
+      "bytes": 1285700
+    },
+    {
+      "base": "hugofournier__4be2132a__sky-journey",
+      "model": "models-textured/hugofournier__4be2132a__sky-journey.glb",
+      "title": "Sky Journey",
+      "author": "hugofournier",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1401400
+    },
+    {
+      "base": "ignatius-arts__3146bda3__self-redemption",
+      "model": "models-textured/ignatius-arts__3146bda3__self-redemption.glb",
+      "title": "Self redemption.",
+      "author": "_ignatius_arts",
+      "width": 2500,
+      "height": 2425,
+      "bytes": 1424492
+    },
+    {
+      "base": "impact__a9a58100__guiding-light",
+      "model": "models-textured/impact__a9a58100__guiding-light.glb",
+      "title": "Guiding Light",
+      "author": "impact",
+      "width": 1638,
+      "height": 2048,
+      "bytes": 1390272
+    },
+    {
+      "base": "inessrychlik__0c741196__revenge",
+      "model": "models-textured/inessrychlik__0c741196__revenge.glb",
+      "title": "Revenge",
+      "author": "inessrychlik",
+      "width": 1333,
+      "height": 2000,
+      "bytes": 1356868
+    },
+    {
+      "base": "innamodja__7449ffe3__twin-mamas",
+      "model": "models-textured/innamodja__7449ffe3__twin-mamas.glb",
+      "title": "Twin Mamas",
+      "author": "innamodja",
+      "width": 4855,
+      "height": 3237,
+      "bytes": 1427728
+    },
+    {
+      "base": "intodaysnight__99dc3142__rorschach-364",
+      "model": "models-textured/intodaysnight__99dc3142__rorschach-364.glb",
+      "title": "Rorschach #364",
+      "author": "intodaysnight",
+      "width": 3556,
+      "height": 4446,
+      "bytes": 1305612
+    },
+    {
+      "base": "intrepid__bd7d43ef__steve",
+      "model": "models-textured/intrepid__bd7d43ef__steve.glb",
+      "title": "Steve",
+      "author": "intrepid",
+      "width": 6156,
+      "height": 4925,
+      "bytes": 1398616
+    },
+    {
+      "base": "iuri__29fb8d60__harmonics",
+      "model": "models-textured/iuri__29fb8d60__harmonics.glb",
+      "title": "Harmonics",
+      "author": "iuri",
+      "width": 3600,
+      "height": 3600,
+      "bytes": 1439816
+    },
+    {
+      "base": "jaaysart__8f4419b3__approaching-the-storm",
+      "model": "models-textured/jaaysart__8f4419b3__approaching-the-storm.glb",
+      "title": "Approaching the storm",
+      "author": "jaaysart",
+      "width": 2048,
+      "height": 1364,
+      "bytes": 1429992
+    },
+    {
+      "base": "jacob__f862f167__building-blocks",
+      "model": "models-textured/jacob__f862f167__building-blocks.glb",
+      "title": "BUILDING BLOCKS",
+      "author": "jacob",
+      "width": 3269,
+      "height": 4087,
+      "bytes": 1471936
+    },
+    {
+      "base": "jacobtheape__cdc92d84__decks",
+      "model": "models-textured/jacobtheape__cdc92d84__decks.glb",
+      "title": "decks",
+      "author": "jacobtheape",
+      "width": 2944,
+      "height": 2048,
+      "bytes": 1437532
+    },
+    {
+      "base": "jaimederringer__3ba7f589__chromesthesia-230509a",
+      "model": "models-textured/jaimederringer__3ba7f589__chromesthesia-230509a.glb",
+      "title": "Chromesthesia 230509a",
+      "author": "jaimederringer",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1403376
+    },
+    {
+      "base": "jakeinez__cb853564__arrival",
+      "model": "models-textured/jakeinez__cb853564__arrival.glb",
+      "title": "Arrival",
+      "author": "jakeinez",
+      "width": 1885,
+      "height": 2356,
+      "bytes": 1398640
+    },
+    {
+      "base": "jasti__43aac6d0__to-the-moon",
+      "model": "models-textured/jasti__43aac6d0__to-the-moon.glb",
+      "title": "To The Moon",
+      "author": "jasti",
+      "width": 3201,
+      "height": 4058,
+      "bytes": 1281192
+    },
+    {
+      "base": "jcnmstudios__2226dd13__abisko-5",
+      "model": "models-textured/jcnmstudios__2226dd13__abisko-5.glb",
+      "title": "Abisko 5",
+      "author": "jcnmstudios",
+      "width": 3888,
+      "height": 2592,
+      "bytes": 1405008
+    },
+    {
+      "base": "jedeyr__8088634c__olympus-falls",
+      "model": "models-textured/jedeyr__8088634c__olympus-falls.glb",
+      "title": "olympus falls",
+      "author": "jedeyr",
+      "width": 2176,
+      "height": 2720,
+      "bytes": 1449996
+    },
+    {
+      "base": "jeffgdavis__1254f5a3__jazz-token-44",
+      "model": "models-textured/jeffgdavis__1254f5a3__jazz-token-44.glb",
+      "title": "Jazz Token 44",
+      "author": "jeffgdavis",
+      "width": 2134,
+      "height": 2134,
+      "bytes": 1231648
+    },
+    {
+      "base": "jenk__a91dd0a7__undivided",
+      "model": "models-textured/jenk__a91dd0a7__undivided.glb",
+      "title": "Undivided",
+      "author": "jenk",
+      "width": 3900,
+      "height": 5200,
+      "bytes": 1453968
+    },
+    {
+      "base": "jennipasanen__6045f85a__golden-ratio",
+      "model": "models-textured/jennipasanen__6045f85a__golden-ratio.glb",
+      "title": "Golden Ratio",
+      "author": "jennipasanen",
+      "width": 12800,
+      "height": 7200,
+      "bytes": 1435224
+    },
+    {
+      "base": "jeremybooth__51fa1870__luck-of-the-pursuit",
+      "model": "models-textured/jeremybooth__51fa1870__luck-of-the-pursuit.glb",
+      "title": "Luck of the Pursuit ",
+      "author": "jeremybooth",
+      "width": 5000,
+      "height": 6250,
+      "bytes": 1307204
+    },
+    {
+      "base": "jerrygarcia__c3b48f60__gift",
+      "model": "models-textured/jerrygarcia__c3b48f60__gift.glb",
+      "title": "Gift",
+      "author": "jerrygarcia",
+      "width": 2677,
+      "height": 3838,
+      "bytes": 1425544
+    },
+    {
+      "base": "jessedraxler__caa80b33__n0d3",
+      "model": "models-textured/jessedraxler__caa80b33__n0d3.glb",
+      "title": "N0D3",
+      "author": "jessedraxler",
+      "width": 3600,
+      "height": 4500,
+      "bytes": 1302804
+    },
+    {
+      "base": "joain__22f8f139__ethestera-4",
+      "model": "models-textured/joain__22f8f139__ethestera-4.glb",
+      "title": "Ethestera #4",
+      "author": "joain",
+      "width": 7680,
+      "height": 9600,
+      "bytes": 1423360
+    },
+    {
+      "base": "joannehollings__fe96ccd0__awakening",
+      "model": "models-textured/joannehollings__fe96ccd0__awakening.glb",
+      "title": "Awakening",
+      "author": "joannehollings",
+      "width": 3648,
+      "height": 4560,
+      "bytes": 1363288
+    },
+    {
+      "base": "joetamponi__297b8431__the-prism",
+      "model": "models-textured/joetamponi__297b8431__the-prism.glb",
+      "title": "The Prism",
+      "author": "joetamponi",
+      "width": 6502,
+      "height": 5036,
+      "bytes": 1484404
+    },
+    {
+      "base": "jokiargu__554cd2d5__cherry-on-top",
+      "model": "models-textured/jokiargu__554cd2d5__cherry-on-top.glb",
+      "title": "cherry on top",
+      "author": "jokiargu",
+      "width": 3000,
+      "height": 3800,
+      "bytes": 1425464
+    },
+    {
+      "base": "jonathanwolfe__98558eca__constant-growth",
+      "model": "models-textured/jonathanwolfe__98558eca__constant-growth.glb",
+      "title": "Constant Growth",
+      "author": "jonathanwolfe",
+      "width": 2160,
+      "height": 3840,
+      "bytes": 1403096
+    },
+    {
+      "base": "jordanbanks__333e3b63__diamond-high",
+      "model": "models-textured/jordanbanks__333e3b63__diamond-high.glb",
+      "title": "Diamond High",
+      "author": "jordanbanks",
+      "width": 5464,
+      "height": 3640,
+      "bytes": 1480320
+    },
+    {
+      "base": "jordaninglee__ca4e9db1__shaken-not-stirred",
+      "model": "models-textured/jordaninglee__ca4e9db1__shaken-not-stirred.glb",
+      "title": "Shaken, Not Stirred",
+      "author": "jordaninglee",
+      "width": 6824,
+      "height": 3838,
+      "bytes": 1380192
+    },
+    {
+      "base": "jordhammond__ecf0be19__lembongan",
+      "model": "models-textured/jordhammond__ecf0be19__lembongan.glb",
+      "title": "Lembongan",
+      "author": "jordhammond",
+      "width": 3633,
+      "height": 4541,
+      "bytes": 1434960
+    },
+    {
+      "base": "josefbsharah__24c39ae0__jars-of-eyes",
+      "model": "models-textured/josefbsharah__24c39ae0__jars-of-eyes.glb",
+      "title": "Jars of Eyes",
+      "author": "josefbsharah",
+      "width": 2600,
+      "height": 2400,
+      "bytes": 1442428
+    },
+    {
+      "base": "joseramos__5f24633d__dissolution-of-eternity",
+      "model": "models-textured/joseramos__5f24633d__dissolution-of-eternity.glb",
+      "title": "Dissolution of Eternity",
+      "author": "joseramos",
+      "width": 4000,
+      "height": 2669,
+      "bytes": 1406960
+    },
+    {
+      "base": "jubbish__a6bc71c5__salt-and-dust",
+      "model": "models-textured/jubbish__a6bc71c5__salt-and-dust.glb",
+      "title": "Salt and Dust",
+      "author": "jubbish",
+      "width": 6679,
+      "height": 4453,
+      "bytes": 1393100
+    },
+    {
+      "base": "juice-bruns__7b180153__persevere",
+      "model": "models-textured/juice-bruns__7b180153__persevere.glb",
+      "title": "PERSEVERE",
+      "author": "juice_bruns",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1467836
+    },
+    {
+      "base": "julia-slip__bcd82345__waves",
+      "model": "models-textured/julia-slip__bcd82345__waves.glb",
+      "title": "Waves",
+      "author": "julia_slip",
+      "width": 6196,
+      "height": 4250,
+      "bytes": 1296316
+    },
+    {
+      "base": "juliakponsford__7a0b1699__creatures-of-the-abyss",
+      "model": "models-textured/juliakponsford__7a0b1699__creatures-of-the-abyss.glb",
+      "title": "Creatures of the Abyss",
+      "author": "juliakponsford",
+      "width": 3000,
+      "height": 4000,
+      "bytes": 1432616
+    },
+    {
+      "base": "julianbrangold__4d8a44e3__six",
+      "model": "models-textured/julianbrangold__4d8a44e3__six.glb",
+      "title": "Six",
+      "author": "julianbrangold",
+      "width": 5000,
+      "height": 2500,
+      "bytes": 1427424
+    },
+    {
+      "base": "kaelivanfossen__435b573c__still-life-on-chain",
+      "model": "models-textured/kaelivanfossen__435b573c__still-life-on-chain.glb",
+      "title": "Still Life: On Chain",
+      "author": "kaelivanfossen",
+      "width": 15000,
+      "height": 10000,
+      "bytes": 1427572
+    },
+    {
+      "base": "kaido__f4709abc__decoder",
+      "model": "models-textured/kaido__f4709abc__decoder.glb",
+      "title": "Decoder",
+      "author": "kaido",
+      "width": 8000,
+      "height": 7000,
+      "bytes": 1406932
+    },
+    {
+      "base": "kaiwan__b9dfd3f8__gasoline",
+      "model": "models-textured/kaiwan__b9dfd3f8__gasoline.glb",
+      "title": "Gasoline",
+      "author": "kaiwan",
+      "width": 4320,
+      "height": 5400,
+      "bytes": 1403688
+    },
+    {
+      "base": "kamiljauregui__3205b42a__emotional-destabilization-of-an-endless-quarantine",
+      "model": "models-textured/kamiljauregui__3205b42a__emotional-destabilization-of-an-endless-quarantine.glb",
+      "title": "Emotional destabilization of an endless quarantine",
+      "author": "kamiljauregui",
+      "width": 1080,
+      "height": 1162,
+      "bytes": 1425432
+    },
+    {
+      "base": "karen-jerzyk-photo__88134f67__the-old-man-and-the-sea",
+      "model": "models-textured/karen-jerzyk-photo__88134f67__the-old-man-and-the-sea.glb",
+      "title": "The Old Man And The Sea",
+      "author": "karen_jerzyk_photo",
+      "width": 8192,
+      "height": 5464,
+      "bytes": 1426532
+    },
+    {
+      "base": "keegan__64868ab5__miseries-of-imagination",
+      "model": "models-textured/keegan__64868ab5__miseries-of-imagination.glb",
+      "title": "Miseries of Imagination",
+      "author": "keegan",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1349216
+    },
+    {
+      "base": "khyatitrehan__44121aae__a-humble-plate-of-mangoes",
+      "model": "models-textured/khyatitrehan__44121aae__a-humble-plate-of-mangoes.glb",
+      "title": "A humble plate of mangoes",
+      "author": "khyatitrehan",
+      "width": 1800,
+      "height": 2400,
+      "bytes": 1359692
+    },
+    {
+      "base": "kieranvalde__1b043d5f__the-annunciation",
+      "model": "models-textured/kieranvalde__1b043d5f__the-annunciation.glb",
+      "title": "The Annunciation",
+      "author": "kieranvalde",
+      "width": 2721,
+      "height": 3614,
+      "bytes": 1449148
+    },
+    {
+      "base": "killianmoore__2d2fc79a__electric-avenues",
+      "model": "models-textured/killianmoore__2d2fc79a__electric-avenues.glb",
+      "title": "Electric Avenues",
+      "author": "killianmoore",
+      "width": 3643,
+      "height": 5464,
+      "bytes": 1442872
+    },
+    {
+      "base": "kirsten-zirngibl__c3fcf290__memory-palace",
+      "model": "models-textured/kirsten-zirngibl__c3fcf290__memory-palace.glb",
+      "title": "Memory Palace",
+      "author": "kirsten_zirngibl",
+      "width": 4500,
+      "height": 6000,
+      "bytes": 1452332
+    },
+    {
+      "base": "kitasavi__31161558__market",
+      "model": "models-textured/kitasavi__31161558__market.glb",
+      "title": "Market",
+      "author": "kitasavi",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1423624
+    },
+    {
+      "base": "kittybast__00d36c79__how-long-is-forever",
+      "model": "models-textured/kittybast__00d36c79__how-long-is-forever.glb",
+      "title": "How Long is Forever?",
+      "author": "kittybast",
+      "width": 1986,
+      "height": 3004,
+      "bytes": 1439548
+    },
+    {
+      "base": "kordonis__5f8ee628__psychotextures",
+      "model": "models-textured/kordonis__5f8ee628__psychotextures.glb",
+      "title": "PSYCHOTEXTURES!",
+      "author": "kordonis",
+      "width": 3000,
+      "height": 3569,
+      "bytes": 1450060
+    },
+    {
+      "base": "kozachok__ecce0808__the-law-is-the-law",
+      "model": "models-textured/kozachok__ecce0808__the-law-is-the-law.glb",
+      "title": "The Law is The Law",
+      "author": "kozachok",
+      "width": 10000,
+      "height": 7692,
+      "bytes": 1443660
+    },
+    {
+      "base": "kreepshow__2b4c06af__i-can-no-longer-tell-dream-from-reality",
+      "model": "models-textured/kreepshow__2b4c06af__i-can-no-longer-tell-dream-from-reality.glb",
+      "title": "i can no longer tell dream from reality",
+      "author": "kreepshow",
+      "width": 2911,
+      "height": 2911,
+      "bytes": 1397220
+    },
+    {
+      "base": "kristophershinn__ff3a1b21__snow-days",
+      "model": "models-textured/kristophershinn__ff3a1b21__snow-days.glb",
+      "title": "Snow Days",
+      "author": "kristophershinn",
+      "width": 1952,
+      "height": 2440,
+      "bytes": 1380848
+    },
+    {
+      "base": "kristyglas__46225419__the-winding-path",
+      "model": "models-textured/kristyglas__46225419__the-winding-path.glb",
+      "title": "The Winding Path",
+      "author": "kristyglas",
+      "width": 3500,
+      "height": 5600,
+      "bytes": 1444592
+    },
+    {
+      "base": "kubrasuyildirim__52f0b885__about-zero",
+      "model": "models-textured/kubrasuyildirim__52f0b885__about-zero.glb",
+      "title": "About Zero",
+      "author": "kubrasuyildirim",
+      "width": 5000,
+      "height": 5260,
+      "bytes": 1470332
+    },
+    {
+      "base": "kvlsqz__1a74ad82__cherry",
+      "model": "models-textured/kvlsqz__1a74ad82__cherry.glb",
+      "title": "Cherry",
+      "author": "kvlsqz",
+      "width": 2550,
+      "height": 3300,
+      "bytes": 1350112
+    },
+    {
+      "base": "laprisamata__94c06689__dracon-driene",
+      "model": "models-textured/laprisamata__94c06689__dracon-driene.glb",
+      "title": "Dracon Driene",
+      "author": "laprisamata",
+      "width": 5906,
+      "height": 5906,
+      "bytes": 1436224
+    },
+    {
+      "base": "latent-dream__775ffea7__chronic-ambivalence",
+      "model": "models-textured/latent-dream__775ffea7__chronic-ambivalence.glb",
+      "title": "Chronic Ambivalence",
+      "author": "latent_dream",
+      "width": 3072,
+      "height": 3072,
+      "bytes": 1465276
+    },
+    {
+      "base": "leaf-swan__0fbe1a46__kintsugi",
+      "model": "models-textured/leaf-swan__0fbe1a46__kintsugi.glb",
+      "title": "Kintsugi",
+      "author": "leaf_swan",
+      "width": 4216,
+      "height": 2352,
+      "bytes": 1457376
+    },
+    {
+      "base": "lebackpacker__f3406447__rhyolite",
+      "model": "models-textured/lebackpacker__f3406447__rhyolite.glb",
+      "title": "Rhyolite",
+      "author": "lebackpacker",
+      "width": 5568,
+      "height": 3712,
+      "bytes": 1467660
+    },
+    {
+      "base": "lifewithart__cc17c686__all-of-my-love",
+      "model": "models-textured/lifewithart__cc17c686__all-of-my-love.glb",
+      "title": "All of my Love",
+      "author": "lifewithart",
+      "width": 4500,
+      "height": 5500,
+      "bytes": 1401580
+    },
+    {
+      "base": "lilkool__5e6c76a4__sjw-tears",
+      "model": "models-textured/lilkool__5e6c76a4__sjw-tears.glb",
+      "title": "\"SJW Tears\"",
+      "author": "lilkool",
+      "width": 1547,
+      "height": 1976,
+      "bytes": 1338184
+    },
+    {
+      "base": "lindseypricestudio__eb3fcb33__gemstone-utopia",
+      "model": "models-textured/lindseypricestudio__eb3fcb33__gemstone-utopia.glb",
+      "title": "Gemstone Utopia",
+      "author": "lindseypricestudio",
+      "width": 4398,
+      "height": 4393,
+      "bytes": 1445200
+    },
+    {
+      "base": "linecensor__9105926e__crypto-boy",
+      "model": "models-textured/linecensor__9105926e__crypto-boy.glb",
+      "title": "CRYPTO BOY",
+      "author": "linecensor",
+      "width": 5000,
+      "height": 5376,
+      "bytes": 1463724
+    },
+    {
+      "base": "lisannehaack__5444b8d4__blame-the-culture",
+      "model": "models-textured/lisannehaack__5444b8d4__blame-the-culture.glb",
+      "title": "Blame the culture",
+      "author": "lisannehaack",
+      "width": 4346,
+      "height": 5978,
+      "bytes": 1432772
+    },
+    {
+      "base": "loisvoirol__45feb777__juxtaposition-synchronis-e",
+      "model": "models-textured/loisvoirol__45feb777__juxtaposition-synchronis-e.glb",
+      "title": "Juxtaposition Synchronisée",
+      "author": "loisvoirol",
+      "width": 7051,
+      "height": 4961,
+      "bytes": 1427424
+    },
+    {
+      "base": "lolahubner__ac7ce12c__scarlet-serenity",
+      "model": "models-textured/lolahubner__ac7ce12c__scarlet-serenity.glb",
+      "title": "Scarlet Serenity",
+      "author": "lolahubner",
+      "width": 5000,
+      "height": 6249,
+      "bytes": 1333852
+    },
+    {
+      "base": "loopify__ae151bc7__i-won-t-let-go",
+      "model": "models-textured/loopify__ae151bc7__i-won-t-let-go.glb",
+      "title": "I won't let go",
+      "author": "loopify",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 1400656
+    },
+    {
+      "base": "lord-archived__2d2bf37b__the-observer-ii",
+      "model": "models-textured/lord-archived__2d2bf37b__the-observer-ii.glb",
+      "title": "The Observer II",
+      "author": "lord_archived",
+      "width": 2160,
+      "height": 2160,
+      "bytes": 1372544
+    },
+    {
+      "base": "lordtruffington__e5f48325__game-of-reflections",
+      "model": "models-textured/lordtruffington__e5f48325__game-of-reflections.glb",
+      "title": "Game of reflections",
+      "author": "lordtruffington",
+      "width": 2553,
+      "height": 3406,
+      "bytes": 1291112
+    },
+    {
+      "base": "louisdazy__f91d74ad__motel-dreams",
+      "model": "models-textured/louisdazy__f91d74ad__motel-dreams.glb",
+      "title": "Motel Dreams",
+      "author": "louisdazy",
+      "width": 5334,
+      "height": 3559,
+      "bytes": 1413392
+    },
+    {
+      "base": "lucaponsatoart__75bae09d__you-don-t-seem-like-yourself",
+      "model": "models-textured/lucaponsatoart__75bae09d__you-don-t-seem-like-yourself.glb",
+      "title": "you don’t seem like yourself.",
+      "author": "lucaponsatoart",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1404644
+    },
+    {
+      "base": "lucas-aguirre__af38d5f5__procesi-n",
+      "model": "models-textured/lucas-aguirre__af38d5f5__procesi-n.glb",
+      "title": "Procesión",
+      "author": "lucas_aguirre",
+      "width": 21973,
+      "height": 12227,
+      "bytes": 1360912
+    },
+    {
+      "base": "lucclop__e77ad7f3__subscript",
+      "model": "models-textured/lucclop__e77ad7f3__subscript.glb",
+      "title": "SUBSCRIPT ",
+      "author": "lucclop",
+      "width": 4500,
+      "height": 6000,
+      "bytes": 1389932
+    },
+    {
+      "base": "lucianaguerraok__c88d2175__a-perception-of-hell",
+      "model": "models-textured/lucianaguerraok__c88d2175__a-perception-of-hell.glb",
+      "title": "A perception of Hell",
+      "author": "lucianaguerraok",
+      "width": 3982,
+      "height": 4930,
+      "bytes": 1477616
+    },
+    {
+      "base": "lunatico__7fb49ed1__the-13th",
+      "model": "models-textured/lunatico__7fb49ed1__the-13th.glb",
+      "title": "The 13th",
+      "author": "lunatico",
+      "width": 4500,
+      "height": 4500,
+      "bytes": 1408148
+    },
+    {
+      "base": "lyora__b7e87f9c__to-withstand",
+      "model": "models-textured/lyora__b7e87f9c__to-withstand.glb",
+      "title": "To Withstand ",
+      "author": "lyora",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 1356924
+    },
+    {
+      "base": "maalavidaa__086d6aa3__cornerstone",
+      "model": "models-textured/maalavidaa__086d6aa3__cornerstone.glb",
+      "title": "Cornerstone",
+      "author": "maalavidaa",
+      "width": 2000,
+      "height": 2800,
+      "bytes": 1416768
+    },
+    {
+      "base": "maheenblues__2170008f__echoes-of-the-storm",
+      "model": "models-textured/maheenblues__2170008f__echoes-of-the-storm.glb",
+      "title": " Echoes of the Storm",
+      "author": "maheenblues",
+      "width": 4320,
+      "height": 5400,
+      "bytes": 1402728
+    },
+    {
+      "base": "mahnaz__7bbd2454__flowering",
+      "model": "models-textured/mahnaz__7bbd2454__flowering.glb",
+      "title": "Flowering",
+      "author": "mahnaz",
+      "width": 3354,
+      "height": 5000,
+      "bytes": 1417244
+    },
+    {
+      "base": "man-kha27__6135e44d__attention-soldier",
+      "model": "models-textured/man-kha27__6135e44d__attention-soldier.glb",
+      "title": "Attention soldier!",
+      "author": "man_kha27",
+      "width": 4267,
+      "height": 6400,
+      "bytes": 1407260
+    },
+    {
+      "base": "manoloide__9f69ad64__mantel-rojo",
+      "model": "models-textured/manoloide__9f69ad64__mantel-rojo.glb",
+      "title": "Mantel Rojo",
+      "author": "manoloide",
+      "width": 6500,
+      "height": 6500,
+      "bytes": 1483076
+    },
+    {
+      "base": "mansitos__9df34684__loneliness",
+      "model": "models-textured/mansitos__9df34684__loneliness.glb",
+      "title": "Loneliness",
+      "author": "mansitos",
+      "width": 6529,
+      "height": 5551,
+      "bytes": 1360912
+    },
+    {
+      "base": "mapenyon__c3d96ce5__girly-picnic-in-copenhagen",
+      "model": "models-textured/mapenyon__c3d96ce5__girly-picnic-in-copenhagen.glb",
+      "title": "Girly Picnic in Copenhagen",
+      "author": "mapenyon",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1438352
+    },
+    {
+      "base": "mar__1418c402__the-moods",
+      "model": "models-textured/mar__1418c402__the-moods.glb",
+      "title": "The Moods",
+      "author": "mar",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1436444
+    },
+    {
+      "base": "marceldeneuve__e662c268__antaeus",
+      "model": "models-textured/marceldeneuve__e662c268__antaeus.glb",
+      "title": "Antaeus",
+      "author": "marceldeneuve",
+      "width": 3200,
+      "height": 4000,
+      "bytes": 1400124
+    },
+    {
+      "base": "marcelonada__e7882af9__folia-1",
+      "model": "models-textured/marcelonada__e7882af9__folia-1.glb",
+      "title": "Folia #1",
+      "author": "marcelonada",
+      "width": 3500,
+      "height": 5000,
+      "bytes": 1447612
+    },
+    {
+      "base": "marcograssi__78d263d1__lenticular-roy",
+      "model": "models-textured/marcograssi__78d263d1__lenticular-roy.glb",
+      "title": "Lenticular Roy",
+      "author": "marcograssi",
+      "width": 7231,
+      "height": 4821,
+      "bytes": 1430024
+    },
+    {
+      "base": "marcus-cuscus__f542a41c__the-last-resort",
+      "model": "models-textured/marcus-cuscus__f542a41c__the-last-resort.glb",
+      "title": "The Last Resort",
+      "author": "marcus_cuscus",
+      "width": 6888,
+      "height": 3240,
+      "bytes": 1468836
+    },
+    {
+      "base": "marischabecker__3f43e260__the-guardians",
+      "model": "models-textured/marischabecker__3f43e260__the-guardians.glb",
+      "title": "The Guardians ",
+      "author": "marischabecker",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1399016
+    },
+    {
+      "base": "markinducil__a8aee996__corruptible-truth-seeker",
+      "model": "models-textured/markinducil__a8aee996__corruptible-truth-seeker.glb",
+      "title": "Corruptible Truth Seeker",
+      "author": "markinducil",
+      "width": 3858,
+      "height": 5456,
+      "bytes": 1341176
+    },
+    {
+      "base": "marlon__1d06ca9f__d-e-c-e-p-t-i-o-n",
+      "model": "models-textured/marlon__1d06ca9f__d-e-c-e-p-t-i-o-n.glb",
+      "title": "D E C E P T I O N",
+      "author": "marlon_",
+      "width": 5312,
+      "height": 3200,
+      "bytes": 1438276
+    },
+    {
+      "base": "marterium__92e0a623__flum",
+      "model": "models-textured/marterium__92e0a623__flum.glb",
+      "title": "Flum",
+      "author": "marterium",
+      "width": 5000,
+      "height": 5625,
+      "bytes": 1328628
+    },
+    {
+      "base": "maryamhasaniart__2ca1e444__the-bee-queen-s-embrace",
+      "model": "models-textured/maryamhasaniart__2ca1e444__the-bee-queen-s-embrace.glb",
+      "title": "\"The Bee Queen's Embrace\"",
+      "author": "maryamhasaniart",
+      "width": 2391,
+      "height": 3092,
+      "bytes": 1355892
+    },
+    {
+      "base": "mattdoogue__6c446c6d__pretty-in-pink",
+      "model": "models-textured/mattdoogue__6c446c6d__pretty-in-pink.glb",
+      "title": "Pretty in Pink",
+      "author": "mattdoogue",
+      "width": 3988,
+      "height": 2592,
+      "bytes": 1359912
+    },
+    {
+      "base": "mattiac__a578c64e__out-of-grid",
+      "model": "models-textured/mattiac__a578c64e__out-of-grid.glb",
+      "title": "Out of Grid",
+      "author": "mattiac",
+      "width": 5100,
+      "height": 7200,
+      "bytes": 1439540
+    },
+    {
+      "base": "meeshuno__b982ce89__amorphous-erosion",
+      "model": "models-textured/meeshuno__b982ce89__amorphous-erosion.glb",
+      "title": "amorphous erosion",
+      "author": "meeshuno",
+      "width": 3577,
+      "height": 4471,
+      "bytes": 1405464
+    },
+    {
+      "base": "mercpin__00bd4863__look-at-me-i-exist",
+      "model": "models-textured/mercpin__00bd4863__look-at-me-i-exist.glb",
+      "title": "Look at me, i exist.",
+      "author": "mercpin",
+      "width": 2233,
+      "height": 1669,
+      "bytes": 1464968
+    },
+    {
+      "base": "mgxs__4fd5126f__hardsoft",
+      "model": "models-textured/mgxs__4fd5126f__hardsoft.glb",
+      "title": "HardSoft",
+      "author": "mgxs",
+      "width": 1800,
+      "height": 1800,
+      "bytes": 1324348
+    },
+    {
+      "base": "mich-tom__713a3e50__the-journey",
+      "model": "models-textured/mich-tom__713a3e50__the-journey.glb",
+      "title": "The Journey",
+      "author": "mich_tom",
+      "width": 2480,
+      "height": 3307,
+      "bytes": 1388888
+    },
+    {
+      "base": "michaelcina__c8dd2641__by-fire-636",
+      "model": "models-textured/michaelcina__c8dd2641__by-fire-636.glb",
+      "title": "By Fire 636",
+      "author": "michaelcina",
+      "width": 8000,
+      "height": 8000,
+      "bytes": 1400644
+    },
+    {
+      "base": "mihaylova-jpg__5fe43db5__the-origin-of-life",
+      "model": "models-textured/mihaylova-jpg__5fe43db5__the-origin-of-life.glb",
+      "title": "THE ORIGIN OF LIFE",
+      "author": "mihaylova_jpg",
+      "width": 8192,
+      "height": 5464,
+      "bytes": 1450628
+    },
+    {
+      "base": "mindzeye__537bebae__rue-lamarck",
+      "model": "models-textured/mindzeye__537bebae__rue-lamarck.glb",
+      "title": "Rue Lamarck ",
+      "author": "mindzeye",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1376604
+    },
+    {
+      "base": "minotaur-man__213bfc7e__asterion-the-minotaur",
+      "model": "models-textured/minotaur-man__213bfc7e__asterion-the-minotaur.glb",
+      "title": "Asterion, the Minotaur",
+      "author": "minotaur_man",
+      "width": 4945,
+      "height": 6000,
+      "bytes": 1425632
+    },
+    {
+      "base": "misterstephent__6d4daba8__cat-o-nein",
+      "model": "models-textured/misterstephent__6d4daba8__cat-o-nein.glb",
+      "title": "Cat-o-Nein",
+      "author": "misterstephent",
+      "width": 9000,
+      "height": 9700,
+      "bytes": 1388868
+    },
+    {
+      "base": "mitsume__b9c400e6__past-wisdom-future-m01",
+      "model": "models-textured/mitsume__b9c400e6__past-wisdom-future-m01.glb",
+      "title": "[Past ← wisdom → Future]/M01 ",
+      "author": "mitsume",
+      "width": 3720,
+      "height": 5261,
+      "bytes": 1408988
+    },
+    {
+      "base": "monaris__6b246ded__cine-color-just-us",
+      "model": "models-textured/monaris__6b246ded__cine-color-just-us.glb",
+      "title": "Cine & Color: Just Us",
+      "author": "monaris",
+      "width": 6000,
+      "height": 4000,
+      "bytes": 1428336
+    },
+    {
+      "base": "monicajalali__ccd009ed__solace",
+      "model": "models-textured/monicajalali__ccd009ed__solace.glb",
+      "title": "Solace",
+      "author": "monicajalali",
+      "width": 7202,
+      "height": 6649,
+      "bytes": 1409068
+    },
+    {
+      "base": "moonchild-14__3f2d30fa__serenade-to-spring",
+      "model": "models-textured/moonchild-14__3f2d30fa__serenade-to-spring.glb",
+      "title": "Serenade to Spring",
+      "author": "moonchild_14",
+      "width": 1880,
+      "height": 2350,
+      "bytes": 1436936
+    },
+    {
+      "base": "moonsundiamond__0d75af30__the-afterparty",
+      "model": "models-textured/moonsundiamond__0d75af30__the-afterparty.glb",
+      "title": "The Afterparty,",
+      "author": "moonsundiamond",
+      "width": 3456,
+      "height": 5184,
+      "bytes": 1384596
+    },
+    {
+      "base": "morbeck__b6355b7b__fissura-004",
+      "model": "models-textured/morbeck__b6355b7b__fissura-004.glb",
+      "title": "FISSURA #004",
+      "author": "morbeck",
+      "width": 4000,
+      "height": 6000,
+      "bytes": 1292248
+    },
+    {
+      "base": "mr3000__8c2aa692__golden-virtue",
+      "model": "models-textured/mr3000__8c2aa692__golden-virtue.glb",
+      "title": "GOLDEN VIRTUE ",
+      "author": "mr3000",
+      "width": 6327,
+      "height": 4995,
+      "bytes": 1324468
+    },
+    {
+      "base": "mry__af42af9b__the-snail",
+      "model": "models-textured/mry__af42af9b__the-snail.glb",
+      "title": "THE SNAIL",
+      "author": "mry",
+      "width": 3500,
+      "height": 1969,
+      "bytes": 1410612
+    },
+    {
+      "base": "msalisbu__29f864ac__9782-emerging",
+      "model": "models-textured/msalisbu__29f864ac__9782-emerging.glb",
+      "title": "9782 // Emerging",
+      "author": "msalisbu",
+      "width": 2990,
+      "height": 4185,
+      "bytes": 1326736
+    },
+    {
+      "base": "muartive__9bcadccf__the-furry-persistence-of-memory",
+      "model": "models-textured/muartive__9bcadccf__the-furry-persistence-of-memory.glb",
+      "title": "The Furry Persistence of Memory",
+      "author": "muartive",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1380476
+    },
+    {
+      "base": "muhju__c1d6f15e__ares",
+      "model": "models-textured/muhju__c1d6f15e__ares.glb",
+      "title": "Ares",
+      "author": "muhju",
+      "width": 4552,
+      "height": 7248,
+      "bytes": 1429744
+    },
+    {
+      "base": "musketon__25e2f3cd__eth-gas-station",
+      "model": "models-textured/musketon__25e2f3cd__eth-gas-station.glb",
+      "title": "ETH Gas Station ",
+      "author": "musketon",
+      "width": 6000,
+      "height": 4444,
+      "bytes": 1419360
+    },
+    {
+      "base": "mutoharys__f8f54a4b__the-surveillance-ghost",
+      "model": "models-textured/mutoharys__f8f54a4b__the-surveillance-ghost.glb",
+      "title": "The Surveillance Ghost",
+      "author": "mutoharys",
+      "width": 3685,
+      "height": 5138,
+      "bytes": 1379264
+    },
+    {
+      "base": "myriadinart__9c203e56__penny-for-your-face",
+      "model": "models-textured/myriadinart__9c203e56__penny-for-your-face.glb",
+      "title": "Penny For Your Face?",
+      "author": "myriadinart_",
+      "width": 2042,
+      "height": 2290,
+      "bytes": 1419208
+    },
+    {
+      "base": "n8__8474f7b3__lucid",
+      "model": "models-textured/n8__8474f7b3__lucid.glb",
+      "title": "Lucid",
+      "author": "n8",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1438268
+    },
+    {
+      "base": "nacho-frades__fc70d5e3__smoking-a-joint-in-the-street",
+      "model": "models-textured/nacho-frades__fc70d5e3__smoking-a-joint-in-the-street.glb",
+      "title": "Smoking a joint in the Street",
+      "author": "nacho_frades",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1436644
+    },
+    {
+      "base": "nadiia__289f8b31__the-sound",
+      "model": "models-textured/nadiia__289f8b31__the-sound.glb",
+      "title": "The SOUND",
+      "author": "nadiia",
+      "width": 4795,
+      "height": 6503,
+      "bytes": 1388336
+    },
+    {
+      "base": "nastplas__4a16f0cc__kujira",
+      "model": "models-textured/nastplas__4a16f0cc__kujira.glb",
+      "title": "Kujira",
+      "author": "nastplas",
+      "width": 5800,
+      "height": 4898,
+      "bytes": 1292868
+    },
+    {
+      "base": "nev-in-color-archived__8a3c968d__standing-still",
+      "model": "models-textured/nev-in-color-archived__8a3c968d__standing-still.glb",
+      "title": "standing still",
+      "author": "nev_in_color_archived",
+      "width": 6300,
+      "height": 8400,
+      "bytes": 1396948
+    },
+    {
+      "base": "nftlisa__ffcb6f9c__kill-your-darlings",
+      "model": "models-textured/nftlisa__ffcb6f9c__kill-your-darlings.glb",
+      "title": "Kill your darlings",
+      "author": "nftlisa",
+      "width": 2345,
+      "height": 3310,
+      "bytes": 1425304
+    },
+    {
+      "base": "nickeays__5f132cc1__unknown-progress",
+      "model": "models-textured/nickeays__5f132cc1__unknown-progress.glb",
+      "title": "UNKNOWN PROGRESS",
+      "author": "nickeays",
+      "width": 3333,
+      "height": 3333,
+      "bytes": 1344404
+    },
+    {
+      "base": "nikolinapetolas__5469a937__the-swan-lake",
+      "model": "models-textured/nikolinapetolas__5469a937__the-swan-lake.glb",
+      "title": "The Swan Lake",
+      "author": "nikolinapetolas",
+      "width": 3200,
+      "height": 1854,
+      "bytes": 1424424
+    },
+    {
+      "base": "niroperrone-archived__24a88df7__the-man-that-would-kill-anyone-for-a-pepe-s",
+      "model": "models-textured/niroperrone-archived__24a88df7__the-man-that-would-kill-anyone-for-a-pepe-s.glb",
+      "title": "The man that would kill anyone for a Pepe's",
+      "author": "niroperrone_archived",
+      "width": 2200,
+      "height": 2200,
+      "bytes": 1444008
+    },
+    {
+      "base": "nissla__e1ef320c__present-of-the-past-future",
+      "model": "models-textured/nissla__e1ef320c__present-of-the-past-future.glb",
+      "title": "Present of the past future",
+      "author": "nissla",
+      "width": 3456,
+      "height": 5184,
+      "bytes": 1469052
+    },
+    {
+      "base": "noahkocher__791a00dc__last-bite",
+      "model": "models-textured/noahkocher__791a00dc__last-bite.glb",
+      "title": "Last Bite",
+      "author": "noahkocher",
+      "width": 3500,
+      "height": 4916,
+      "bytes": 1433300
+    },
+    {
+      "base": "nocreative__140f21a6__cherubim",
+      "model": "models-textured/nocreative__140f21a6__cherubim.glb",
+      "title": "Cherubim",
+      "author": "nocreative",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1409096
+    },
+    {
+      "base": "nogland__7cd4850b__the-band-aid-warehouse",
+      "model": "models-textured/nogland__7cd4850b__the-band-aid-warehouse.glb",
+      "title": "The Band Aid Warehouse.",
+      "author": "nogland",
+      "width": 16000,
+      "height": 9000,
+      "bytes": 1386604
+    },
+    {
+      "base": "nolanpelletier__4198023f__indoor-living",
+      "model": "models-textured/nolanpelletier__4198023f__indoor-living.glb",
+      "title": "Indoor Living",
+      "author": "nolanpelletier",
+      "width": 1652,
+      "height": 2160,
+      "bytes": 1464340
+    },
+    {
+      "base": "noxlumina__7feb4c35__n-e-p-u-n-us-o-rt-um",
+      "model": "models-textured/noxlumina__7feb4c35__n-e-p-u-n-us-o-rt-um.glb",
+      "title": "/̴̕Ι/̶͔͛N̴E̷P̸U̴̒N̵UŚ̵̥O̵̙̾RT̷͗UM̶̹͐",
+      "author": "noxlumina",
+      "width": 5100,
+      "height": 3300,
+      "bytes": 1465184
+    },
+    {
+      "base": "ntapman__1ffc5d90__alpine-dreams",
+      "model": "models-textured/ntapman__1ffc5d90__alpine-dreams.glb",
+      "title": "Alpine Dreams",
+      "author": "ntapman",
+      "width": 5988,
+      "height": 3992,
+      "bytes": 1423500
+    },
+    {
+      "base": "nuclearsamurai__5287b22d__influencers",
+      "model": "models-textured/nuclearsamurai__5287b22d__influencers.glb",
+      "title": "Influencers",
+      "author": "nuclearsamurai",
+      "width": 7168,
+      "height": 4096,
+      "bytes": 1471400
+    },
+    {
+      "base": "nudeyogagirl__ad6021fe__an-nyma",
+      "model": "models-textured/nudeyogagirl__ad6021fe__an-nyma.glb",
+      "title": "ANŌNYMA",
+      "author": "nudeyogagirl",
+      "width": 2894,
+      "height": 2894,
+      "bytes": 1296412
+    },
+    {
+      "base": "nuvolanevicataart__d4fd865a__provident-man",
+      "model": "models-textured/nuvolanevicataart__d4fd865a__provident-man.glb",
+      "title": "provident man",
+      "author": "nuvolanevicataart",
+      "width": 4533,
+      "height": 6017,
+      "bytes": 1362928
+    },
+    {
+      "base": "nvllsekt__da809d5a__s-i-g-h-t-l-e-s-s-2",
+      "model": "models-textured/nvllsekt__da809d5a__s-i-g-h-t-l-e-s-s-2.glb",
+      "title": "s i g h t l e s s - ∅2",
+      "author": "nvllsekt",
+      "width": 4096,
+      "height": 4096,
+      "bytes": 1417348
+    },
+    {
+      "base": "oak-arrow__34f309b4__float-on",
+      "model": "models-textured/oak-arrow__34f309b4__float-on.glb",
+      "title": "Float On ",
+      "author": "oak_arrow",
+      "width": 6000,
+      "height": 7469,
+      "bytes": 1405392
+    },
+    {
+      "base": "obxium__dc9e66ff__grafdvsa-3e",
+      "model": "models-textured/obxium__dc9e66ff__grafdvsa-3e.glb",
+      "title": "GRAFDVSA 3E",
+      "author": "obxium",
+      "width": 2160,
+      "height": 2800,
+      "bytes": 1330612
+    },
+    {
+      "base": "oficinastk__2262f0b3__still-life-with-apple",
+      "model": "models-textured/oficinastk__2262f0b3__still-life-with-apple.glb",
+      "title": "Still Life with Apple",
+      "author": "oficinastk",
+      "width": 3840,
+      "height": 2160,
+      "bytes": 1295144
+    },
+    {
+      "base": "olegdou__e25bf8c9__little-chaos",
+      "model": "models-textured/olegdou__e25bf8c9__little-chaos.glb",
+      "title": "Little Chaos",
+      "author": "olegdou",
+      "width": 2362,
+      "height": 3152,
+      "bytes": 1318012
+    },
+    {
+      "base": "oliveallen__535e9176__distraction-brewers",
+      "model": "models-textured/oliveallen__535e9176__distraction-brewers.glb",
+      "title": "Distraction Brewers",
+      "author": "oliveallen",
+      "width": 3000,
+      "height": 2734,
+      "bytes": 1380920
+    },
+    {
+      "base": "omentejovem__a2c44d16__peixe-dourado-no-azul",
+      "model": "models-textured/omentejovem__a2c44d16__peixe-dourado-no-azul.glb",
+      "title": "Peixe-Dourado no AZuL",
+      "author": "omentejovem",
+      "width": 4096,
+      "height": 3072,
+      "bytes": 1424704
+    },
+    {
+      "base": "opperman__30dc82ad__gazing-at-the-after-hours",
+      "model": "models-textured/opperman__30dc82ad__gazing-at-the-after-hours.glb",
+      "title": "Gazing at the after hours. ",
+      "author": "opperman",
+      "width": 3000,
+      "height": 4000,
+      "bytes": 1457184
+    },
+    {
+      "base": "orestemercado__c6bb4200__spirited",
+      "model": "models-textured/orestemercado__c6bb4200__spirited.glb",
+      "title": "Spirited",
+      "author": "orestemercado",
+      "width": 3000,
+      "height": 1901,
+      "bytes": 1450028
+    },
+    {
+      "base": "otherworld__c09f7509__the-garden",
+      "model": "models-textured/otherworld__c09f7509__the-garden.glb",
+      "title": "The Garden",
+      "author": "otherworld",
+      "width": 9600,
+      "height": 5400,
+      "bytes": 1449616
+    },
+    {
+      "base": "oveck__96af57e3__a-night-in-chelsea",
+      "model": "models-textured/oveck__96af57e3__a-night-in-chelsea.glb",
+      "title": "A night in Chelsea",
+      "author": "oveck",
+      "width": 2700,
+      "height": 4800,
+      "bytes": 1396724
+    },
+    {
+      "base": "ozbren__7ffac7af__backseat-antics",
+      "model": "models-textured/ozbren__7ffac7af__backseat-antics.glb",
+      "title": "Backseat Antics",
+      "author": "ozbren",
+      "width": 3000,
+      "height": 3750,
+      "bytes": 1415444
+    },
+    {
+      "base": "p0hleroid__df1cf350__fleur-rouge",
+      "model": "models-textured/p0hleroid__df1cf350__fleur-rouge.glb",
+      "title": "Fleur Rouge ",
+      "author": "p0hleroid",
+      "width": 4480,
+      "height": 6720,
+      "bytes": 1415988
+    },
+    {
+      "base": "p1abypia__223982ce__study-three-masked-women",
+      "model": "models-textured/p1abypia__223982ce__study-three-masked-women.glb",
+      "title": "Study; Three Masked Women",
+      "author": "p1abypia",
+      "width": 3000,
+      "height": 4200,
+      "bytes": 1410184
+    },
+    {
+      "base": "paintre369__001963ce__vault-defense",
+      "model": "models-textured/paintre369__001963ce__vault-defense.glb",
+      "title": "Vault defense",
+      "author": "paintre369",
+      "width": 2839,
+      "height": 3389,
+      "bytes": 1438852
+    },
+    {
+      "base": "paperdiamond__13cc8c6a__left-to-my-own-devices-04-chiaro",
+      "model": "models-textured/paperdiamond__13cc8c6a__left-to-my-own-devices-04-chiaro.glb",
+      "title": "Left To My Own Devices 04 - Chiaro",
+      "author": "paperdiamond",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 1384232
+    },
+    {
+      "base": "parrott__cf906575__dreaming-with-my-eyes-wide-open",
+      "model": "models-textured/parrott__cf906575__dreaming-with-my-eyes-wide-open.glb",
+      "title": "Dreaming With My Eyes Wide Open",
+      "author": "parrott",
+      "width": 3375,
+      "height": 6000,
+      "bytes": 1436392
+    },
+    {
+      "base": "pascalblanche__72661cf4__beyond",
+      "model": "models-textured/pascalblanche__72661cf4__beyond.glb",
+      "title": "BEYOND",
+      "author": "pascalblanche",
+      "width": 9334,
+      "height": 12010,
+      "bytes": 1421856
+    },
+    {
+      "base": "patriciacosta__1c14aa41__orelh-o",
+      "model": "models-textured/patriciacosta__1c14aa41__orelh-o.glb",
+      "title": "Orelhão",
+      "author": "patriciacosta",
+      "width": 4500,
+      "height": 5625,
+      "bytes": 1451628
+    },
+    {
+      "base": "pawelnolbert__e5251490__rare-moments-of-beauty-together",
+      "model": "models-textured/pawelnolbert__e5251490__rare-moments-of-beauty-together.glb",
+      "title": "Rare Moments of Beauty - Together",
+      "author": "pawelnolbert",
+      "width": 3182,
+      "height": 4242,
+      "bytes": 1368276
+    },
+    {
+      "base": "petehalvorsen__76c12996__episode-i-spotlight",
+      "model": "models-textured/petehalvorsen__76c12996__episode-i-spotlight.glb",
+      "title": "Episode I: Spotlight",
+      "author": "petehalvorsen",
+      "width": 6877,
+      "height": 8596,
+      "bytes": 1376496
+    },
+    {
+      "base": "petemohrbacher__dc5994e5__gadreel-angel-of-war",
+      "model": "models-textured/petemohrbacher__dc5994e5__gadreel-angel-of-war.glb",
+      "title": "Gadreel, Angel of War",
+      "author": "petemohrbacher",
+      "width": 3422,
+      "height": 5157,
+      "bytes": 1404208
+    },
+    {
+      "base": "petertarka__aece8490__box",
+      "model": "models-textured/petertarka__aece8490__box.glb",
+      "title": "Box",
+      "author": "petertarka",
+      "width": 1920,
+      "height": 2400,
+      "bytes": 1386132
+    },
+    {
+      "base": "peymannaderi__ac42c1d0__jeanne-d-arc",
+      "model": "models-textured/peymannaderi__ac42c1d0__jeanne-d-arc.glb",
+      "title": "Jeanne d'Arc",
+      "author": "peymannaderi",
+      "width": 5100,
+      "height": 7640,
+      "bytes": 1388220
+    },
+    {
+      "base": "philr__e8a4f8f1__glue",
+      "model": "models-textured/philr__e8a4f8f1__glue.glb",
+      "title": "Glue",
+      "author": "philr",
+      "width": 2977,
+      "height": 3757,
+      "bytes": 1252264
+    },
+    {
+      "base": "phlofy__adcd4c71__i-need-you-no-more-sweetheart",
+      "model": "models-textured/phlofy__adcd4c71__i-need-you-no-more-sweetheart.glb",
+      "title": "I Need You No More Sweetheart",
+      "author": "phlofy",
+      "width": 7000,
+      "height": 4444,
+      "bytes": 1398132
+    },
+    {
+      "base": "phlyimages__0658ee31__ray-fraction",
+      "model": "models-textured/phlyimages__0658ee31__ray-fraction.glb",
+      "title": "Ray-Fraction",
+      "author": "phlyimages",
+      "width": 7620,
+      "height": 9524,
+      "bytes": 1429212
+    },
+    {
+      "base": "photogurapher__8c5954f4__aesthetics-of-eroticism-5",
+      "model": "models-textured/photogurapher__8c5954f4__aesthetics-of-eroticism-5.glb",
+      "title": "Aesthetics of Eroticism#5",
+      "author": "photogurapher",
+      "width": 4267,
+      "height": 6420,
+      "bytes": 1317080
+    },
+    {
+      "base": "planttdaddii__5a35cd22__next",
+      "model": "models-textured/planttdaddii__5a35cd22__next.glb",
+      "title": "next",
+      "author": "planttdaddii",
+      "width": 2264,
+      "height": 2264,
+      "bytes": 1276212
+    },
+    {
+      "base": "playboy__b2a491e2__playboy-bunny-kathy-miami-beach-1970",
+      "model": "models-textured/playboy__b2a491e2__playboy-bunny-kathy-miami-beach-1970.glb",
+      "title": "Playboy Bunny Kathy, Miami Beach, 1970 ",
+      "author": "playboy",
+      "width": 2880,
+      "height": 1620,
+      "bytes": 1450152
+    },
+    {
+      "base": "ponygirl__f9c62475__intertwine",
+      "model": "models-textured/ponygirl__f9c62475__intertwine.glb",
+      "title": "Intertwine ",
+      "author": "ponygirl",
+      "width": 9080,
+      "height": 5108,
+      "bytes": 1421992
+    },
+    {
+      "base": "popwonder__242c3ffa__experience-yourself",
+      "model": "models-textured/popwonder__242c3ffa__experience-yourself.glb",
+      "title": "Experience Yourself",
+      "author": "popwonder",
+      "width": 4080,
+      "height": 4080,
+      "bytes": 1446652
+    },
+    {
+      "base": "prostov__7b616ddd__ardent-indifference",
+      "model": "models-textured/prostov__7b616ddd__ardent-indifference.glb",
+      "title": "Ardent Indifference",
+      "author": "prostov",
+      "width": 4700,
+      "height": 3581,
+      "bytes": 1427792
+    },
+    {
+      "base": "providerka__a71f3904__mortality-in-the-mojave",
+      "model": "models-textured/providerka__a71f3904__mortality-in-the-mojave.glb",
+      "title": "Mortality in the Mojave",
+      "author": "providerka",
+      "width": 4320,
+      "height": 5400,
+      "bytes": 1417572
+    },
+    {
+      "base": "quantumspirit__1ff081b7__transcendentia-primordialis",
+      "model": "models-textured/quantumspirit__1ff081b7__transcendentia-primordialis.glb",
+      "title": "Transcendentia Primordialis",
+      "author": "quantumspirit",
+      "width": 4500,
+      "height": 6000,
+      "bytes": 1483028
+    },
+    {
+      "base": "quasimondo__5db48e53__neural-studies-hibernation-mode",
+      "model": "models-textured/quasimondo__5db48e53__neural-studies-hibernation-mode.glb",
+      "title": "Neural Studies: Hibernation Mode",
+      "author": "quasimondo",
+      "width": 960,
+      "height": 1408,
+      "bytes": 1417852
+    },
+    {
+      "base": "rachstewartnz__6bf23a67__refracted-dreams",
+      "model": "models-textured/rachstewartnz__6bf23a67__refracted-dreams.glb",
+      "title": "Refracted Dreams",
+      "author": "rachstewartnz",
+      "width": 6448,
+      "height": 4299,
+      "bytes": 1389676
+    },
+    {
+      "base": "radiosolace__5835dd2c__the-watch",
+      "model": "models-textured/radiosolace__5835dd2c__the-watch.glb",
+      "title": "The Watch",
+      "author": "radiosolace",
+      "width": 5046,
+      "height": 3358,
+      "bytes": 1371100
+    },
+    {
+      "base": "railaiter__60238db3__behind-the-curtains",
+      "model": "models-textured/railaiter__60238db3__behind-the-curtains.glb",
+      "title": "• behind the curtains • ",
+      "author": "railaiter",
+      "width": 2300,
+      "height": 3000,
+      "bytes": 1356412
+    },
+    {
+      "base": "rajanandepu__77cb9219__canvas-of-life-pink",
+      "model": "models-textured/rajanandepu__77cb9219__canvas-of-life-pink.glb",
+      "title": "Canvas of Life - Pink",
+      "author": "rajanandepu",
+      "width": 6005,
+      "height": 8000,
+      "bytes": 1404444
+    },
+    {
+      "base": "rakesh-pulapa__fd259d2b__the-floating-maze",
+      "model": "models-textured/rakesh-pulapa__fd259d2b__the-floating-maze.glb",
+      "title": "The Floating Maze",
+      "author": "rakesh_pulapa",
+      "width": 3341,
+      "height": 4104,
+      "bytes": 1484424
+    },
+    {
+      "base": "ransom-mitchell__4f873166__it-will-be-ours",
+      "model": "models-textured/ransom-mitchell__4f873166__it-will-be-ours.glb",
+      "title": "It Will Be Ours",
+      "author": "ransom_mitchell",
+      "width": 6000,
+      "height": 4004,
+      "bytes": 1443596
+    },
+    {
+      "base": "raphaellacoste__9c6da6d3__landing-scene",
+      "model": "models-textured/raphaellacoste__9c6da6d3__landing-scene.glb",
+      "title": "Landing Scene",
+      "author": "raphaellacoste",
+      "width": 4000,
+      "height": 2250,
+      "bytes": 1410832
+    },
+    {
+      "base": "rarelygifted__4bd3d45b__stop-thinking",
+      "model": "models-textured/rarelygifted__4bd3d45b__stop-thinking.glb",
+      "title": "Stop Thinking",
+      "author": "rarelygifted",
+      "width": 8600,
+      "height": 12222,
+      "bytes": 1314324
+    },
+    {
+      "base": "ravivora__0553e25b__mirage",
+      "model": "models-textured/ravivora__0553e25b__mirage.glb",
+      "title": "Mirage",
+      "author": "ravivora",
+      "width": 5571,
+      "height": 8356,
+      "bytes": 1357440
+    },
+    {
+      "base": "real-ifyarts__7075ea07__no-bills",
+      "model": "models-textured/real-ifyarts__7075ea07__no-bills.glb",
+      "title": "No Bills",
+      "author": "real_ifyarts",
+      "width": 2737,
+      "height": 3422,
+      "bytes": 1390248
+    },
+    {
+      "base": "rebellicca__132edc69__surrender",
+      "model": "models-textured/rebellicca__132edc69__surrender.glb",
+      "title": "Surrender",
+      "author": "rebellicca",
+      "width": 2560,
+      "height": 4096,
+      "bytes": 1379196
+    },
+    {
+      "base": "redrum__1b0d8d72__when-red-called-me",
+      "model": "models-textured/redrum__1b0d8d72__when-red-called-me.glb",
+      "title": "When RED Called Me",
+      "author": "redrum",
+      "width": 4608,
+      "height": 3072,
+      "bytes": 1414340
+    },
+    {
+      "base": "retricdreams__11ea4689__time-out",
+      "model": "models-textured/retricdreams__11ea4689__time-out.glb",
+      "title": "TIME OUT",
+      "author": "retricdreams",
+      "width": 4096,
+      "height": 4096,
+      "bytes": 1411112
+    },
+    {
+      "base": "reylarsdam__99b00aa8__visions-of-sinaloa-2",
+      "model": "models-textured/reylarsdam__99b00aa8__visions-of-sinaloa-2.glb",
+      "title": "Visions of Sinaloa 2",
+      "author": "reylarsdam",
+      "width": 3462,
+      "height": 4114,
+      "bytes": 1487940
+    },
+    {
+      "base": "rezania__def82021__shades-of-beauty",
+      "model": "models-textured/rezania__def82021__shades-of-beauty.glb",
+      "title": "Shades Of Beauty",
+      "author": "rezania",
+      "width": 4912,
+      "height": 7360,
+      "bytes": 1390816
+    },
+    {
+      "base": "rikoostenbroek__f748e925__silent-wave",
+      "model": "models-textured/rikoostenbroek__f748e925__silent-wave.glb",
+      "title": "Silent Wave",
+      "author": "rikoostenbroek",
+      "width": 1500,
+      "height": 2250,
+      "bytes": 1382792
+    },
+    {
+      "base": "rizacankumas__cab803a5__unrecognised-emotions",
+      "model": "models-textured/rizacankumas__cab803a5__unrecognised-emotions.glb",
+      "title": "Unrecognised Emotions",
+      "author": "rizacankumas",
+      "width": 6628,
+      "height": 4971,
+      "bytes": 1440268
+    },
+    {
+      "base": "robstrok__8c5d4e27__a-world-unknown",
+      "model": "models-textured/robstrok__8c5d4e27__a-world-unknown.glb",
+      "title": "A World Unknown",
+      "author": "robstrok",
+      "width": 4455,
+      "height": 2970,
+      "bytes": 1372244
+    },
+    {
+      "base": "robwoodcox__17d94527__otherworld",
+      "model": "models-textured/robwoodcox__17d94527__otherworld.glb",
+      "title": "Otherworld",
+      "author": "robwoodcox",
+      "width": 6482,
+      "height": 8000,
+      "bytes": 1453940
+    },
+    {
+      "base": "rocketgirl__5e9ab1d0__excogatoris",
+      "model": "models-textured/rocketgirl__5e9ab1d0__excogatoris.glb",
+      "title": "EXCOGATORIS",
+      "author": "rocketgirl",
+      "width": 5000,
+      "height": 5000,
+      "bytes": 1452424
+    },
+    {
+      "base": "ronnaldong__6ff495c8__is-it-all-in-my-head",
+      "model": "models-textured/ronnaldong__6ff495c8__is-it-all-in-my-head.glb",
+      "title": "Is It All In My Head?",
+      "author": "ronnaldong",
+      "width": 2500,
+      "height": 2875,
+      "bytes": 1381068
+    },
+    {
+      "base": "roseforsythjackson__74061aff__entire-being-1",
+      "model": "models-textured/roseforsythjackson__74061aff__entire-being-1.glb",
+      "title": "Entire Being #1",
+      "author": "roseforsythjackson",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1397272
+    },
+    {
+      "base": "rosehill1999__9d9bf4e4__home",
+      "model": "models-textured/rosehill1999__9d9bf4e4__home.glb",
+      "title": "Home",
+      "author": "rosehill1999",
+      "width": 5000,
+      "height": 3750,
+      "bytes": 1440072
+    },
+    {
+      "base": "rydavidbradley__80fbb6ae__the-seer",
+      "model": "models-textured/rydavidbradley__80fbb6ae__the-seer.glb",
+      "title": "The Seer ",
+      "author": "rydavidbradley",
+      "width": 2000,
+      "height": 2500,
+      "bytes": 1297024
+    },
+    {
+      "base": "ryogotoyoda__47e03cd9__treasure-ship",
+      "model": "models-textured/ryogotoyoda__47e03cd9__treasure-ship.glb",
+      "title": "Treasure Ship  -宝船-",
+      "author": "ryogotoyoda",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1376676
+    },
+    {
+      "base": "ryr__7a194f11__brick",
+      "model": "models-textured/ryr__7a194f11__brick.glb",
+      "title": "BRICK",
+      "author": "ryr",
+      "width": 5000,
+      "height": 5000,
+      "bytes": 1255840
+    },
+    {
+      "base": "samanthacavet__66a2e02f__self-portrait-in-a-field-of-dreams",
+      "model": "models-textured/samanthacavet__66a2e02f__self-portrait-in-a-field-of-dreams.glb",
+      "title": "Self portrait in a field of dreams",
+      "author": "samanthacavet",
+      "width": 3262,
+      "height": 2330,
+      "bytes": 1400668
+    },
+    {
+      "base": "samspratt__4f6bbdbb__iv-return-to-diorama",
+      "model": "models-textured/samspratt__4f6bbdbb__iv-return-to-diorama.glb",
+      "title": "IV. Return to Diorama",
+      "author": "samspratt",
+      "width": 5000,
+      "height": 2813,
+      "bytes": 1369448
+    },
+    {
+      "base": "saraboychuk__2114d020__a-new-light",
+      "model": "models-textured/saraboychuk__2114d020__a-new-light.glb",
+      "title": "A New Light",
+      "author": "saraboychuk_",
+      "width": 3403,
+      "height": 5104,
+      "bytes": 1387556
+    },
+    {
+      "base": "sauce-k__4cd2171f__drunk-robot",
+      "model": "models-textured/sauce-k__4cd2171f__drunk-robot.glb",
+      "title": "DRUNK ROBOT",
+      "author": "sauce_k",
+      "width": 10945,
+      "height": 14689,
+      "bytes": 1310408
+    },
+    {
+      "base": "schauermann__873719a4__the-moment-of-rest-and-how-to-avoid-it",
+      "model": "models-textured/schauermann__873719a4__the-moment-of-rest-and-how-to-avoid-it.glb",
+      "title": "THE MOMENT OF REST AND HOW TO AVOID IT",
+      "author": "schauermann",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1408400
+    },
+    {
+      "base": "sea-well__a7fa5351__when-neighbors-wave",
+      "model": "models-textured/sea-well__a7fa5351__when-neighbors-wave.glb",
+      "title": "When Neighbors Wave",
+      "author": "sea_well",
+      "width": 2048,
+      "height": 2048,
+      "bytes": 1326520
+    },
+    {
+      "base": "senturkburak__0e40cd5e__you-know-me",
+      "model": "models-textured/senturkburak__0e40cd5e__you-know-me.glb",
+      "title": "You Know Me",
+      "author": "senturkburak",
+      "width": 4131,
+      "height": 5995,
+      "bytes": 1462580
+    },
+    {
+      "base": "sergeposters__5aa616cc__relaxing-view",
+      "model": "models-textured/sergeposters__5aa616cc__relaxing-view.glb",
+      "title": "Relaxing View",
+      "author": "sergeposters_",
+      "width": 4000,
+      "height": 3255,
+      "bytes": 1414452
+    },
+    {
+      "base": "setsuyakurotaki__f144c56e__monochrome-abduction",
+      "model": "models-textured/setsuyakurotaki__f144c56e__monochrome-abduction.glb",
+      "title": "monochrome abduction",
+      "author": "setsuyakurotaki",
+      "width": 3024,
+      "height": 4032,
+      "bytes": 1347712
+    },
+    {
+      "base": "shad__63fd8684__under-the-black-sun-040221a",
+      "model": "models-textured/shad__63fd8684__under-the-black-sun-040221a.glb",
+      "title": "Under the Black Sun (040221A)",
+      "author": "shad",
+      "width": 5612,
+      "height": 7015,
+      "bytes": 1262036
+    },
+    {
+      "base": "shir-pakman__0d3ea148__my-portrait-of-an-artist",
+      "model": "models-textured/shir-pakman__0d3ea148__my-portrait-of-an-artist.glb",
+      "title": "My Portrait of an Artist",
+      "author": "shir_pakman",
+      "width": 4092,
+      "height": 3843,
+      "bytes": 1407788
+    },
+    {
+      "base": "shorsh__128c018d__holy-mountain",
+      "model": "models-textured/shorsh__128c018d__holy-mountain.glb",
+      "title": "Holy Mountain",
+      "author": "shorsh",
+      "width": 5600,
+      "height": 7000,
+      "bytes": 1407108
+    },
+    {
+      "base": "shortcut__4e4c03ff__con-vincent",
+      "model": "models-textured/shortcut__4e4c03ff__con-vincent.glb",
+      "title": "Con-Vincent",
+      "author": "shortcut",
+      "width": 3142,
+      "height": 3820,
+      "bytes": 1468868
+    },
+    {
+      "base": "showchicken__fd01aeff__the-medusa",
+      "model": "models-textured/showchicken__fd01aeff__the-medusa.glb",
+      "title": "The Medusa",
+      "author": "showchicken",
+      "width": 2500,
+      "height": 3351,
+      "bytes": 1441152
+    },
+    {
+      "base": "sigmax__43156acd__the-crossing",
+      "model": "models-textured/sigmax__43156acd__the-crossing.glb",
+      "title": "The Crossing",
+      "author": "sigmax",
+      "width": 7556,
+      "height": 4250,
+      "bytes": 1450984
+    },
+    {
+      "base": "simone-vezzani__7b29c78e__il-mio-peggior-nemico",
+      "model": "models-textured/simone-vezzani__7b29c78e__il-mio-peggior-nemico.glb",
+      "title": "il_mio_peggior_nemico",
+      "author": "simone_vezzani",
+      "width": 2480,
+      "height": 3507,
+      "bytes": 1384820
+    },
+    {
+      "base": "simonemonte__201ae161__vivi",
+      "model": "models-textured/simonemonte__201ae161__vivi.glb",
+      "title": "Vivi",
+      "author": "simonemonte",
+      "width": 6771,
+      "height": 10156,
+      "bytes": 1236560
+    },
+    {
+      "base": "skygolpe__97b11716__inner-radius",
+      "model": "models-textured/skygolpe__97b11716__inner-radius.glb",
+      "title": "Inner Radius",
+      "author": "skygolpe",
+      "width": 1500,
+      "height": 2142,
+      "bytes": 1336256
+    },
+    {
+      "base": "sofiacrespo__ca70db70__cryptic-colouring-0110",
+      "model": "models-textured/sofiacrespo__ca70db70__cryptic-colouring-0110.glb",
+      "title": "cryptic_colouring_0110",
+      "author": "sofiacrespo",
+      "width": 4036,
+      "height": 2695,
+      "bytes": 1443904
+    },
+    {
+      "base": "solace__415209e8__solace",
+      "model": "models-textured/solace__415209e8__solace.glb",
+      "title": "Solace.",
+      "author": "solace",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1442712
+    },
+    {
+      "base": "soliiiart__56956758__women-silence-is-the-strongest-voice",
+      "model": "models-textured/soliiiart__56956758__women-silence-is-the-strongest-voice.glb",
+      "title": "Women silence is the strongest voice",
+      "author": "soliiiart",
+      "width": 3456,
+      "height": 4483,
+      "bytes": 1425720
+    },
+    {
+      "base": "soulinearte__1b41c43c__the-path-of-the-hero",
+      "model": "models-textured/soulinearte__1b41c43c__the-path-of-the-hero.glb",
+      "title": "The path of the hero",
+      "author": "soulinearte",
+      "width": 5000,
+      "height": 6990,
+      "bytes": 1395912
+    },
+    {
+      "base": "soyounleeart__39249d2f__sweet-tooth",
+      "model": "models-textured/soyounleeart__39249d2f__sweet-tooth.glb",
+      "title": "Sweet Tooth",
+      "author": "soyounleeart",
+      "width": 4500,
+      "height": 4500,
+      "bytes": 1399260
+    },
+    {
+      "base": "sparth__b8b697ae__three-mountains",
+      "model": "models-textured/sparth__b8b697ae__three-mountains.glb",
+      "title": "Three mountains",
+      "author": "sparth",
+      "width": 3500,
+      "height": 5000,
+      "bytes": 1420800
+    },
+    {
+      "base": "sphericalart__1d6301c4__lifting-the-sacred-herb",
+      "model": "models-textured/sphericalart__1d6301c4__lifting-the-sacred-herb.glb",
+      "title": "Lifting The Sacred Herb",
+      "author": "sphericalart",
+      "width": 4500,
+      "height": 4500,
+      "bytes": 1396544
+    },
+    {
+      "base": "stazienko__63addf09__there-s-sublunary-slop-over-the-house",
+      "model": "models-textured/stazienko__63addf09__there-s-sublunary-slop-over-the-house.glb",
+      "title": "there's sublunary slop over the house",
+      "author": "stazienko",
+      "width": 2327,
+      "height": 2327,
+      "bytes": 1451348
+    },
+    {
+      "base": "steezdesign__faf41f4f__blood-moon",
+      "model": "models-textured/steezdesign__faf41f4f__blood-moon.glb",
+      "title": "Blood Moon",
+      "author": "steezdesign",
+      "width": 2500,
+      "height": 2500,
+      "bytes": 1326508
+    },
+    {
+      "base": "stephanvasement__b6de6006__aquarium",
+      "model": "models-textured/stephanvasement__b6de6006__aquarium.glb",
+      "title": "Aquarium",
+      "author": "stephanvasement",
+      "width": 5982,
+      "height": 3365,
+      "bytes": 1469672
+    },
+    {
+      "base": "stijn-orlans__54328757__summer-memoires",
+      "model": "models-textured/stijn-orlans__54328757__summer-memoires.glb",
+      "title": "Summer Memoires",
+      "author": "stijn_orlans",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1340196
+    },
+    {
+      "base": "strangeloooop__d7873eec__metaform2",
+      "model": "models-textured/strangeloooop__d7873eec__metaform2.glb",
+      "title": "MetaForm2",
+      "author": "strangeloooop",
+      "width": 7680,
+      "height": 7680,
+      "bytes": 1326604
+    },
+    {
+      "base": "strawhatbackpacker__7e8cbfc5__stasis",
+      "model": "models-textured/strawhatbackpacker__7e8cbfc5__stasis.glb",
+      "title": "Stasis",
+      "author": "strawhatbackpacker",
+      "width": 11723,
+      "height": 12052,
+      "bytes": 1405568
+    },
+    {
+      "base": "stvccs__be841d91__passing-out-pieces-of-me",
+      "model": "models-textured/stvccs__be841d91__passing-out-pieces-of-me.glb",
+      "title": "Passing out Pieces of Me",
+      "author": "stvccs",
+      "width": 5014,
+      "height": 6530,
+      "bytes": 1398176
+    },
+    {
+      "base": "styblova__e27d683b__us-in-the-ocean",
+      "model": "models-textured/styblova__e27d683b__us-in-the-ocean.glb",
+      "title": "Us in the Ocean",
+      "author": "styblova",
+      "width": 3300,
+      "height": 4050,
+      "bytes": 1442452
+    },
+    {
+      "base": "summergwagner__132009d1__viii-strength",
+      "model": "models-textured/summergwagner__132009d1__viii-strength.glb",
+      "title": "VIII. STRENGTH ",
+      "author": "summergwagner",
+      "width": 6336,
+      "height": 9504,
+      "bytes": 1429928
+    },
+    {
+      "base": "superjimmer__001e6bc7__gates-of-samsara",
+      "model": "models-textured/superjimmer__001e6bc7__gates-of-samsara.glb",
+      "title": "Gates of Samsara",
+      "author": "superjimmer",
+      "width": 2048,
+      "height": 2042,
+      "bytes": 1412188
+    },
+    {
+      "base": "superrarepalomaro__ede354f4__the-kiss",
+      "model": "models-textured/superrarepalomaro__ede354f4__the-kiss.glb",
+      "title": "The Kiss",
+      "author": "superrarepalomaro",
+      "width": 1954,
+      "height": 1086,
+      "bytes": 1334460
+    },
+    {
+      "base": "surreal24seven__3a447b21__wake-up",
+      "model": "models-textured/surreal24seven__3a447b21__wake-up.glb",
+      "title": "WAKE UP",
+      "author": "surreal24seven",
+      "width": 7020,
+      "height": 9930,
+      "bytes": 1385180
+    },
+    {
+      "base": "suryanto-nft__40a05364__cryptoking",
+      "model": "models-textured/suryanto-nft__40a05364__cryptoking.glb",
+      "title": "Cryptoking",
+      "author": "suryanto_nft",
+      "width": 2500,
+      "height": 3000,
+      "bytes": 1397084
+    },
+    {
+      "base": "sushentalwar__335057a0__just-the-tip",
+      "model": "models-textured/sushentalwar__335057a0__just-the-tip.glb",
+      "title": "JUST THE TIP",
+      "author": "sushentalwar",
+      "width": 5530,
+      "height": 3837,
+      "bytes": 1273372
+    },
+    {
+      "base": "synchrodogs__b8d93e43__nature-twins-20",
+      "model": "models-textured/synchrodogs__b8d93e43__nature-twins-20.glb",
+      "title": "Nature Twins #20",
+      "author": "synchrodogs",
+      "width": 1684,
+      "height": 2100,
+      "bytes": 1437688
+    },
+    {
+      "base": "takamura__7eb844de__vortex-dreams-390",
+      "model": "models-textured/takamura__7eb844de__vortex-dreams-390.glb",
+      "title": "Vortex Dreams #390",
+      "author": "takamura",
+      "width": 2000,
+      "height": 3000,
+      "bytes": 1342296
+    },
+    {
+      "base": "teexels__1b6a2f28__athens-evening-train",
+      "model": "models-textured/teexels__1b6a2f28__athens-evening-train.glb",
+      "title": "Athens Evening Train",
+      "author": "teexels",
+      "width": 2624,
+      "height": 3936,
+      "bytes": 1395668
+    },
+    {
+      "base": "terrelldom__6f8a3aba__the-hostage",
+      "model": "models-textured/terrelldom__6f8a3aba__the-hostage.glb",
+      "title": "The Hostage",
+      "author": "terrelldom",
+      "width": 9000,
+      "height": 12000,
+      "bytes": 1322976
+    },
+    {
+      "base": "textrnr__56811cac__alone",
+      "model": "models-textured/textrnr__56811cac__alone.glb",
+      "title": "Alone",
+      "author": "textrnr",
+      "width": 6400,
+      "height": 8000,
+      "bytes": 1375100
+    },
+    {
+      "base": "thato__34e4efc3__private-use-of-reason",
+      "model": "models-textured/thato__34e4efc3__private-use-of-reason.glb",
+      "title": "Private Use of Reason",
+      "author": "thato",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1362900
+    },
+    {
+      "base": "the-alchemist__43f329ab__the-earth-shall-reclaim-its-inheritance",
+      "model": "models-textured/the-alchemist__43f329ab__the-earth-shall-reclaim-its-inheritance.glb",
+      "title": "The Earth Shall Reclaim Its Inheritance",
+      "author": "the_alchemist",
+      "width": 5408,
+      "height": 3042,
+      "bytes": 1381584
+    },
+    {
+      "base": "the-four__b589d8c2__the-deathless-lives-again",
+      "model": "models-textured/the-four__b589d8c2__the-deathless-lives-again.glb",
+      "title": "The Deathless Lives Again",
+      "author": "the_four",
+      "width": 3838,
+      "height": 4960,
+      "bytes": 1396232
+    },
+    {
+      "base": "thearchangel__eb716f73__phantom",
+      "model": "models-textured/thearchangel__eb716f73__phantom.glb",
+      "title": "Phantom",
+      "author": "thearchangel",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1374604
+    },
+    {
+      "base": "theblacklabstudio__fc7873e1__socialis-dei",
+      "model": "models-textured/theblacklabstudio__fc7873e1__socialis-dei.glb",
+      "title": "Socialis Dei",
+      "author": "theblacklabstudio",
+      "width": 4600,
+      "height": 6000,
+      "bytes": 1468204
+    },
+    {
+      "base": "thecowboykiller__e7bd12fe__skeleton-key",
+      "model": "models-textured/thecowboykiller__e7bd12fe__skeleton-key.glb",
+      "title": "Skeleton Key ",
+      "author": "thecowboykiller",
+      "width": 7000,
+      "height": 4373,
+      "bytes": 1374328
+    },
+    {
+      "base": "thedreadlocktraveler__3d670a84__tempest",
+      "model": "models-textured/thedreadlocktraveler__3d670a84__tempest.glb",
+      "title": "Tempest",
+      "author": "thedreadlocktraveler",
+      "width": 864,
+      "height": 1080,
+      "bytes": 1371724
+    },
+    {
+      "base": "theinternetoffice__7e739645__foreign-matter",
+      "model": "models-textured/theinternetoffice__7e739645__foreign-matter.glb",
+      "title": "Foreign Matter",
+      "author": "theinternetoffice",
+      "width": 3840,
+      "height": 4500,
+      "bytes": 1358944
+    },
+    {
+      "base": "theisolationist__5a5141bc__the-anxiety-of-painting",
+      "model": "models-textured/theisolationist__5a5141bc__the-anxiety-of-painting.glb",
+      "title": "The Anxiety of Painting",
+      "author": "theisolationist",
+      "width": 2400,
+      "height": 3200,
+      "bytes": 1343204
+    },
+    {
+      "base": "thorelias__0553bfc4__new-breed-n-3",
+      "model": "models-textured/thorelias__0553bfc4__new-breed-n-3.glb",
+      "title": "New Breed N°3",
+      "author": "thorelias",
+      "width": 3500,
+      "height": 3500,
+      "bytes": 1430432
+    },
+    {
+      "base": "threepanelcrimes__4a4323de__he-went-across-the-river",
+      "model": "models-textured/threepanelcrimes__4a4323de__he-went-across-the-river.glb",
+      "title": "HE WENT ACROSS THE RIVER",
+      "author": "threepanelcrimes",
+      "width": 5000,
+      "height": 5000,
+      "bytes": 1401736
+    },
+    {
+      "base": "tiffatronn__bde36796__something-beautiful-was-lost",
+      "model": "models-textured/tiffatronn__bde36796__something-beautiful-was-lost.glb",
+      "title": "Something Beautiful Was Lost",
+      "author": "tiffatronn",
+      "width": 2350,
+      "height": 2938,
+      "bytes": 1465136
+    },
+    {
+      "base": "tilljanz__773e86a0__the-many",
+      "model": "models-textured/tilljanz__773e86a0__the-many.glb",
+      "title": "The many",
+      "author": "tilljanz",
+      "width": 12000,
+      "height": 6733,
+      "bytes": 1421072
+    },
+    {
+      "base": "timcet__cc462362__the-great-rotten-wood-the-pawn",
+      "model": "models-textured/timcet__cc462362__the-great-rotten-wood-the-pawn.glb",
+      "title": "The Great Rotten Wood - The Pawn",
+      "author": "timcet",
+      "width": 3200,
+      "height": 4000,
+      "bytes": 1422416
+    },
+    {
+      "base": "time__714eea0f__time-the-man-of-the-year-january-2nd-1928",
+      "model": "models-textured/time__714eea0f__time-the-man-of-the-year-january-2nd-1928.glb",
+      "title": "TIME \"The Man of the Year\" - January 2nd, 1928",
+      "author": "time",
+      "width": 1524,
+      "height": 2086,
+      "bytes": 1401244
+    },
+    {
+      "base": "tjo__e316f718__bleu",
+      "model": "models-textured/tjo__e316f718__bleu.glb",
+      "title": "BLeU",
+      "author": "tjo",
+      "width": 5400,
+      "height": 7200,
+      "bytes": 1380468
+    },
+    {
+      "base": "tommy__5aeebab1__bitcoin-bubble",
+      "model": "models-textured/tommy__5aeebab1__bitcoin-bubble.glb",
+      "title": "Bitcoin Bubble",
+      "author": "tommy",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1427872
+    },
+    {
+      "base": "tonywallstrom__6408e81a__gathering-around-easter",
+      "model": "models-textured/tonywallstrom__6408e81a__gathering-around-easter.glb",
+      "title": "gathering around easter",
+      "author": "tonywallstrom",
+      "width": 4015,
+      "height": 4864,
+      "bytes": 1461224
+    },
+    {
+      "base": "tormius__eb079db3__into-a-dream",
+      "model": "models-textured/tormius__eb079db3__into-a-dream.glb",
+      "title": "Into a Dream",
+      "author": "tormius",
+      "width": 4961,
+      "height": 7016,
+      "bytes": 1362624
+    },
+    {
+      "base": "totemical__931259da__optogenetica",
+      "model": "models-textured/totemical__931259da__optogenetica.glb",
+      "title": "Optogenetica",
+      "author": "totemical",
+      "width": 1482,
+      "height": 2197,
+      "bytes": 1402464
+    },
+    {
+      "base": "travisleroy__a7fdb4c6__study-for-a-portrait-for-francis",
+      "model": "models-textured/travisleroy__a7fdb4c6__study-for-a-portrait-for-francis.glb",
+      "title": "Study for a Portrait (for Francis)",
+      "author": "travisleroy",
+      "width": 2250,
+      "height": 3000,
+      "bytes": 1317712
+    },
+    {
+      "base": "trentkuhn__e8570484__interstellar",
+      "model": "models-textured/trentkuhn__e8570484__interstellar.glb",
+      "title": "//.INTERSTELLAR",
+      "author": "trentkuhn",
+      "width": 6601,
+      "height": 8000,
+      "bytes": 1390240
+    },
+    {
+      "base": "tropicalvirtual__7a367ef0__the-activation",
+      "model": "models-textured/tropicalvirtual__7a367ef0__the-activation.glb",
+      "title": "The Activation",
+      "author": "tropicalvirtual",
+      "width": 3000,
+      "height": 3000,
+      "bytes": 1457348
+    },
+    {
+      "base": "trsmnz__e435b1d5__model-hf72",
+      "model": "models-textured/trsmnz__e435b1d5__model-hf72.glb",
+      "title": "MODEL_HF72",
+      "author": "trsmnz",
+      "width": 2666,
+      "height": 3333,
+      "bytes": 1317412
+    },
+    {
+      "base": "ttiimmee__5c67d091__seven-overlapped-visions-of-a-necessary-gesture",
+      "model": "models-textured/ttiimmee__5c67d091__seven-overlapped-visions-of-a-necessary-gesture.glb",
+      "title": "seven overlapped visions of a necessary gesture ",
+      "author": "ttiimmee",
+      "width": 8000,
+      "height": 8000,
+      "bytes": 1443544
+    },
+    {
+      "base": "tustont__49b3a8b2__the-driving-wedge",
+      "model": "models-textured/tustont__49b3a8b2__the-driving-wedge.glb",
+      "title": "The Driving Wedge ",
+      "author": "tustont",
+      "width": 7685,
+      "height": 4659,
+      "bytes": 1339516
+    },
+    {
+      "base": "tylersjourney__868f0f64__frozen-in-time",
+      "model": "models-textured/tylersjourney__868f0f64__frozen-in-time.glb",
+      "title": "Frozen In Time",
+      "author": "tylersjourney",
+      "width": 5134,
+      "height": 6418,
+      "bytes": 1412508
+    },
+    {
+      "base": "untitledarmy__69270e00__we",
+      "model": "models-textured/untitledarmy__69270e00__we.glb",
+      "title": "WE",
+      "author": "untitledarmy",
+      "width": 2913,
+      "height": 3642,
+      "bytes": 1306660
+    },
+    {
+      "base": "unvoluntarymovement__6c03fac1__cromo-entropia",
+      "model": "models-textured/unvoluntarymovement__6c03fac1__cromo-entropia.glb",
+      "title": "Cromo-entropia",
+      "author": "unvoluntarymovement",
+      "width": 2880,
+      "height": 5120,
+      "bytes": 1455680
+    },
+    {
+      "base": "uyo66__0ba0216f__the-doom-portal",
+      "model": "models-textured/uyo66__0ba0216f__the-doom-portal.glb",
+      "title": "The Doom Portal",
+      "author": "uyo66",
+      "width": 8192,
+      "height": 4080,
+      "bytes": 1488420
+    },
+    {
+      "base": "victormasotti__1005d03a__billund",
+      "model": "models-textured/victormasotti__1005d03a__billund.glb",
+      "title": "Billund",
+      "author": "victormasotti",
+      "width": 6050,
+      "height": 6050,
+      "bytes": 1465224
+    },
+    {
+      "base": "victormosquera__8ab6c1cd__breathe",
+      "model": "models-textured/victormosquera__8ab6c1cd__breathe.glb",
+      "title": "Breathe",
+      "author": "victormosquera",
+      "width": 2500,
+      "height": 2500,
+      "bytes": 1390588
+    },
+    {
+      "base": "viewfinderthis__a0dee3c3__best-friends",
+      "model": "models-textured/viewfinderthis__a0dee3c3__best-friends.glb",
+      "title": "Best Friends ",
+      "author": "viewfinderthis",
+      "width": 3935,
+      "height": 4919,
+      "bytes": 1463340
+    },
+    {
+      "base": "vimparijoonas__7a6a38b4__you-are-my-meconium",
+      "model": "models-textured/vimparijoonas__7a6a38b4__you-are-my-meconium.glb",
+      "title": "you are my meconium",
+      "author": "vimparijoonas",
+      "width": 2480,
+      "height": 3480,
+      "bytes": 1449776
+    },
+    {
+      "base": "viniciuscosta__be0a01d8__fatherhood",
+      "model": "models-textured/viniciuscosta__be0a01d8__fatherhood.glb",
+      "title": "Fatherhood",
+      "author": "viniciuscosta",
+      "width": 4000,
+      "height": 2250,
+      "bytes": 1465060
+    },
+    {
+      "base": "vitalybulgarov__4111ff5d__the-last-token",
+      "model": "models-textured/vitalybulgarov__4111ff5d__the-last-token.glb",
+      "title": "THE LAST TOKEN",
+      "author": "vitalybulgarov",
+      "width": 17777,
+      "height": 7777,
+      "bytes": 1388536
+    },
+    {
+      "base": "vxn__544f09b3__birth",
+      "model": "models-textured/vxn__544f09b3__birth.glb",
+      "title": "Birth",
+      "author": "vxn",
+      "width": 3240,
+      "height": 4050,
+      "bytes": 1347068
+    },
+    {
+      "base": "waarp__b6bfe671__jean-of-arc-a-modern-day-heroine",
+      "model": "models-textured/waarp__b6bfe671__jean-of-arc-a-modern-day-heroine.glb",
+      "title": "Jean Of Arc - A Modern Day Heroine ",
+      "author": "waarp",
+      "width": 2048,
+      "height": 2561,
+      "bytes": 1373232
+    },
+    {
+      "base": "walasavagephoto__cc826d90__exhale",
+      "model": "models-textured/walasavagephoto__cc826d90__exhale.glb",
+      "title": "Exhale",
+      "author": "walasavagephoto",
+      "width": 18000,
+      "height": 6056,
+      "bytes": 1418172
+    },
+    {
+      "base": "wearehaar__bcb60cd4__impossible-sculptures-no-1",
+      "model": "models-textured/wearehaar__bcb60cd4__impossible-sculptures-no-1.glb",
+      "title": "Impossible Sculptures no.1",
+      "author": "wearehaar",
+      "width": 9000,
+      "height": 3767,
+      "bytes": 1360092
+    },
+    {
+      "base": "web3nullity__473b3767__god-s-graffiti",
+      "model": "models-textured/web3nullity__473b3767__god-s-graffiti.glb",
+      "title": "God's graffiti",
+      "author": "web3nullity",
+      "width": 1920,
+      "height": 1046,
+      "bytes": 1439332
+    },
+    {
+      "base": "willak__d5026d97__fake-money-part-i",
+      "model": "models-textured/willak__d5026d97__fake-money-part-i.glb",
+      "title": "Fake Money (Part I)",
+      "author": "willak",
+      "width": 6000,
+      "height": 8000,
+      "bytes": 1304032
+    },
+    {
+      "base": "winteagle-genesis__c0c8dd39__5",
+      "model": "models-textured/winteagle-genesis__c0c8dd39__5.glb",
+      "title": "5",
+      "author": "winteagle_genesis",
+      "width": 1500,
+      "height": 2310,
+      "bytes": 1418308
+    },
+    {
+      "base": "wizardskull__56742d56__rappers-and-cats-lil-wayne",
+      "model": "models-textured/wizardskull__56742d56__rappers-and-cats-lil-wayne.glb",
+      "title": "Rappers and Cats: Lil Wayne",
+      "author": "wizardskull",
+      "width": 2554,
+      "height": 3304,
+      "bytes": 1307944
+    },
+    {
+      "base": "wolfmercury__31d44203__last-light-at-the-edge-of-the-world",
+      "model": "models-textured/wolfmercury__31d44203__last-light-at-the-edge-of-the-world.glb",
+      "title": "Last Light At The Edge Of The World",
+      "author": "wolfmercury",
+      "width": 5304,
+      "height": 7952,
+      "bytes": 1450176
+    },
+    {
+      "base": "wws__c3a7ab90__antistress",
+      "model": "models-textured/wws__c3a7ab90__antistress.glb",
+      "title": "Antistress",
+      "author": "wws",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 1286500
+    },
+    {
+      "base": "xba__c02cd076__su-27",
+      "model": "models-textured/xba__c02cd076__su-27.glb",
+      "title": "SU-27",
+      "author": "xba",
+      "width": 1080,
+      "height": 934,
+      "bytes": 1363220
+    },
+    {
+      "base": "yigityerlikaya__cd819feb__quantumania",
+      "model": "models-textured/yigityerlikaya__cd819feb__quantumania.glb",
+      "title": "Quantumania",
+      "author": "yigityerlikaya",
+      "width": 2160,
+      "height": 3840,
+      "bytes": 1476904
+    },
+    {
+      "base": "ylzclk__530fabe2__dance",
+      "model": "models-textured/ylzclk__530fabe2__dance.glb",
+      "title": "Dance",
+      "author": "ylzclk",
+      "width": 4105,
+      "height": 6000,
+      "bytes": 1426268
+    },
+    {
+      "base": "yomi-dinero__1af72554__practice-day",
+      "model": "models-textured/yomi-dinero__1af72554__practice-day.glb",
+      "title": "Practice Day",
+      "author": "yomi_dinero",
+      "width": 1536,
+      "height": 1728,
+      "bytes": 1379208
+    },
+    {
+      "base": "yomu-yakadashi__a338ce89__the-alchemist",
+      "model": "models-textured/yomu-yakadashi__a338ce89__the-alchemist.glb",
+      "title": "The Alchemist 悪",
+      "author": "yomu_yakadashi",
+      "width": 4096,
+      "height": 4096,
+      "bytes": 1352452
+    },
+    {
+      "base": "yones-mahmoudi__6aaa25d2__entanglement",
+      "model": "models-textured/yones-mahmoudi__6aaa25d2__entanglement.glb",
+      "title": "Entanglement",
+      "author": "yones_mahmoudi",
+      "width": 4000,
+      "height": 4000,
+      "bytes": 1400016
+    },
+    {
+      "base": "yonk__78f4e6b8__leisure",
+      "model": "models-textured/yonk__78f4e6b8__leisure.glb",
+      "title": "Leisure",
+      "author": "yonk",
+      "width": 3508,
+      "height": 4997,
+      "bytes": 1383308
+    },
+    {
+      "base": "yosnier__39e5a101__i-don-t-know-how-much-more-of-this-i-can-handle",
+      "model": "models-textured/yosnier__39e5a101__i-don-t-know-how-much-more-of-this-i-can-handle.glb",
+      "title": "I Don't Know How Much More Of This I Can Handle",
+      "author": "yosnier",
+      "width": 3600,
+      "height": 5400,
+      "bytes": 1351228
+    },
+    {
+      "base": "yuliashur__2195aa03__1",
+      "model": "models-textured/yuliashur__2195aa03__1.glb",
+      "title": "ᴄʟᴏɴᴇ #1",
+      "author": "yuliashur",
+      "width": 2813,
+      "height": 4096,
+      "bytes": 1399148
+    },
+    {
+      "base": "yuri-jjjj__295e2ba6__bucolics",
+      "model": "models-textured/yuri-jjjj__295e2ba6__bucolics.glb",
+      "title": "Bucolics ",
+      "author": "yuri_jjjj",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 1480844
+    },
+    {
+      "base": "zakulele__aec43729__flair",
+      "model": "models-textured/zakulele__aec43729__flair.glb",
+      "title": "FLAIR",
+      "author": "zakulele",
+      "width": 2048,
+      "height": 1907,
+      "bytes": 1378676
+    },
+    {
+      "base": "zhannetpodobed__4a64a7eb__the-soul-of-empathy",
+      "model": "models-textured/zhannetpodobed__4a64a7eb__the-soul-of-empathy.glb",
+      "title": "The Soul of Empathy",
+      "author": "zhannetpodobed",
+      "width": 4000,
+      "height": 5000,
+      "bytes": 1411124
+    },
+    {
+      "base": "zhuk__1431ec63__doroteia",
+      "model": "models-textured/zhuk__1431ec63__doroteia.glb",
+      "title": "Doroteia",
+      "author": "zhuk",
+      "width": 3000,
+      "height": 3822,
+      "bytes": 1447500
+    },
+    {
+      "base": "zomax__d763637b__52hz",
+      "model": "models-textured/zomax__d763637b__52hz.glb",
+      "title": "52Hz",
+      "author": "zomax",
+      "width": 3840,
+      "height": 2304,
+      "bytes": 1369256
+    }
+  ]
+}

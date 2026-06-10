@@ -30,7 +30,7 @@ async function boot() {
     createEnvironment(app);
 
     const { ship, material: playerMaterial, van } = await createPlayer(app);
-    const { boxes: obstacles, materials } = createObstacles(app);
+    const { boxes: obstacles, materials } = await createObstacles(app);
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
     const controls = registerControls(app, ship);

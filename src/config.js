@@ -29,30 +29,17 @@ export const ANGULAR_DAMPING = 0.95;  // high -> collisions don't spin the ship 
 export const RESTITUTION = 0.75;
 export const FRICTION = 0.4;
 
-// Rounded edges. Bevel radius = smallest half-extent * this fraction; segments
-// control how many facets smooth each rounded band (higher = rounder).
-export const EDGE_RADIUS_FRACTION = 0.28;
-export const EDGE_SEGMENTS = 6;
-
-// Obstacles.
+// Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
+// the collection (assets/cans, symlinked to the prerender output) on every load.
 export const OBSTACLE_COUNT = 20;
-export const OBSTACLE_MIN_SCALE = 0.25; // 25% of player size
-export const OBSTACLE_MAX_SCALE = 0.50; // 50% of player size
 export const OBSTACLE_MASS = 1;
-export const SPAWN_RADIUS = 14;         // boxes float within this distance of origin
+export const SPAWN_RADIUS = 14;         // cans float within this distance of origin
 export const INITIAL_DRIFT = 0.6;       // small random starting velocity
 
-// Bright color palette for the obstacles.
-export const PALETTE = [
-    new pc.Color(0.95, 0.20, 0.25), // red
-    new pc.Color(0.20, 0.55, 0.95), // blue
-    new pc.Color(0.20, 0.80, 0.35), // green
-    new pc.Color(0.98, 0.78, 0.15), // yellow
-    new pc.Color(0.65, 0.30, 0.90), // purple
-    new pc.Color(0.10, 0.80, 0.80), // cyan
-    new pc.Color(0.98, 0.45, 0.10), // orange
-    new pc.Color(0.95, 0.35, 0.65)  // pink
-];
+export const CAN_INDEX_URL = 'assets/cans-index.json';
+export const CAN_DIR = 'assets/cans/';
+export const CAN_MIN_LEN = 1.0;         // random longest-axis target (world units)
+export const CAN_MAX_LEN = 1.8;
 
 // Mouse look.
 export const MOUSE_SENSITIVITY = 0.16; // degrees per pixel of movement
