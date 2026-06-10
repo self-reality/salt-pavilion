@@ -56,10 +56,10 @@ export const BG_COLOR = new pc.Color(1, 1, 1); // white void
 // Inverted disco ball: a huge sphere tiled on the INSIDE with thick mirror
 // squares, enclosing the whole scene. The wall sits past fog range so the
 // centre still reads as white void; fly out and the tiles emerge, glinting,
-// reflecting the van live (see the centre cubemap probe + per-object proxy
-// ray hits in discoball.js). The van soft-stops at the wall and cannot pass.
+// reflecting the van live (see the camera-following cubemap probe in
+// discoball.js). The van soft-stops at the wall and cannot pass through.
 export const DISCO = {
-    radius: 55,            // huge; well past fog start so the centre stays a void
+    radius: 55,            // huge; > fog end (46) so the centre stays a void
     // Tiles are laid in horizontal rings (parallels), equal size, packed nearly
     // edge-to-edge. Ring count and per-ring count are derived from tileSize, so
     // the whole surface fills like a real glued disco ball.
@@ -75,8 +75,7 @@ export const DISCO = {
     mirrorReflectivity: 1.0,
     mirrorColor: new pc.Color(179 / 255, 200 / 255, 255 / 255), // 179,200,255 glass tint multiplied over the reflection
     mirrorTintStrength: 1.0, // brightness of the mirror tint
-    curveAmount: 1.0,        // 0 = one smooth spherical mirror, 1 = faceted per-tile scatter
-    cubemapSize: 1024,       // per-face resolution of the live reflection probe
+    curveAmount: 1.0,        // 0 = flat mirror, 1 = full spherical-mirror magnification
 
     boundaryMargin: 1.5,   // van soft-stops this far inside the radius
     seed: 1337             // fixed so the wall looks identical across reloads

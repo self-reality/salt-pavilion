@@ -34,15 +34,7 @@ async function boot() {
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
     const controls = registerControls(app, ship);
-    const disco = createDiscoBall(app, camera.camera, ship, obstacles);
-
-    // Debug spawn override: ?pos=x,y,z teleports the van (e.g. near the wall
-    // to inspect reflections).
-    const pos = new URLSearchParams(location.search).get('pos');
-    if (pos) {
-        const [x, y, z] = pos.split(',').map(Number);
-        ship.rigidbody.teleport(x, y, z);
-    }
+    const disco = createDiscoBall(app, camera.camera, ship);
 
     createSidebar({
         app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf, disco
