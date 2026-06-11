@@ -100,11 +100,16 @@ async function createCan(app, name, url) {
     });
 
     // Random position in a spherical shell around the origin (keep clear of the
-    // player's spawn point), random tumble orientation.
+    // player's spawn point), random tumble orientation. Must go through
+    // teleport(): plain setPosition() on a dynamic-bodied entity never reaches
+    // the physics body (the body would stay at the origin and the simulation
+    // would snap the entity back there on the next step).
     const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
     const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
-    box.setPosition(dir.x * dist, dir.y * dist, dir.z * dist);
-    box.setEulerAngles(rand(0, 360), rand(0, 360), rand(0, 360));
+    box.rigidbody.teleport(
+        new pc.Vec3(dir.x * dist, dir.y * dist, dir.z * dist),
+        new pc.Vec3(rand(0, 360), rand(0, 360), rand(0, 360))
+    );
 
     box.rigidbody.linearVelocity = new pc.Vec3(
         rand(-INITIAL_DRIFT, INITIAL_DRIFT),

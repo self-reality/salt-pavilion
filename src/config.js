@@ -31,7 +31,7 @@ export const FRICTION = 0.4;
 
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
 // the collection (assets/cans, symlinked to the prerender output) on every load.
-export const OBSTACLE_COUNT = 50;
+export const OBSTACLE_COUNT = Infinity;  // every can in the collection
 export const OBSTACLE_MASS = 1;
 export const INITIAL_DRIFT = 0.6;       // small random starting velocity
 
