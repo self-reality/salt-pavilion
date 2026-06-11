@@ -31,9 +31,8 @@ export const FRICTION = 0.4;
 
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
 // the collection (assets/cans, symlinked to the prerender output) on every load.
-export const OBSTACLE_COUNT = 20;
+export const OBSTACLE_COUNT = 50;
 export const OBSTACLE_MASS = 1;
-export const SPAWN_RADIUS = 14;         // cans float within this distance of origin
 export const INITIAL_DRIFT = 0.6;       // small random starting velocity
 
 export const CAN_INDEX_URL = 'assets/cans-index.json';
@@ -85,3 +84,8 @@ export const DISCO = {
     boundaryMargin: 1.5,   // van soft-stops this far inside the radius
     seed: 1337             // fixed so the wall looks identical across reloads
 };
+
+// Cans spawn inside a sphere half the disco ball's size, sharing its centre
+// (the origin — also where the van appears). Defined after DISCO so the link
+// to the ball's radius stays explicit.
+export const SPAWN_RADIUS = DISCO.radius / 2;
