@@ -38,6 +38,11 @@ export const INITIAL_DRIFT = 0.6;       // small random starting velocity
 
 export const CAN_INDEX_URL = 'assets/cans-index.json';
 export const CAN_DIR = 'assets/cans/';
+// PBR maps identical across all cans, stripped from the GLBs by the prerender's
+// --strip-shared-maps flag and reattached to every can material at load. Absent
+// files are fine (older unstripped GLBs embed the maps themselves).
+export const CAN_SHARED_MR_URL = CAN_DIR + 'shared-maps/metallic-roughness.png';
+export const CAN_SHARED_NORMAL_URL = CAN_DIR + 'shared-maps/normal.png';
 export const CAN_MIN_LEN = 1.0;         // random longest-axis target (world units)
 export const CAN_MAX_LEN = 1.8;
 

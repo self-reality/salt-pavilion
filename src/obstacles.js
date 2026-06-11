@@ -1,7 +1,8 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
     OBSTACLE_COUNT, OBSTACLE_MASS, RESTITUTION, FRICTION, SPAWN_RADIUS,
-    INITIAL_DRIFT, CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN
+    INITIAL_DRIFT, CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN,
+    CAN_SHARED_MR_URL, CAN_SHARED_NORMAL_URL
 } from './config.js';
 
 function rand(min, max) {
@@ -26,6 +27,36 @@ function loadContainer(app, name, url) {
         app.assets.add(asset);
         app.assets.load(asset);
     });
+}
+
+// Loads a texture asset, resolving to null if the file doesn't exist (older
+// can collections embed the shared maps in every GLB instead).
+function loadTexture(app, name, url) {
+    const asset = new pc.Asset(name, 'texture', { url });
+    return new Promise((resolve) => {
+        asset.once('load', () => resolve(asset.resource));
+        asset.once('error', () => resolve(null));
+        app.assets.add(asset);
+        app.assets.load(asset);
+    });
+}
+
+// The prerender's --strip-shared-maps mode removes the metallic-roughness and
+// normal maps (identical in every can) from the GLBs; this puts them back. The
+// channel wiring mirrors PlayCanvas's own glTF material parser (metalness in B,
+// roughness in G with glossInvert already set by the parser), so a stripped can
+// renders identically to one with the maps embedded.
+function attachSharedMaps(materials, mrMap, normalMap) {
+    for (const mat of materials) {
+        if (mrMap && !mat.metalnessMap) {
+            mat.metalnessMap = mrMap;
+            mat.metalnessMapChannel = 'b';
+            mat.glossMap = mrMap;
+            mat.glossMapChannel = 'g';
+        }
+        if (normalMap && !mat.normalMap) mat.normalMap = normalMap;
+        mat.update();
+    }
 }
 
 // Builds one floating spam can: load the textured GLB, scale it so its longest
@@ -98,11 +129,18 @@ export async function createObstacles(app) {
     const index = await (await fetch(CAN_INDEX_URL)).json();
     const picks = sample(index.entries, OBSTACLE_COUNT);
 
-    const cans = await Promise.all(picks.map((entry, i) =>
-        createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb')));
+    const [cans, mrMap, normalMap] = await Promise.all([
+        Promise.all(picks.map((entry, i) =>
+            createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb'))),
+        loadTexture(app, 'can_shared_mr', CAN_SHARED_MR_URL),
+        loadTexture(app, 'can_shared_normal', CAN_SHARED_NORMAL_URL)
+    ]);
+
+    const materials = cans.flatMap((c) => c.materials);
+    attachSharedMaps(materials, mrMap, normalMap);
 
     return {
         boxes: cans.map((c) => c.box),
-        materials: cans.flatMap((c) => c.materials)
+        materials
     };
 }
