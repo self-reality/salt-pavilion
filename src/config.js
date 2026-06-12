@@ -45,14 +45,25 @@ export const CAN_SHARED_NORMAL_URL = CAN_DIR + 'shared-maps/normal.png';
 export const CAN_MIN_LEN = 1.0;         // random longest-axis target (world units)
 export const CAN_MAX_LEN = 1.8;
 
-// Mouse look.
+// Mouse look (used by the mouse-steered schemes: spaceship, arcade).
 export const MOUSE_SENSITIVITY = 0.16; // degrees per pixel of movement
-export const PITCH_LIMIT = 88;         // clamp pitch to avoid flipping over
+
+// Flight control schemes. Orientation is quaternion-based and rotations are
+// applied about the ship's LOCAL axes, so there is no fixed horizon (the ship
+// can fly fully inverted or on its side) — except 'arcade', which auto-levels.
+export const DEFAULT_SCHEME = 'spaceship';
+export const ROLL_RATE = 90;        // deg/s — Q/E roll, and airplane A/D bank
+export const PITCH_RATE = 60;       // deg/s — airplane W/S pitch
+export const TURN_COUPLING = 70;    // deg/s of yaw at a full 90° bank (airplane)
+export const AUTO_LEVEL_RATE = 3;   // arcade roll-righting strength (exp decay)
+export const THROTTLE_ACCEL = 80;   // airplane: forward force added per second held
+export const THROTTLE_MAX = 120;    // airplane: cruise force cap (~2x THRUST_FORCE)
 
 // Chase camera.
 export const CAM_TRAIL_DISTANCE = 6;
 export const CAM_TRAIL_HEIGHT = 2.2;
 export const CAM_LERP = 6;             // higher = snappier follow
+export const CAM_UP_LERP = 6;          // how fast the camera rolls to match the ship
 
 // World.
 export const BG_COLOR = new pc.Color(1, 1, 1); // white void

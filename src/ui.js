@@ -42,7 +42,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, van, cf, disco } = ctx;
+    const { scene, light, materials, playerMaterial, van, cf, disco, controls } = ctx;
     const allMaterials = [playerMaterial, ...materials];
 
     const style = document.createElement('style');
@@ -108,6 +108,13 @@ export function createSidebar(ctx) {
         row.appendChild(sel);
         parent.appendChild(row);
     }
+
+    // ----- Controls -----
+    // Live flight-scheme switch. Esc to free the mouse, pick a scheme, click the
+    // canvas to fly again. Switching never snaps the ship's orientation.
+    const ctrlSec = section('Controls');
+    select(ctrlSec, 'Scheme', controls.schemes, controls.getScheme(),
+        (v) => controls.setScheme(v));
 
     // ----- Van -----
     const vanSec = section('Van');

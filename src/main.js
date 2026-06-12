@@ -37,7 +37,7 @@ async function boot() {
     const disco = createDiscoBall(app, camera.camera, ship, obstacles);
 
     createSidebar({
-        app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf, disco
+        app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf, disco, controls
     });
 
     app.on('update', (dt) => {

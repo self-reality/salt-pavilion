@@ -7,11 +7,24 @@ every load. Ram them and they bounce away — zero-G, with inertia.
 
 ## Controls
 
-- **Click** the canvas to capture the mouse and start flying.
-- **Mouse** — steer (yaw / pitch). The chase camera trails behind the ship.
-- **WASD** — thrust forward / back / strafe (relative to where you point).
-- **Space / Shift** — thrust up / down.
-- **Esc** — release the mouse.
+Pick a flight scheme in the sidebar's **Controls** section. All three rotate the
+ship freely (no fixed horizon — you can fly upside down or on a side) except where
+noted. The chase camera rolls with the ship. **Click** the canvas to capture the
+mouse, **Esc** to release it; switching schemes never snaps your orientation.
+
+**6DOF Spaceship** (default) — free flight:
+- **Mouse** — pitch / yaw. **Q / E** — roll left / right.
+- **WASD** — thrust forward / back / strafe. **R / F** — thrust up / down.
+- **Space** — smart brake (coasts to a stop).
+
+**Airplane** — bank-to-turn (mouse not used):
+- **A / D** (or **← / →**) — bank; banking turns the nose like a real plane.
+- **W / S** (or **↑ / ↓**) — pitch the nose up / down (loop the loop).
+- **Shift / Ctrl** — throttle up / down (persistent forward speed).
+
+**Arcade** — assisted:
+- **Mouse** — pitch / yaw, same thrust keys as Spaceship.
+- Wings **auto-level** to a soft horizon when you let off the roll keys (**Q / E**).
 
 Movement uses forces, so the ship drifts and coasts — let off the keys and you
 keep gliding.
@@ -49,7 +62,7 @@ src/
   scene.js           # lighting + zero gravity
   player.js          # black ship: dynamic rigidbody box
   obstacles.js       # 20 floating spam-can GLBs (random pick from assets/cans)
-  controls.js        # pointer-lock steering + force-based thrust
+  controls.js        # switchable flight schemes (quaternion steering + thrust)
   camera.js          # third-person chase camera
 ```
 
