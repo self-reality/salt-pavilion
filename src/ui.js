@@ -1,5 +1,8 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { PLAYER_COLOR, VAN_PITCH, DISCO } from './config.js';
+import {
+    PLAYER_COLOR, VAN_PITCH, DISCO,
+    VAN_DENSITY, CAN_DENSITY, ATMO_DENSITY
+} from './config.js';
 import { setVanPitch } from './player.js';
 
 const FOG_TYPES = {
@@ -42,7 +45,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, van, cf, disco } = ctx;
+    const { scene, light, materials, playerMaterial, ship, van, cans, cf, disco } = ctx;
 
     const style = document.createElement('style');
     style.textContent = STYLE;
@@ -110,13 +113,30 @@ export function createSidebar(ctx) {
 
     // ----- Van -----
     const vanSec = section('Van');
+    // Density rescales mass against the fixed collider volume, so the same
+    // thrust pushes a denser van more sluggishly.
+    const he = ship.collision.halfExtents;
+    const shipVolume = 8 * he.x * he.y * he.z;
+    slider(vanSec, 'Density', 0.2, 10, 0.02, VAN_DENSITY,
+        (v) => { ship.rigidbody.mass = v * shipVolume; });
     slider(vanSec, 'Pitch (up/down)', -45, 45, 1, VAN_PITCH,
         (v) => setVanPitch(van, v));
     color(vanSec, 'Color', rgb2hex(PLAYER_COLOR.r, PLAYER_COLOR.g, PLAYER_COLOR.b),
         (h) => { playerMaterial.diffuse.set(...hex2rgb(h)); playerMaterial.update(); });
 
-    // ----- Atmosphere (fog) -----
+    // ----- Cans -----
+    const canSec = section('Cans');
+    slider(canSec, 'Density', 0.05, 10, 0.05, CAN_DENSITY,
+        (v) => cans.setCanDensity(v));
+
+    // ----- Atmosphere (drag + fog) -----
     const atm = section('Atmosphere');
+    // Density is drag: the ship's linear damping, with cans feeling a scaled
+    // share of it (see CAN_DRAG). 0 = vacuum, high = flying through soup.
+    slider(atm, 'Density (drag)', 0, 0.9, 0.005, ATMO_DENSITY, (v) => {
+        ship.rigidbody.linearDamping = v;
+        cans.setAtmoDensity(v);
+    });
     select(atm, 'Fog type', ['none', 'linear', 'exp', 'exp2'], 'linear',
         (v) => { scene.fog.type = FOG_TYPES[v]; });
     color(atm, 'Fog color', rgb2hex(1, 1, 1),

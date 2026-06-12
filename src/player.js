@@ -1,7 +1,7 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
-    PLAYER_COLOR, PLAYER_MASS,
-    RESTITUTION, FRICTION, LINEAR_DAMPING, ANGULAR_DAMPING,
+    PLAYER_COLOR, VAN_DENSITY, ATMO_DENSITY,
+    RESTITUTION, FRICTION, ANGULAR_DAMPING,
     VAN_URL, VAN_TARGET_LEN, VAN_YAW, VAN_PITCH
 } from './config.js';
 
@@ -80,10 +80,10 @@ export async function createPlayer(app) {
     ship.addComponent('collision', { type: 'box', halfExtents });
     ship.addComponent('rigidbody', {
         type: 'dynamic',
-        mass: PLAYER_MASS,
+        mass: VAN_DENSITY * 8 * halfExtents.x * halfExtents.y * halfExtents.z,
         restitution: RESTITUTION,
         friction: FRICTION,
-        linearDamping: LINEAR_DAMPING,
+        linearDamping: ATMO_DENSITY,
         angularDamping: ANGULAR_DAMPING
     });
 

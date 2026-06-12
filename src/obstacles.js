@@ -1,6 +1,7 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
-    OBSTACLE_COUNT, OBSTACLE_MASS, RESTITUTION, FRICTION, SPAWN_RADIUS,
+    OBSTACLE_COUNT, CAN_DENSITY, ATMO_DENSITY, CAN_DRAG,
+    RESTITUTION, FRICTION, SPAWN_RADIUS,
     INITIAL_DRIFT, CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN,
     CAN_SHARED_MR_URL, CAN_SHARED_NORMAL_URL
 } from './config.js';
@@ -63,7 +64,12 @@ function attachSharedMaps(materials, mrMap, normalMap) {
 // axis lands in [CAN_MIN_LEN, CAN_MAX_LEN], recenter on the rigidbody pivot, and
 // size a box collider from the scaled bounds (cans are box-ish tins). Keeps the
 // can's baked artwork materials. Mirrors the load/measure/scale flow in player.js.
-async function createCan(app, name, url) {
+function colliderVolume(entity) {
+    const he = entity.collision.halfExtents;
+    return 8 * he.x * he.y * he.z;
+}
+
+async function createCan(app, name, url, tuning) {
     const asset = await loadContainer(app, name, url);
     const model = asset.resource.instantiateRenderEntity();
     const meshInstances = model.findComponents('render').flatMap((r) => r.meshInstances);
@@ -92,11 +98,11 @@ async function createCan(app, name, url) {
     box.addComponent('collision', { type: 'box', halfExtents });
     box.addComponent('rigidbody', {
         type: 'dynamic',
-        mass: OBSTACLE_MASS,
+        mass: tuning.canDensity * 8 * halfExtents.x * halfExtents.y * halfExtents.z,
         restitution: RESTITUTION,
         friction: FRICTION,
-        linearDamping: 0.05,
-        angularDamping: 0.05
+        linearDamping: tuning.atmoDensity * CAN_DRAG,
+        angularDamping: tuning.atmoDensity * CAN_DRAG
     });
 
     // Random position in a spherical shell around the origin (keep clear of the
@@ -131,10 +137,31 @@ async function createCan(app, name, url) {
 // `materials` are live arrays that fill in as each can's GLB arrives, so cans
 // pop into the world one by one instead of waiting for the slowest download.
 // `ready` resolves once the whole collection is in. The materials list feeds
-// the tweak panel (gloss/metalness/reflectivity across all cans).
+// the tweak panel (gloss/metalness/reflectivity across all cans), and the
+// density setters back its physics sliders: they retune every spawned can AND
+// update the values cans still streaming in will spawn with.
 export function createObstacles(app) {
     const boxes = [];
     const materials = [];
+    const tuning = { canDensity: CAN_DENSITY, atmoDensity: ATMO_DENSITY };
+
+    function setCanDensity(density) {
+        tuning.canDensity = density;
+        for (const box of boxes) {
+            box.rigidbody.mass = density * colliderVolume(box);
+            // The mass setter re-adds the body with the default ACTIVE_TAG
+            // state, losing the no-sleep opt-out — restore it (see createCan).
+            box.rigidbody.body.setActivationState(4);
+        }
+    }
+
+    function setAtmoDensity(density) {
+        tuning.atmoDensity = density;
+        for (const box of boxes) {
+            box.rigidbody.linearDamping = density * CAN_DRAG;
+            box.rigidbody.angularDamping = density * CAN_DRAG;
+        }
+    }
 
     const ready = (async () => {
         // Shared PBR maps are two small textures — load them up front so every
@@ -147,12 +174,12 @@ export function createObstacles(app) {
         const picks = sample(index.entries, OBSTACLE_COUNT);
 
         await Promise.all(picks.map(async (entry, i) => {
-            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb');
+            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning);
             attachSharedMaps(can.materials, mrMap, normalMap);
             boxes.push(can.box);
             materials.push(...can.materials);
         }));
     })();
 
-    return { boxes, materials, ready };
+    return { boxes, materials, ready, setCanDensity, setAtmoDensity };
 }

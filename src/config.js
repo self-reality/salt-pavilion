@@ -9,7 +9,13 @@ import * as pc from '../lib/playcanvas.mjs';
 // relative to it, so it stays as the reference size.
 export const PLAYER_SIZE = new pc.Vec3(1.4, 0.8, 2.4); // x=width, y=height, z=length
 export const PLAYER_COLOR = new pc.Color(197 / 255, 163 / 255, 219 / 255); // 197,163,219
-export const PLAYER_MASS = 5;
+
+// Densities (mass per world-unit³ of collider box). Every body's mass is
+// density × its collider volume, so bigger cans really are heavier and the
+// sidebar's density sliders rescale mass live. 1.86 × the van's ~2.69-unit³
+// box ≈ the old fixed mass of 5; 0.9 × a mid-size can's box ≈ the old 1.
+export const VAN_DENSITY = 1.86;
+export const CAN_DENSITY = 0.9;
 
 // Van model (replaces the old box). Loaded untextured and recolored to
 // PLAYER_COLOR. Scaled uniformly so its longest axis equals VAN_TARGET_LEN
@@ -22,8 +28,14 @@ export const VAN_PITCH = -12; // nose up/down tilt about the ship's local X (cos
 // Movement: forces applied for thrust (zero-G inertia / drift feel).
 export const THRUST_FORCE = 60;       // forward/back/strafe
 export const VERTICAL_THRUST = 45;    // up/down (Space / Shift)
-export const LINEAR_DAMPING = 0.15;   // small -> long coast/drift
 export const ANGULAR_DAMPING = 0.95;  // high -> collisions don't spin the ship freely
+
+// Atmosphere: the medium everything flies through. Density IS the ship's
+// linear damping (0 = vacuum and endless coasting, toward 1 = soup). Cans
+// feel CAN_DRAG times that (linear and angular) so the default atmosphere
+// leaves their slow drift and tumble alive.
+export const ATMO_DENSITY = 0.15;
+export const CAN_DRAG = 1 / 3;
 
 // Bounciness / surface for everything.
 export const RESTITUTION = 0.75;
@@ -32,7 +44,6 @@ export const FRICTION = 0.4;
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
 // the collection (assets/cans, symlinked to the prerender output) on every load.
 export const OBSTACLE_COUNT = Infinity;  // every can in the collection
-export const OBSTACLE_MASS = 1;
 export const INITIAL_DRIFT = 0.6;       // small random starting velocity
 
 export const CAN_INDEX_URL = 'assets/cans-index.json';
