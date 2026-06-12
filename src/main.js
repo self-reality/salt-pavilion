@@ -42,7 +42,7 @@ async function boot() {
 
     createSidebar({
         app, scene: app.scene, light, materials: cans.materials,
-        playerMaterial, van, cf: post.cf, disco, controls
+        playerMaterial, van, cf: post.cf, disco
     });
 
     app.on('update', (dt) => {
