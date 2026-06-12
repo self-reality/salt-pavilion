@@ -1,7 +1,7 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
     PLAYER_COLOR, VAN_PITCH, DISCO,
-    VAN_DENSITY, CAN_DENSITY, ATMO_DENSITY
+    VAN_DENSITY, CAN_DENSITY, ATMO_DENSITY, HANDLING_FORCE
 } from './config.js';
 import { setVanPitch } from './player.js';
 
@@ -45,7 +45,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, ship, van, cans, cf, disco } = ctx;
+    const { scene, light, materials, playerMaterial, ship, van, cans, controls, cf, disco } = ctx;
 
     const style = document.createElement('style');
     style.textContent = STYLE;
@@ -119,6 +119,8 @@ export function createSidebar(ctx) {
     const shipVolume = 8 * he.x * he.y * he.z;
     slider(vanSec, 'Density', 0.2, 10, 0.02, VAN_DENSITY,
         (v) => { ship.rigidbody.mass = v * shipVolume; });
+    slider(vanSec, 'Handling (grip)', 0, 200, 1, HANDLING_FORCE,
+        (v) => controls.setHandling(v));
     slider(vanSec, 'Pitch (up/down)', -45, 45, 1, VAN_PITCH,
         (v) => setVanPitch(van, v));
     color(vanSec, 'Color', rgb2hex(PLAYER_COLOR.r, PLAYER_COLOR.g, PLAYER_COLOR.b),

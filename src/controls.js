@@ -1,11 +1,15 @@
 import * as pc from '../lib/playcanvas.mjs';
-import { THRUST_FORCE, VERTICAL_THRUST, MOUSE_SENSITIVITY, ROLL_RATE } from './config.js';
+import { THRUST_FORCE, VERTICAL_THRUST, HANDLING_FORCE, MOUSE_SENSITIVITY, ROLL_RATE } from './config.js';
 
 // 6DOF free-flight controls (no fixed horizon — fly fully inverted or on a side):
 //   - Mouse (while pointer-locked) pitches/yaws the ship.
 //   - Q/E roll about the nose.
 //   - WASD thrust forward/back/strafe; R/F = up/down.
-//   - Space brakes the ship smoothly to a stop at thrust strength.
+//   - "Handling": any local axis with NO thrust input this frame is braked
+//     toward zero velocity (HANDLING_FORCE). Stray off-nose drift bleeds away so
+//     the ship follows where it points, and letting off all keys coasts it to a
+//     gradual stop. Momentum along an axis you ARE thrusting is left untouched,
+//     so inertia in your chosen direction survives. setHandling() retunes it live.
 //
 // Orientation is a maintained quaternion updated by RELATIVE rotations about the
 // ship's LOCAL axes (no Euler clamp, no gimbal lock), then written onto the Ammo
@@ -49,6 +53,9 @@ export function registerControls(app, ship) {
     const force = new pc.Vec3();
     const tmp = new pc.Vec3();
 
+    // Per-axis brake strength; retuned live from the panel via setHandling().
+    let handling = HANDLING_FORCE;
+
     // Reusable Ammo scratch for rewriting the body's orientation in place. Ammo
     // is loaded before controls are registered, so the global exists here.
     const Ammo = globalThis.Ammo;
@@ -80,33 +87,36 @@ export function registerControls(app, ship) {
         body.setWorldTransform(btTransform);
         body.activate();
 
-        // --- Thrust: sum forces along the ship's local axes. ---
+        // --- Thrust along the ship's local axes, plus a per-axis handling brake. ---
+        // Each axis pair (forward/back, right/left, up/down) thrusts only while a
+        // key is held. An axis with NO input is braked toward zero velocity at
+        // `handling` strength, clamped so a single frame can't overshoot into
+        // reverse — so stray sideways/vertical drift (e.g. the horizontal momentum
+        // left over when you pitch into a dive) bleeds away and the ship swings to
+        // follow its nose, while letting off all keys coasts it to a gradual stop.
         force.set(0, 0, 0);
 
-        if (kb.isPressed(pc.KEY_W)) force.add(tmp.copy(ship.forward).mulScalar(THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_S)) force.add(tmp.copy(ship.forward).mulScalar(-THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_D)) force.add(tmp.copy(ship.right).mulScalar(THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_A)) force.add(tmp.copy(ship.right).mulScalar(-THRUST_FORCE));
-        if (kb.isPressed(pc.KEY_R)) force.add(tmp.copy(ship.up).mulScalar(VERTICAL_THRUST));
-        if (kb.isPressed(pc.KEY_F)) force.add(tmp.copy(ship.up).mulScalar(-VERTICAL_THRUST));
+        const v = ship.rigidbody.linearVelocity;
+        const mass = ship.rigidbody.mass;
+        const key = (k) => (kb.isPressed(k) ? 1 : 0);
 
-        // Brake: push against current velocity at thrust strength. Clamp the
-        // force so a single frame can't overshoot into reverse — once the
-        // remaining speed is below what this frame would cancel, scale down to
-        // land exactly on zero.
-        if (kb.isPressed(pc.KEY_SPACE)) {
-            const v = ship.rigidbody.linearVelocity;
-            const speed = v.length();
-            if (speed > 0) {
-                const mass = ship.rigidbody.mass;
-                const maxDelta = (THRUST_FORCE / mass) * dt;
-                const brake = speed > maxDelta ? THRUST_FORCE : (speed / dt) * mass;
-                force.add(tmp.copy(v).mulScalar(-brake / speed));
-            }
+        // dir = -1/0/+1 input along the axis; thrust = force magnitude for that axis.
+        function axis(axisVec, dir, thrust) {
+            if (dir) { force.add(tmp.copy(axisVec).mulScalar(thrust * dir)); return; }
+            const comp = v.dot(axisVec);            // signed speed along this axis
+            const speed = Math.abs(comp);
+            if (speed === 0) return;
+            const maxDelta = (handling / mass) * dt; // clamp so one frame can't reverse
+            const brake = speed > maxDelta ? handling : (speed / dt) * mass;
+            force.add(tmp.copy(axisVec).mulScalar(-Math.sign(comp) * brake));
         }
+
+        axis(ship.forward, key(pc.KEY_W) - key(pc.KEY_S), THRUST_FORCE);
+        axis(ship.right,   key(pc.KEY_D) - key(pc.KEY_A), THRUST_FORCE);
+        axis(ship.up,      key(pc.KEY_R) - key(pc.KEY_F), VERTICAL_THRUST);
 
         if (force.lengthSq() > 0) ship.rigidbody.applyForce(force);
     }
 
-    return { update };
+    return { update, setHandling: (v) => { handling = v; } };
 }

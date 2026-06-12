@@ -27,8 +27,14 @@ export const VAN_PITCH = -12; // nose up/down tilt about the ship's local X (cos
 
 // Movement: forces applied for thrust (zero-G inertia / drift feel).
 export const THRUST_FORCE = 60;       // forward/back/strafe
-export const VERTICAL_THRUST = 45;    // up/down (Space / Shift)
+export const VERTICAL_THRUST = 45;    // up/down (R/F)
 export const ANGULAR_DAMPING = 0.95;  // high -> collisions don't spin the ship freely
+
+// Handling: per-axis brake (N) applied to whichever local axes you are NOT
+// thrusting. Bleeds off off-nose drift so the ship flies where it points and
+// coasts to a gradual stop when you let off — without erasing inertia along the
+// axis you ARE thrusting. 0 = pure drift (old feel); higher = grippier/arcade.
+export const HANDLING_FORCE = 60;
 
 // Atmosphere: the medium everything flies through. Density IS the ship's
 // linear damping (0 = vacuum and endless coasting, toward 1 = soup). Cans
