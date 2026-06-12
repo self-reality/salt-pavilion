@@ -43,7 +43,6 @@ const STYLE = `
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
     const { scene, light, materials, playerMaterial, van, cf, disco, controls } = ctx;
-    const allMaterials = [playerMaterial, ...materials];
 
     const style = document.createElement('style');
     style.textContent = STYLE;
@@ -151,8 +150,10 @@ export function createSidebar(ctx) {
 
     // ----- Materials -----
     const mat = section('Materials');
+    // `materials` is a live array (cans stream in after the sidebar is built),
+    // so spread it at use time rather than snapshotting it here.
     const applyMat = (prop, v) => {
-        for (const m of allMaterials) { m[prop] = v; m.update(); }
+        for (const m of [playerMaterial, ...materials]) { m[prop] = v; m.update(); }
     };
     slider(mat, 'Gloss', 0, 1, 0.01, 0.83, (v) => applyMat('gloss', v));
     slider(mat, 'Metalness', 0, 1, 0.01, 0.84, (v) => applyMat('metalness', v));

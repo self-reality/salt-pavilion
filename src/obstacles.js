@@ -127,25 +127,32 @@ async function createCan(app, name, url) {
 }
 
 // Spawns OBSTACLE_COUNT floating spam cans, each a distinct textured GLB picked
-// at random from the collection on every load. Loads them in parallel. Returns
-// the entities plus the flattened list of can materials (the tweak panel drives
-// gloss/metalness/reflectivity across them).
-export async function createObstacles(app) {
-    const index = await (await fetch(CAN_INDEX_URL)).json();
-    const picks = sample(index.entries, OBSTACLE_COUNT);
+// at random from the collection on every load. Returns immediately: `boxes` and
+// `materials` are live arrays that fill in as each can's GLB arrives, so cans
+// pop into the world one by one instead of waiting for the slowest download.
+// `ready` resolves once the whole collection is in. The materials list feeds
+// the tweak panel (gloss/metalness/reflectivity across all cans).
+export function createObstacles(app) {
+    const boxes = [];
+    const materials = [];
 
-    const [cans, mrMap, normalMap] = await Promise.all([
-        Promise.all(picks.map((entry, i) =>
-            createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb'))),
-        loadTexture(app, 'can_shared_mr', CAN_SHARED_MR_URL),
-        loadTexture(app, 'can_shared_normal', CAN_SHARED_NORMAL_URL)
-    ]);
+    const ready = (async () => {
+        // Shared PBR maps are two small textures — load them up front so every
+        // can gets its maps attached the moment it spawns.
+        const [index, mrMap, normalMap] = await Promise.all([
+            fetch(CAN_INDEX_URL).then((r) => r.json()),
+            loadTexture(app, 'can_shared_mr', CAN_SHARED_MR_URL),
+            loadTexture(app, 'can_shared_normal', CAN_SHARED_NORMAL_URL)
+        ]);
+        const picks = sample(index.entries, OBSTACLE_COUNT);
 
-    const materials = cans.flatMap((c) => c.materials);
-    attachSharedMaps(materials, mrMap, normalMap);
+        await Promise.all(picks.map(async (entry, i) => {
+            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb');
+            attachSharedMaps(can.materials, mrMap, normalMap);
+            boxes.push(can.box);
+            materials.push(...can.materials);
+        }));
+    })();
 
-    return {
-        boxes: cans.map((c) => c.box),
-        materials
-    };
+    return { boxes, materials, ready };
 }

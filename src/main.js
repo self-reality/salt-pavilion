@@ -30,14 +30,19 @@ async function boot() {
     createEnvironment(app);
 
     const { ship, material: playerMaterial, van } = await createPlayer(app);
-    const { boxes: obstacles, materials } = await createObstacles(app);
+
+    // Not awaited: cans.boxes / cans.materials are live arrays that fill in as
+    // each can downloads, so the game is playable as soon as the van is in.
+    const cans = createObstacles(app);
+
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
     const controls = registerControls(app, ship);
-    const disco = createDiscoBall(app, camera.camera, ship, obstacles);
+    const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
 
     createSidebar({
-        app, scene: app.scene, light, materials, playerMaterial, van, cf: post.cf, disco, controls
+        app, scene: app.scene, light, materials: cans.materials,
+        playerMaterial, van, cf: post.cf, disco, controls
     });
 
     app.on('update', (dt) => {
@@ -52,7 +57,10 @@ async function boot() {
         hint.style.display = document.pointerLockElement ? 'none' : '';
     });
 
-    console.log(`[SPAM] ready: ship + ${obstacles.length} obstacles, physics online`);
+    console.log('[SPAM] ready: ship in, physics online, cans streaming');
+    cans.ready
+        .then(() => console.log(`[SPAM] all ${cans.boxes.length} cans loaded`))
+        .catch((err) => console.error('[SPAM] can loading failed:', err));
 }
 
 boot().catch((err) => {
