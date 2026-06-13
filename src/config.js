@@ -50,7 +50,14 @@ export const FRICTION = 0.4;
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
 // the collection (assets/cans, symlinked to the prerender output) on every load.
 export const OBSTACLE_COUNT = Infinity;  // every can in the collection
-export const INITIAL_DRIFT = 0.6;       // small random starting velocity
+
+// Focused "hero" can: when the page is opened with ?artist=<author>, that
+// artist's can is placed directly in front of the van's spawn pose (origin,
+// facing -Z) so the link lands on a readable close-up. FACING_YAW spins the
+// artwork toward the camera (dial in live — the label wraps the whole can).
+export const HERO_DISTANCE = 4.5;       // units in front of the van
+export const HERO_HEIGHT = 0.0;         // vertical offset of the hero can
+export const HERO_FACING_YAW = 0;       // deg about Y so the artwork faces camera
 
 export const CAN_INDEX_URL = 'assets/cans-index.json';
 export const CAN_DIR = 'assets/cans/';

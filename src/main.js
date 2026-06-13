@@ -33,7 +33,7 @@ async function boot() {
 
     // Not awaited: cans.boxes / cans.materials are live arrays that fill in as
     // each can downloads, so the game is playable as soon as the van is in.
-    const cans = createObstacles(app);
+    const cans = createObstacles(app, ship);
 
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);

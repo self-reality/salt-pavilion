@@ -2,12 +2,24 @@ import * as pc from '../lib/playcanvas.mjs';
 import {
     OBSTACLE_COUNT, CAN_DENSITY, ATMO_DENSITY, CAN_DRAG,
     RESTITUTION, FRICTION, SPAWN_RADIUS,
-    INITIAL_DRIFT, CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN,
-    CAN_SHARED_MR_URL, CAN_SHARED_NORMAL_URL
+    CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN,
+    CAN_SHARED_MR_URL, CAN_SHARED_NORMAL_URL,
+    HERO_DISTANCE, HERO_HEIGHT, HERO_FACING_YAW
 } from './config.js';
 
 function rand(min, max) {
     return min + Math.random() * (max - min);
+}
+
+// Finds the collection entry for a ?artist=<author> deep-link: exact author
+// match first, then a substring fallback (case-insensitive). Mirrors
+// findArtistInManifest in the sibling spam-can project (lib/dataset.js).
+function findCanByAuthor(entries, query) {
+    const q = String(query || '').toLowerCase().trim();
+    if (!q) return null;
+    return entries.find((e) => String(e?.author || '').toLowerCase() === q)
+        || entries.find((e) => String(e?.author || '').toLowerCase().includes(q))
+        || null;
 }
 
 // Fisher-Yates: pick `count` distinct entries from `arr` without mutating it.
@@ -69,7 +81,7 @@ function colliderVolume(entity) {
     return 8 * he.x * he.y * he.z;
 }
 
-async function createCan(app, name, url, tuning) {
+async function createCan(app, name, url, tuning, opts) {
     const asset = await loadContainer(app, name, url);
     const model = asset.resource.instantiateRenderEntity();
     const meshInstances = model.findComponents('render').flatMap((r) => r.meshInstances);
@@ -105,28 +117,32 @@ async function createCan(app, name, url, tuning) {
         angularDamping: tuning.atmoDensity * CAN_DRAG
     });
 
-    // Random position in a spherical shell around the origin (keep clear of the
-    // player's spawn point), random tumble orientation. Must go through
-    // teleport(): plain setPosition() on a dynamic-bodied entity never reaches
-    // the physics body (the body would stay at the origin and the simulation
-    // would snap the entity back there on the next step).
-    const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
-    const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
-    box.rigidbody.teleport(
-        new pc.Vec3(dir.x * dist, dir.y * dist, dir.z * dist),
-        new pc.Vec3(rand(0, 360), rand(0, 360), rand(0, 360))
-    );
+    // Placement. The hero can (opts) lands at a fixed spot in front of the van;
+    // every other can gets a random position in a spherical shell around the
+    // origin (kept clear of the player's spawn point) with a random tumble
+    // orientation. Must go through teleport(): plain setPosition() on a
+    // dynamic-bodied entity never reaches the physics body (the body would stay
+    // at the origin and the simulation would snap the entity back there on the
+    // next step).
+    if (opts) {
+        box.rigidbody.teleport(opts.position, opts.eulerAngles);
+    } else {
+        const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
+        const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
+        box.rigidbody.teleport(
+            new pc.Vec3(dir.x * dist, dir.y * dist, dir.z * dist),
+            new pc.Vec3(rand(0, 360), rand(0, 360), rand(0, 360))
+        );
+    }
 
-    box.rigidbody.linearVelocity = new pc.Vec3(
-        rand(-INITIAL_DRIFT, INITIAL_DRIFT),
-        rand(-INITIAL_DRIFT, INITIAL_DRIFT),
-        rand(-INITIAL_DRIFT, INITIAL_DRIFT)
-    );
-    box.rigidbody.angularVelocity = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1));
+    // Cans start at rest — a calm gallery. They stay dynamic, so the van still
+    // knocks them around on contact; they just don't drift or tumble on their own.
+    box.rigidbody.linearVelocity = new pc.Vec3(0, 0, 0);
+    box.rigidbody.angularVelocity = new pc.Vec3(0, 0, 0);
 
-    // Keep the cans drifting forever. The initial drift is below Bullet's sleep
-    // threshold, so a body would otherwise deactivate after a second or two and
-    // freeze in place. DISABLE_DEACTIVATION (4) opts it out of sleeping.
+    // Opt out of Bullet's sleeping (DISABLE_DEACTIVATION = 4): a motionless body
+    // is below the sleep threshold, and keeping it awake guarantees it responds
+    // the instant the van bumps it. A still can simply sits at rest until then.
     box.rigidbody.body.setActivationState(4);
 
     return { box, materials: meshInstances.map((mi) => mi.material) };
@@ -140,7 +156,7 @@ async function createCan(app, name, url, tuning) {
 // the tweak panel (gloss/metalness/reflectivity across all cans), and the
 // density setters back its physics sliders: they retune every spawned can AND
 // update the values cans still streaming in will spawn with.
-export function createObstacles(app) {
+export function createObstacles(app, ship) {
     const boxes = [];
     const materials = [];
     const tuning = { canDensity: CAN_DENSITY, atmoDensity: ATMO_DENSITY };
@@ -171,10 +187,34 @@ export function createObstacles(app) {
             loadTexture(app, 'can_shared_mr', CAN_SHARED_MR_URL),
             loadTexture(app, 'can_shared_normal', CAN_SHARED_NORMAL_URL)
         ]);
-        const picks = sample(index.entries, OBSTACLE_COUNT);
+        let picks = sample(index.entries, OBSTACLE_COUNT);
+
+        // Optional ?artist=<author> deep-link: pull that artist's can to the
+        // front of the pick list (so it loads first and pops in immediately) and
+        // tag it as the hero to be posed in front of the van.
+        const requestedArtist = new URLSearchParams(location.search).get('artist');
+        let heroIndex = -1;
+        if (requestedArtist) {
+            const hero = findCanByAuthor(index.entries, requestedArtist);
+            if (hero) {
+                picks = [hero, ...picks.filter((e) => e !== hero)];
+                heroIndex = 0;
+            } else {
+                console.warn(`[SPAM] requested artist not in collection: ${requestedArtist}`);
+            }
+        }
+
+        // Hero placement, derived once from the van's spawn pose (origin, facing
+        // -Z): a point HERO_DISTANCE ahead, nudged up by HERO_HEIGHT, with the
+        // artwork yawed toward the camera.
+        const frontPos = ship.getPosition().clone()
+            .add(ship.forward.clone().mulScalar(HERO_DISTANCE))
+            .add(new pc.Vec3(0, HERO_HEIGHT, 0));
+        const heroEuler = new pc.Vec3(0, HERO_FACING_YAW, 0);
 
         await Promise.all(picks.map(async (entry, i) => {
-            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning);
+            const opts = (i === heroIndex) ? { position: frontPos, eulerAngles: heroEuler } : null;
+            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts);
             attachSharedMaps(can.materials, mrMap, normalMap);
             boxes.push(can.box);
             materials.push(...can.materials);
