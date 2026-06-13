@@ -131,6 +131,24 @@ export function createSidebar(ctx) {
     slider(canSec, 'Density', 0.05, 10, 0.05, CAN_DENSITY,
         (v) => cans.setCanDensity(v));
 
+    // ----- Hero can (focused ?artist=) initial pose -----
+    // Sliders mutate the shared hero pose in place and re-teleport the can live.
+    // Inert until an ?artist= can streams in; the defaults reflect config.js.
+    const hero = cans.hero;
+    const heroSec = section('Hero can (?artist=)');
+    slider(heroSec, 'Pos X', -30, 30, 0.1, hero.position.x,
+        (v) => { hero.position.x = v; hero.apply(); });
+    slider(heroSec, 'Pos Y', -30, 30, 0.1, hero.position.y,
+        (v) => { hero.position.y = v; hero.apply(); });
+    slider(heroSec, 'Pos Z', -30, 30, 0.1, hero.position.z,
+        (v) => { hero.position.z = v; hero.apply(); });
+    slider(heroSec, 'Angle X', -180, 180, 1, hero.eulerAngles.x,
+        (v) => { hero.eulerAngles.x = v; hero.apply(); });
+    slider(heroSec, 'Angle Y', -180, 180, 1, hero.eulerAngles.y,
+        (v) => { hero.eulerAngles.y = v; hero.apply(); });
+    slider(heroSec, 'Angle Z', -180, 180, 1, hero.eulerAngles.z,
+        (v) => { hero.eulerAngles.z = v; hero.apply(); });
+
     // ----- Atmosphere (drag + fog) -----
     const atm = section('Atmosphere');
     // Density is drag: the ship's linear damping, with cans feeling a scaled

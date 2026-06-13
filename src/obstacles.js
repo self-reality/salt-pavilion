@@ -179,6 +179,26 @@ export function createObstacles(app, ship) {
         }
     }
 
+    // Focused "hero" pose, derived once from the van's spawn pose (origin, facing
+    // -Z): a point HERO_DISTANCE ahead, nudged up by HERO_HEIGHT, with the
+    // artwork yawed toward the camera. Computed synchronously so the sidebar can
+    // seed its sliders from these defaults before the can finishes loading. The
+    // sidebar mutates `position`/`eulerAngles` in place and calls apply() to
+    // re-teleport the hero live (no-op until the can streams in).
+    const hero = {
+        box: null,
+        position: ship.getPosition().clone()
+            .add(ship.forward.clone().mulScalar(HERO_DISTANCE))
+            .add(new pc.Vec3(0, HERO_HEIGHT, 0)),
+        eulerAngles: new pc.Vec3(0, HERO_FACING_YAW, 0),
+        apply() {
+            if (!hero.box) return;
+            hero.box.rigidbody.teleport(hero.position, hero.eulerAngles);
+            hero.box.rigidbody.linearVelocity = new pc.Vec3(0, 0, 0);
+            hero.box.rigidbody.angularVelocity = new pc.Vec3(0, 0, 0);
+        }
+    };
+
     const ready = (async () => {
         // Shared PBR maps are two small textures — load them up front so every
         // can gets its maps attached the moment it spawns.
@@ -204,22 +224,16 @@ export function createObstacles(app, ship) {
             }
         }
 
-        // Hero placement, derived once from the van's spawn pose (origin, facing
-        // -Z): a point HERO_DISTANCE ahead, nudged up by HERO_HEIGHT, with the
-        // artwork yawed toward the camera.
-        const frontPos = ship.getPosition().clone()
-            .add(ship.forward.clone().mulScalar(HERO_DISTANCE))
-            .add(new pc.Vec3(0, HERO_HEIGHT, 0));
-        const heroEuler = new pc.Vec3(0, HERO_FACING_YAW, 0);
-
         await Promise.all(picks.map(async (entry, i) => {
-            const opts = (i === heroIndex) ? { position: frontPos, eulerAngles: heroEuler } : null;
+            const opts = (i === heroIndex)
+                ? { position: hero.position, eulerAngles: hero.eulerAngles } : null;
             const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts);
             attachSharedMaps(can.materials, mrMap, normalMap);
             boxes.push(can.box);
             materials.push(...can.materials);
+            if (i === heroIndex) hero.box = can.box;
         }));
     })();
 
-    return { boxes, materials, ready, setCanDensity, setAtmoDensity };
+    return { boxes, materials, ready, setCanDensity, setAtmoDensity, hero };
 }
