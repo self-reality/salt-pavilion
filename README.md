@@ -5,6 +5,8 @@ A tiny 3D physics sandbox built on the PlayCanvas engine. You pilot a black
 textured spam cans — each a distinct prerendered artwork picked at random on
 every load. Ram them and they bounce away — zero-G, with inertia.
 
+**Play it:** <https://self-reality.github.io/salt-pavilion/>
+
 ## Controls
 
 6DOF free flight — no fixed horizon, so you can fly fully inverted or on a side,
