@@ -6,10 +6,10 @@
 // it fades out and removes itself once the whole collection is in.
 
 const STYLE = `
-#loader{position:fixed;top:0;left:0;width:240px;box-sizing:border-box;margin:12px;
- padding:10px 12px;background:rgba(255,255,255,0.92);border:1px solid #ddd;border-radius:6px;
- font:12px/1.3 -apple-system,system-ui,sans-serif;color:#333;z-index:10;
- backdrop-filter:blur(4px);transition:opacity .6s ease;}
+#loader{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);width:240px;
+ box-sizing:border-box;padding:10px 12px;background:rgba(255,255,255,0.92);
+ border:1px solid #ddd;border-radius:8px;font:12px/1.3 -apple-system,system-ui,sans-serif;
+ color:#333;z-index:10;backdrop-filter:blur(4px);transition:opacity .6s ease;}
 #loader h2{margin:0 0 8px;font-size:11px;font-weight:600;text-transform:uppercase;
  letter-spacing:.06em;color:#888;}
 #loader .bar{height:4px;border-radius:2px;background:#e3e3e3;overflow:hidden;margin:0 0 8px;}
@@ -56,6 +56,13 @@ export function createLoaderMenu(loader) {
         if (loader.paused) loader.resume(); else loader.pause();
     });
 
+    // Hide while flying, reappear on Esc — mirrors the #hint controls bar this
+    // panel sits above (see the pointerlockchange handler in main.js).
+    function onLock() {
+        el.style.display = document.pointerLockElement ? 'none' : '';
+    }
+    document.addEventListener('pointerlockchange', onLock);
+
     let removed = false;
     function update(l) {
         const pct = l.totalBytes ? (l.loadedBytes / l.totalBytes) * 100 : 0;
@@ -66,11 +73,18 @@ export function createLoaderMenu(loader) {
         btn.textContent = l.paused ? 'Resume' : 'Pause';
 
         // Auto-hide once the collection is fully in (guard the pre-seed emit
-        // where total is still 0).
+        // where total is still 0). Drop the pointer-lock toggle first so it
+        // can't fight the fade; if the panel is already hidden (flying), just
+        // remove it — opacity transitions don't fire on a display:none node.
         if (!removed && l.total > 0 && l.loaded >= l.total) {
             removed = true;
-            el.style.opacity = '0';
-            el.addEventListener('transitionend', () => el.remove(), { once: true });
+            document.removeEventListener('pointerlockchange', onLock);
+            if (el.style.display === 'none') {
+                el.remove();
+            } else {
+                el.style.opacity = '0';
+                el.addEventListener('transitionend', () => el.remove(), { once: true });
+            }
         }
     }
 
