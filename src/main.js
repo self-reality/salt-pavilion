@@ -40,10 +40,14 @@ async function boot() {
     const controls = registerControls(app, ship);
     const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
 
-    createSidebar({
-        app, scene: app.scene, light, materials: cans.materials,
-        playerMaterial, ship, van, cans, controls, cf: post.cf, disco
-    });
+    // The tuning panel is opt-in: tweaks.html sets this flag before the module
+    // loads, the public index.html does not. Keeps the deployed page clean.
+    if (window.SPAM_TWEAKS) {
+        createSidebar({
+            app, scene: app.scene, light, materials: cans.materials,
+            playerMaterial, ship, van, cans, controls, cf: post.cf, disco
+        });
+    }
 
     app.on('update', (dt) => {
         controls.update(dt);
