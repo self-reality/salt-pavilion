@@ -50,6 +50,10 @@ export const FRICTION = 0.4;
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
 // the collection (assets/cans, symlinked to the prerender output) on every load.
 export const OBSTACLE_COUNT = Infinity;  // every can in the collection
+// How many can GLBs download at once. The loader pulls from a shared queue with
+// this many workers so the menu's Pause can hold the queue between items (cans
+// already in flight finish; no new ones start until Resume).
+export const CAN_CONCURRENCY = 8;
 
 // Focused "hero" can: when the page is opened with ?artist=<author>, that
 // artist's can is placed directly in front of the van's spawn pose (origin,

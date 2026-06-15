@@ -1,6 +1,6 @@
 import * as pc from '../lib/playcanvas.mjs';
 import {
-    OBSTACLE_COUNT, CAN_DENSITY, ATMO_DENSITY, CAN_DRAG,
+    OBSTACLE_COUNT, CAN_CONCURRENCY, CAN_DENSITY, ATMO_DENSITY, CAN_DRAG,
     RESTITUTION, FRICTION, SPAWN_RADIUS,
     CAN_INDEX_URL, CAN_DIR, CAN_MIN_LEN, CAN_MAX_LEN,
     CAN_SHARED_MR_URL, CAN_SHARED_NORMAL_URL,
@@ -155,7 +155,8 @@ async function createCan(app, name, url, tuning, opts) {
 // `ready` resolves once the whole collection is in. The materials list feeds
 // the tweak panel (gloss/metalness/reflectivity across all cans), and the
 // density setters back its physics sliders: they retune every spawned can AND
-// update the values cans still streaming in will spawn with.
+// update the values cans still streaming in will spawn with. `loader` is the
+// progress/pause controller backing the loader menu (see src/loader-ui.js).
 export function createObstacles(app, ship) {
     const boxes = [];
     const materials = [];
@@ -199,6 +200,31 @@ export function createObstacles(app, ship) {
         }
     };
 
+    // Streaming-load controller for the loader menu. Counts and byte totals are
+    // seeded once the pick list (and thus the per-can `bytes` from the manifest)
+    // is known, then advanced as each can lands. pause()/resume() gate the
+    // worker queue: pausing lets in-flight downloads finish but stops new ones
+    // from starting. onProgress fires on every can and on pause/resume so the UI
+    // can re-render. emit() is a no-op until the menu (or anything) subscribes.
+    const loader = {
+        total: 0, totalBytes: 0,
+        loaded: 0, loadedBytes: 0,
+        paused: false,
+        _waiters: [],
+        _subs: [],
+        onProgress(cb) {
+            loader._subs.push(cb);
+            return () => { loader._subs = loader._subs.filter((s) => s !== cb); };
+        },
+        pause() { loader.paused = true; emit(); },
+        resume() {
+            loader.paused = false;
+            loader._waiters.splice(0).forEach((r) => r());
+            emit();
+        }
+    };
+    function emit() { for (const cb of loader._subs) cb(loader); }
+
     const ready = (async () => {
         // Shared PBR maps are two small textures — load them up front so every
         // can gets its maps attached the moment it spawns.
@@ -224,16 +250,36 @@ export function createObstacles(app, ship) {
             }
         }
 
-        await Promise.all(picks.map(async (entry, i) => {
-            const opts = (i === heroIndex)
-                ? { position: hero.position, eulerAngles: hero.eulerAngles } : null;
-            const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts);
-            attachSharedMaps(can.materials, mrMap, normalMap);
-            boxes.push(can.box);
-            materials.push(...can.materials);
-            if (i === heroIndex) hero.box = can.box;
-        }));
+        loader.total = picks.length;
+        loader.totalBytes = picks.reduce((s, e) => s + (e.bytes || 0), 0);
+        emit();
+
+        // CAN_CONCURRENCY workers pull from a shared cursor instead of firing all
+        // downloads at once, so the loader menu's Pause can hold the queue: a
+        // paused worker parks on a resume promise before claiming its next index,
+        // letting any in-flight createCan finish. Index 0 (the ?artist= hero when
+        // matched) is still claimed first, so it pops in first as before.
+        let next = 0;
+        async function worker() {
+            for (;;) {
+                while (loader.paused) await new Promise((r) => loader._waiters.push(r));
+                const i = next++;
+                if (i >= picks.length) return;
+                const entry = picks[i];
+                const opts = (i === heroIndex)
+                    ? { position: hero.position, eulerAngles: hero.eulerAngles } : null;
+                const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts);
+                attachSharedMaps(can.materials, mrMap, normalMap);
+                boxes.push(can.box);
+                materials.push(...can.materials);
+                if (i === heroIndex) hero.box = can.box;
+                loader.loaded++;
+                loader.loadedBytes += entry.bytes || 0;
+                emit();
+            }
+        }
+        await Promise.all(Array.from({ length: CAN_CONCURRENCY }, worker));
     })();
 
-    return { boxes, materials, ready, setCanDensity, setAtmoDensity, hero };
+    return { boxes, materials, ready, loader, setCanDensity, setAtmoDensity, hero };
 }

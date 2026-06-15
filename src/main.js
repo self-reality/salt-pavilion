@@ -9,6 +9,7 @@ import { setupCamera } from './camera.js';
 import { setupPostProcess } from './postprocess.js';
 import { createDiscoBall } from './discoball.js';
 import { createSidebar } from './ui.js';
+import { createLoaderMenu } from './loader-ui.js';
 
 async function boot() {
     const canvas = document.getElementById('app');
@@ -34,6 +35,10 @@ async function boot() {
     // Not awaited: cans.boxes / cans.materials are live arrays that fill in as
     // each can downloads, so the game is playable as soon as the van is in.
     const cans = createObstacles(app, ship);
+
+    // Loader menu (cans loaded / to go, MB, Pause). Shown on every page — it
+    // fades out once the collection is fully in.
+    createLoaderMenu(cans.loader);
 
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
