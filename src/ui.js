@@ -37,6 +37,11 @@ const STYLE = `
 #sidebar input[type=color]{width:96px;height:20px;padding:0;border:1px solid #ccc;border-radius:3px;background:none;}
 #sidebar select{width:100%;}
 #sidebar .val{text-align:right;color:#999;font-variant-numeric:tabular-nums;}
+#sidebar .row input[type=checkbox]{margin:0;justify-self:start;}
+#sidebar .row button{grid-column:1/-1;padding:5px 8px;font:inherit;color:#333;
+ background:#f2f2f2;border:1px solid #ccc;border-radius:4px;cursor:pointer;}
+#sidebar .row button:hover{background:#e8e8e8;}
+#sidebar .row button:active{background:#dcdcdc;}
 `;
 
 // Hand-rolled tweak panel. Wires range/color/select inputs directly to live
@@ -45,7 +50,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, ship, van, cans, controls, cf, disco } = ctx;
+    const { scene, light, materials, playerMaterial, ship, van, cans, controls, cf, disco, audio } = ctx;
 
     const style = document.createElement('style');
     style.textContent = STYLE;
@@ -111,6 +116,29 @@ export function createSidebar(ctx) {
         parent.appendChild(row);
     }
 
+    function toggle(parent, label, checked, onInput) {
+        const row = document.createElement('div');
+        row.className = 'row wide';
+        row.innerHTML = `<label>${label}</label>`;
+        const inp = document.createElement('input');
+        inp.type = 'checkbox';
+        inp.checked = checked;
+        inp.addEventListener('change', () => onInput(inp.checked));
+        row.appendChild(inp);
+        parent.appendChild(row);
+    }
+
+    function button(parent, label, onClick) {
+        const row = document.createElement('div');
+        row.className = 'row wide';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = label;
+        btn.addEventListener('click', onClick);
+        row.appendChild(btn);
+        parent.appendChild(row);
+    }
+
     // ----- Van -----
     const vanSec = section('Van');
     // Density rescales mass against the fixed collider volume, so the same
@@ -130,6 +158,25 @@ export function createSidebar(ctx) {
     const canSec = section('Cans');
     slider(canSec, 'Density', 0.05, 10, 0.05, CAN_DENSITY,
         (v) => cans.setCanDensity(v));
+
+    // ----- Collision sound -----
+    // Sliders mutate audio.params in place; audio.js reads it fresh on every
+    // hit, so tweaks are audible on the next clank (or immediately via Test).
+    const snd = section('Collision sound');
+    const p = audio.params;
+    slider(snd, 'Volume', 0, 1, 0.01, p.volume, (v) => { p.volume = v; });
+    slider(snd, 'Pitch (Hz)', 120, 1200, 1, p.pitch, (v) => { p.pitch = v; });
+    slider(snd, 'Ring (decay s)', 0.05, 1.0, 0.01, p.decay, (v) => { p.decay = v; });
+    slider(snd, 'Brightness', 0, 1, 0.01, p.brightness, (v) => { p.brightness = v; });
+    slider(snd, 'Metallic', 0, 1, 0.01, p.metallic, (v) => { p.metallic = v; });
+    slider(snd, 'Attack (tink)', 0, 1, 0.01, p.attack, (v) => { p.attack = v; });
+    slider(snd, 'Min speed', 0, 5, 0.05, p.minSpeed, (v) => { p.minSpeed = v; });
+    slider(snd, 'Ref speed', 2, 30, 0.5, p.refSpeed, (v) => { p.refSpeed = v; });
+    slider(snd, 'Sensitivity', 0.2, 2, 0.01, p.sensitivity, (v) => { p.sensitivity = v; });
+    slider(snd, 'Pitch random', 0, 0.3, 0.005, p.pitchRandom, (v) => { p.pitchRandom = v; });
+    slider(snd, 'Cooldown (ms)', 0, 200, 1, p.cooldown, (v) => { p.cooldown = v; });
+    toggle(snd, 'Mute', audio.muted, (v) => { audio.muted = v; });
+    button(snd, 'Test sound', () => audio.test());
 
     // ----- Hero can (focused ?artist=) initial pose -----
     // Sliders mutate the shared hero pose in place and re-teleport the can live.

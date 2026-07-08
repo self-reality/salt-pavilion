@@ -120,3 +120,23 @@ export const DISCO = {
 // (the origin — also where the van appears). Defined after DISCO so the link
 // to the ball's radius stays explicit.
 export const SPAWN_RADIUS = DISCO.radius / 2;
+
+// Collision sound: a procedural "tin can" clank synthesized on the fly (Web
+// Audio) each time the van hits a can — the wall isn't a physics body and there
+// is no ground, so the van's only rigidbody contacts are cans. Every field is a
+// live sidebar slider; audio.js reads this object fresh on every hit, so tweaks
+// apply immediately. Loudness scales with impact speed between minSpeed (silent)
+// and refSpeed (full), shaped by sensitivity.
+export const COLLISION_SOUND = {
+    volume: 0.6,        // master gain 0..1
+    pitch: 320,         // Hz — fundamental of the metallic ring
+    decay: 0.28,        // s — ring/tail length
+    brightness: 0.6,    // 0..1 — attack-noise bandpass + weighting of high partials
+    metallic: 0.7,      // 0..1 — partial spread: harmonic (pitched) .. inharmonic (clangy)
+    attack: 0.5,        // 0..1 — loudness of the noisy impact transient ("tink")
+    minSpeed: 0.6,      // world-units/s — impacts softer than this make no sound
+    refSpeed: 12,       // world-units/s — impact that maps to full volume
+    sensitivity: 0.8,   // exponent on normalized impact -> loudness curve
+    pitchRandom: 0.06,  // +/- per-hit detune fraction (so repeated hits differ)
+    cooldown: 30        // ms — min gap between hits (kills machine-gun on can clusters)
+};

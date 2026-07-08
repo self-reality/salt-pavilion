@@ -10,6 +10,7 @@ import { setupPostProcess } from './postprocess.js';
 import { createDiscoBall } from './discoball.js';
 import { createSidebar } from './ui.js';
 import { createLoaderMenu } from './loader-ui.js';
+import { createCollisionAudio } from './audio.js';
 
 async function boot() {
     const canvas = document.getElementById('app');
@@ -45,12 +46,35 @@ async function boot() {
     const controls = registerControls(app, ship);
     const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
 
+    // Tin-can collision sound. The AudioContext can't start until a user
+    // gesture, so unlock it on the first pointerdown (the same gesture that
+    // triggers click-to-fly). Nothing is audible before then.
+    const audio = createCollisionAudio();
+    window.addEventListener('pointerdown', () => audio.unlock());
+
+    // Registering this listener is also what makes PlayCanvas track the van's
+    // contacts. It fires only for van↔can hits: the disco-ball wall is a manual
+    // velocity clamp (not a rigidbody), there is no ground, and gravity is off,
+    // so a can is the only thing the van's body can actually collide with.
+    ship.collision.on('collisionstart', (result) => {
+        const other = result.other;
+        if (!other || !other.rigidbody) return;
+        // Impact strength = the two bodies' relative velocity, projected onto
+        // the contact normal (the closing speed) when a contact point is
+        // available, else its raw magnitude. Robust across engine versions;
+        // contact impulse is not reliably populated.
+        const rel = ship.rigidbody.linearVelocity.clone().sub(other.rigidbody.linearVelocity);
+        const contact = result.contacts && result.contacts[0];
+        const speed = contact && contact.normal ? Math.abs(rel.dot(contact.normal)) : rel.length();
+        audio.trigger(speed);
+    });
+
     // The tuning panel is opt-in: tweaks.html sets this flag before the module
     // loads, the public index.html does not. Keeps the deployed page clean.
     if (window.SPAM_TWEAKS) {
         createSidebar({
             app, scene: app.scene, light, materials: cans.materials,
-            playerMaterial, ship, van, cans, controls, cf: post.cf, disco
+            playerMaterial, ship, van, cans, controls, cf: post.cf, disco, audio
         });
     }
 
