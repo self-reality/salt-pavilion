@@ -107,6 +107,31 @@ async function createCan(app, name, url, tuning, opts) {
     );
     const halfExtents = new pc.Vec3(he.x * scale, he.y * scale, he.z * scale);
 
+    // Placement. The hero can (opts) lands at a fixed spot in front of the van;
+    // every other can gets a random position in a spherical shell around the
+    // origin (kept clear of the player's spawn point) with a random tumble
+    // orientation.
+    //
+    // Pose the entity BEFORE adding the rigidbody so the physics body is *born*
+    // at its final spot. The obvious alternative — create the body then
+    // teleport() it — is what caused cans to flash through the centre of the
+    // scene as they streamed in: teleport moves the entity and the body's world
+    // transform, but leaves Bullet's SEPARATE interpolation transform pinned at
+    // the origin (where the body was constructed) until the first physics substep
+    // refreshes it. On any frame whose fixed-step accumulator advances zero
+    // substeps, Bullet syncs the motion state from that stale origin transform
+    // and the entity snaps to the centre for a frame. Creating the body in place
+    // needs no teleport, so there is no stale transform to snap back to.
+    if (opts) {
+        box.setPosition(opts.position);
+        box.setEulerAngles(opts.eulerAngles);
+    } else {
+        const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
+        const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
+        box.setPosition(dir.x * dist, dir.y * dist, dir.z * dist);
+        box.setEulerAngles(rand(0, 360), rand(0, 360), rand(0, 360));
+    }
+
     box.addComponent('collision', { type: 'box', halfExtents });
     box.addComponent('rigidbody', {
         type: 'dynamic',
@@ -116,24 +141,6 @@ async function createCan(app, name, url, tuning, opts) {
         linearDamping: tuning.atmoDensity * CAN_DRAG,
         angularDamping: tuning.atmoDensity * CAN_DRAG
     });
-
-    // Placement. The hero can (opts) lands at a fixed spot in front of the van;
-    // every other can gets a random position in a spherical shell around the
-    // origin (kept clear of the player's spawn point) with a random tumble
-    // orientation. Must go through teleport(): plain setPosition() on a
-    // dynamic-bodied entity never reaches the physics body (the body would stay
-    // at the origin and the simulation would snap the entity back there on the
-    // next step).
-    if (opts) {
-        box.rigidbody.teleport(opts.position, opts.eulerAngles);
-    } else {
-        const dir = new pc.Vec3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).normalize();
-        const dist = rand(SPAWN_RADIUS * 0.35, SPAWN_RADIUS);
-        box.rigidbody.teleport(
-            new pc.Vec3(dir.x * dist, dir.y * dist, dir.z * dist),
-            new pc.Vec3(rand(0, 360), rand(0, 360), rand(0, 360))
-        );
-    }
 
     // Cans start at rest — a calm gallery. They stay dynamic, so the van still
     // knocks them around on contact; they just don't drift or tumble on their own.
