@@ -50,7 +50,7 @@ const STYLE = `
 // not trigger the canvas's pointer-lock (click-to-fly): press Esc to release
 // the lock, tweak, then click the canvas to fly again.
 export function createSidebar(ctx) {
-    const { scene, light, materials, playerMaterial, ship, van, cans, controls, cf, disco, audio } = ctx;
+    const { app, scene, light, materials, playerMaterial, ship, van, cans, controls, cf, disco, audio } = ctx;
 
     const style = document.createElement('style');
     style.textContent = STYLE;
@@ -138,6 +138,66 @@ export function createSidebar(ctx) {
         row.appendChild(btn);
         parent.appendChild(row);
     }
+
+    // Live, read-only stat row. Returns its value span so the frame loop can
+    // write to it each refresh.
+    function readout(parent, label) {
+        const row = document.createElement('div');
+        row.className = 'row wide';
+        row.innerHTML = `<label>${label}</label>`;
+        const val = document.createElement('span');
+        val.className = 'val';
+        val.textContent = '—';
+        row.appendChild(val);
+        parent.appendChild(row);
+        return val;
+    }
+
+    // ----- Performance -----
+    // Live readouts, updated from the engine's own frame events. "CPU" is the
+    // main-thread busy time per frame (frameupdate → frameend), which is the
+    // only processor-usage signal a browser exposes; there is no OS CPU API.
+    // "Memory" is the JS heap via performance.memory (Chromium only).
+    const perf = section('Performance');
+    const fpsOut = readout(perf, 'FPS');
+    const frameOut = readout(perf, 'Frame time');
+    const cpuOut = readout(perf, 'CPU (main thread)');
+    const memOut = readout(perf, 'JS heap');
+
+    const MB = 1024 * 1024;
+    const mem = performance.memory; // non-standard; Chromium-only
+    if (!mem) memOut.textContent = 'unavailable';
+
+    let frameStart = performance.now();
+    let lastEnd = frameStart;
+    // Exponential moving averages so the text is readable, not a blur. FPS is
+    // derived from emaInterval at display time so the two can never disagree.
+    let emaInterval = 1000 / 60, emaBusy = 0;
+    const smooth = (avg, sample, a = 0.1) => avg + (sample - avg) * a;
+
+    app.on('frameupdate', () => { frameStart = performance.now(); });
+    app.on('frameend', () => {
+        const now = performance.now();
+        emaBusy = smooth(emaBusy, now - frameStart);
+        emaInterval = smooth(emaInterval, now - lastEnd);
+        lastEnd = now;
+    });
+
+    // Refresh the DOM at ~5 Hz rather than every frame.
+    let acc = 0;
+    app.on('update', (dt) => {
+        acc += dt;
+        if (acc < 0.2) return;
+        acc = 0;
+        fpsOut.textContent = (1000 / Math.max(emaInterval, 0.001)).toFixed(0);
+        frameOut.textContent = `${emaInterval.toFixed(1)} ms`;
+        const load = (emaBusy / Math.max(emaInterval, 0.001)) * 100;
+        cpuOut.textContent = `${emaBusy.toFixed(1)} ms · ${load.toFixed(0)}%`;
+        if (mem) {
+            memOut.textContent =
+                `${(mem.usedJSHeapSize / MB).toFixed(0)} / ${(mem.jsHeapSizeLimit / MB).toFixed(0)} MB`;
+        }
+    });
 
     // ----- Van -----
     const vanSec = section('Van');
