@@ -129,14 +129,14 @@ export const SPAWN_RADIUS = DISCO.radius / 2;
 // and refSpeed (full), shaped by sensitivity.
 export const COLLISION_SOUND = {
     volume: 0.6,        // master gain 0..1
-    pitch: 320,         // Hz — fundamental of the metallic ring
-    decay: 0.28,        // s — ring/tail length
+    pitch: 433,         // Hz — fundamental of the metallic ring
+    decay: 0.77,        // s — ring/tail length
     brightness: 0.6,    // 0..1 — attack-noise bandpass + weighting of high partials
-    metallic: 0.7,      // 0..1 — partial spread: harmonic (pitched) .. inharmonic (clangy)
-    attack: 0.5,        // 0..1 — loudness of the noisy impact transient ("tink")
+    metallic: 0.46,     // 0..1 — partial spread: harmonic (pitched) .. inharmonic (clangy)
+    attack: 0.25,       // 0..1 — loudness of the noisy impact transient ("tink")
     minSpeed: 0.6,      // world-units/s — impacts softer than this make no sound
-    refSpeed: 12,       // world-units/s — impact that maps to full volume
-    sensitivity: 0.8,   // exponent on normalized impact -> loudness curve
-    pitchRandom: 0.06,  // +/- per-hit detune fraction (so repeated hits differ)
-    cooldown: 30        // ms — min gap between hits (kills machine-gun on can clusters)
+    refSpeed: 17.5,     // world-units/s — impact that maps to full volume
+    sensitivity: 1.09,  // exponent on normalized impact -> loudness curve
+    pitchRandom: 0.275, // +/- per-hit detune fraction (so repeated hits differ)
+    cooldown: 20        // ms — min gap between hits (kills machine-gun on can clusters)
 };
