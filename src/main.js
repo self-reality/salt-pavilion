@@ -46,11 +46,19 @@ async function boot() {
 
     // Game audio: tin-can collision clank + organ thrust drone. The
     // AudioContext can't start until a user gesture, so unlock it on the first
-    // pointerdown (the same gesture that triggers click-to-fly). Nothing is
-    // audible before then. Created before the controls so they can drive the
-    // thrust drone via audio.setThrust() each frame.
+    // interaction. Nothing is audible before then. Created before the controls
+    // so they can drive the thrust drone via audio.setThrust() each frame.
+    //
+    // unlock() is idempotent, so firing it on every gesture is cheap. Two things
+    // matter here: (1) capture phase, so the tweak panel's pointerdown
+    // stopPropagation() (which keeps panel clicks off the canvas pointer-lock)
+    // can't also swallow the unlock; (2) keydown, because thrust is keyboard-
+    // driven (WASD/RF) — a keypress is itself a valid gesture to resume audio, so
+    // the drone is heard on the very first W even if the canvas was never clicked.
     const audio = createAudio();
-    window.addEventListener('pointerdown', () => audio.unlock());
+    const unlockAudio = () => audio.unlock();
+    window.addEventListener('pointerdown', unlockAudio, true);
+    window.addEventListener('keydown', unlockAudio, true);
 
     const controls = registerControls(app, ship, audio);
     const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
