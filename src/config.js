@@ -48,7 +48,8 @@ export const RESTITUTION = 0.75;
 export const FRICTION = 0.4;
 
 // Obstacles. Each is a prerendered, textured spam-can GLB picked at random from
-// the collection (assets/cans, symlinked to the prerender output) on every load.
+// the collection (assets/cans, real files copied from the prerender output) on
+// every load.
 export const OBSTACLE_COUNT = Infinity;  // every can in the collection
 // How many can GLBs download at once. The loader pulls from a shared queue with
 // this many workers so the menu's Pause can hold the queue between items (cans
