@@ -238,6 +238,29 @@ export function createSidebar(ctx) {
     toggle(snd, 'Mute', audio.muted, (v) => { audio.muted = v; });
     button(snd, 'Test sound', () => audio.test());
 
+    // ----- Thrust sound (organ) -----
+    // Sliders mutate audio.thrust in place; refreshThrust() pushes each change
+    // onto the sustained drone so it's audible immediately. Test plays a short
+    // swell; hold W/A/S/D/R/F to hear it react to real thrust.
+    const thr = section('Thrust (organ)');
+    const t = audio.thrust;
+    slider(thr, 'Volume', 0, 1, 0.01, t.volume, (v) => { t.volume = v; audio.refreshThrust(); });
+    slider(thr, 'Pitch (Hz)', 30, 300, 1, t.pitch, (v) => { t.pitch = v; audio.refreshThrust(); });
+    slider(thr, 'Attack (s)', 0.01, 1, 0.01, t.attack, (v) => { t.attack = v; });
+    slider(thr, 'Release (s)', 0.05, 2, 0.01, t.release, (v) => { t.release = v; });
+    // Drawbar registration — the organ's timbre, nine footages from deep to shrill.
+    const FEET = ["16'", "5⅓'", "8'", "4'", "2⅔'", "2'", "1⅗'", "1⅓'", "1'"];
+    FEET.forEach((f, i) => {
+        slider(thr, `Drawbar ${f}`, 0, 1, 0.01, t.drawbars[i],
+            (v) => { t.drawbars[i] = v; audio.refreshThrust(); });
+    });
+    slider(thr, 'Leslie rate (Hz)', 0, 12, 0.1, t.vibrato, (v) => { t.vibrato = v; audio.refreshThrust(); });
+    slider(thr, 'Vibrato (cents)', 0, 50, 1, t.vibratoDepth, (v) => { t.vibratoDepth = v; audio.refreshThrust(); });
+    slider(thr, 'Tremolo', 0, 1, 0.01, t.tremolo, (v) => { t.tremolo = v; audio.refreshThrust(); });
+    slider(thr, 'Pitch bend (cents)', 0, 200, 1, t.bend, (v) => { t.bend = v; audio.refreshThrust(); });
+    toggle(thr, 'Mute', audio.thrustMuted, (v) => { audio.thrustMuted = v; audio.refreshThrust(); });
+    button(thr, 'Test thrust', () => audio.testThrust());
+
     // ----- Hero can (focused ?artist=) initial pose -----
     // Sliders mutate the shared hero pose in place and re-teleport the can live.
     // Inert until an ?artist= can streams in; the defaults reflect config.js.

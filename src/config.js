@@ -141,3 +141,23 @@ export const COLLISION_SOUND = {
     pitchRandom: 0.275, // +/- per-hit detune fraction (so repeated hits differ)
     cooldown: 20        // ms — min gap between hits (kills machine-gun on can clusters)
 };
+
+// Thrust sound: a sustained pipe/Hammond-organ drone synthesized live (Web
+// Audio) that swells while the van is thrusting and fades as you coast. It's
+// built additively from nine drawbar partials — a harmonic stack, exactly how
+// an organ's registration works — plus a Leslie-style vibrato+tremolo swirl.
+// Every field is a live sidebar slider; audio.js pushes changes straight onto
+// the running voice. Loudness follows how hard you thrust (how many axes fire).
+export const THRUST_SOUND = {
+    volume: 0.3,        // master gain 0..1 at full thrust
+    pitch: 65,          // Hz — the 8' fundamental the drawbars stack on
+    attack: 0.10,       // s — swell-in time when thrust engages
+    release: 0.45,      // s — fade-out time when thrust releases
+    // Drawbar registration: relative level of each footage — this IS the organ
+    // timbre. Order: 16', 5⅓', 8', 4', 2⅔', 2', 1⅗', 1⅓', 1'.
+    drawbars: [0.7, 0.4, 1.0, 0.8, 0.5, 0.6, 0.2, 0.3, 0.5],
+    vibrato: 5.5,       // Hz — Leslie swirl rate (shared by vibrato + tremolo)
+    vibratoDepth: 12,   // cents — pitch-wobble depth of the swirl
+    tremolo: 0.3,       // 0..1 — amplitude-wobble depth of the swirl
+    bend: 40            // cents — pitch rise from idle to full thrust
+};

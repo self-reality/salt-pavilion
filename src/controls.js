@@ -21,7 +21,7 @@ const AXIS_X = new pc.Vec3(1, 0, 0); // pitch (nose up = +)
 const AXIS_Y = new pc.Vec3(0, 1, 0); // yaw   (nose left = +)
 const AXIS_Z = new pc.Vec3(0, 0, 1); // roll  (roll left = +)
 
-export function registerControls(app, ship) {
+export function registerControls(app, ship, audio) {
     // Authoritative orientation, seeded from the body's current rotation.
     const orient = new pc.Quat().copy(ship.getRotation());
     const qDelta = new pc.Quat();
@@ -111,11 +111,21 @@ export function registerControls(app, ship) {
             force.add(tmp.copy(axisVec).mulScalar(-Math.sign(comp) * brake));
         }
 
-        axis(ship.forward, key(pc.KEY_W) - key(pc.KEY_S), THRUST_FORCE);
-        axis(ship.right,   key(pc.KEY_D) - key(pc.KEY_A), THRUST_FORCE);
-        axis(ship.up,      key(pc.KEY_R) - key(pc.KEY_F), VERTICAL_THRUST);
+        const fwd = key(pc.KEY_W) - key(pc.KEY_S);
+        const rgt = key(pc.KEY_D) - key(pc.KEY_A);
+        const up  = key(pc.KEY_R) - key(pc.KEY_F);
+        axis(ship.forward, fwd, THRUST_FORCE);
+        axis(ship.right,   rgt, THRUST_FORCE);
+        axis(ship.up,      up,  VERTICAL_THRUST);
 
         if (force.lengthSq() > 0) ship.rigidbody.applyForce(force);
+
+        // Feed the organ thrust drone: swell it up with how many axes are
+        // firing (two or more = full throttle), fade it out when coasting.
+        if (audio) {
+            const active = Math.abs(fwd) + Math.abs(rgt) + Math.abs(up);
+            audio.setThrust(Math.min(1, active / 2));
+        }
     }
 
     return { update, setHandling: (v) => { handling = v; } };

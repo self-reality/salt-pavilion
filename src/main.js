@@ -10,7 +10,7 @@ import { setupPostProcess } from './postprocess.js';
 import { createDiscoBall } from './discoball.js';
 import { createSidebar } from './ui.js';
 import { createLoaderMenu } from './loader-ui.js';
-import { createCollisionAudio } from './audio.js';
+import { createAudio } from './audio.js';
 
 async function boot() {
     const canvas = document.getElementById('app');
@@ -43,14 +43,17 @@ async function boot() {
 
     const camera = setupCamera(app, ship);
     const post = setupPostProcess(app, camera.camera.camera);
-    const controls = registerControls(app, ship);
-    const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
 
-    // Tin-can collision sound. The AudioContext can't start until a user
-    // gesture, so unlock it on the first pointerdown (the same gesture that
-    // triggers click-to-fly). Nothing is audible before then.
-    const audio = createCollisionAudio();
+    // Game audio: tin-can collision clank + organ thrust drone. The
+    // AudioContext can't start until a user gesture, so unlock it on the first
+    // pointerdown (the same gesture that triggers click-to-fly). Nothing is
+    // audible before then. Created before the controls so they can drive the
+    // thrust drone via audio.setThrust() each frame.
+    const audio = createAudio();
     window.addEventListener('pointerdown', () => audio.unlock());
+
+    const controls = registerControls(app, ship, audio);
+    const disco = createDiscoBall(app, camera.camera, ship, cans.boxes);
 
     // Registering this listener is also what makes PlayCanvas track the van's
     // contacts. It fires only for van↔can hits: the disco-ball wall is a manual
