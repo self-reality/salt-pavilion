@@ -149,7 +149,7 @@ export const COLLISION_SOUND = {
 // Every field is a live sidebar slider; audio.js pushes changes straight onto
 // the running voice. Loudness follows how hard you thrust (how many axes fire).
 export const THRUST_SOUND = {
-    volume: 0.3,        // master gain 0..1 at full thrust
+    volume: 0.5,        // master gain 0..1 at full thrust
     pitch: 65,          // Hz — the 8' fundamental the drawbars stack on
     attack: 0.10,       // s — swell-in time when thrust engages
     release: 0.45,      // s — fade-out time when thrust releases

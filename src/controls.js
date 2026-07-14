@@ -120,11 +120,12 @@ export function registerControls(app, ship, audio) {
 
         if (force.lengthSq() > 0) ship.rigidbody.applyForce(force);
 
-        // Feed the organ thrust drone: swell it up with how many axes are
-        // firing (two or more = full throttle), fade it out when coasting.
+        // Feed the organ thrust drone: any single thruster already swells it
+        // strongly (that's the common case — a W press must be clearly heard),
+        // and firing more axes pushes it up to full throttle; coasting fades it.
         if (audio) {
             const active = Math.abs(fwd) + Math.abs(rgt) + Math.abs(up);
-            audio.setThrust(Math.min(1, active / 2));
+            audio.setThrust(active ? Math.min(1, 0.75 + 0.125 * (active - 1)) : 0);
         }
     }
 
