@@ -149,20 +149,19 @@ export const COLLISION_SOUND = {
 // Every field is a live sidebar slider; audio.js pushes changes straight onto
 // the running voice. Loudness follows how hard you thrust (how many axes fire).
 export const THRUST_SOUND = {
-    volume: 0.6,        // master gain 0..1 at full thrust
-    pitch: 140,         // Hz — the 8' fundamental the drawbars stack on. Kept in
+    volume: 0.3,        // master gain 0..1 at full thrust
+    pitch: 116,         // Hz — the 8' fundamental the drawbars stack on. Kept in
                         // the ear's sensitive band (and above small-speaker
                         // roll-off) so the drone is actually audible; a deep 65 Hz
                         // organ measured strong but read as near-silent next to
                         // the collision clank. Lower it here for a bigger console.
-    attack: 0.10,       // s — swell-in time when thrust engages
-    release: 0.45,      // s — fade-out time when thrust releases
+    attack: 0.21,       // s — swell-in time when thrust engages
+    release: 0.75,      // s — fade-out time when thrust releases
     // Drawbar registration: relative level of each footage — this IS the organ
-    // timbre. Order: 16', 5⅓', 8', 4', 2⅔', 2', 1⅗', 1⅓', 1'. Weighted toward the
-    // mid partials so most energy lands where the ear (and laptop speakers) live.
-    drawbars: [0.5, 0.5, 1.0, 0.9, 0.6, 0.7, 0.3, 0.4, 0.5],
-    vibrato: 5.5,       // Hz — Leslie swirl rate (shared by vibrato + tremolo)
+    // timbre. Order: 16', 5⅓', 8', 4', 2⅔', 2', 1⅗', 1⅓', 1'.
+    drawbars: [0.76, 0.68, 0.66, 0.55, 0.26, 0.32, 0.12, 0.05, 0.35],
+    vibrato: 11.7,      // Hz — Leslie swirl rate (shared by vibrato + tremolo)
     vibratoDepth: 12,   // cents — pitch-wobble depth of the swirl
-    tremolo: 0.3,       // 0..1 — amplitude-wobble depth of the swirl
-    bend: 40            // cents — pitch rise from idle to full thrust
+    tremolo: 0.47,      // 0..1 — amplitude-wobble depth of the swirl
+    bend: 123           // cents — pitch rise from idle to full thrust
 };
