@@ -6,7 +6,7 @@
 // it fades out and removes itself once the whole collection is in.
 
 const STYLE = `
-#loader{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);width:240px;
+#loader{position:fixed;left:50%;bottom:186px;transform:translateX(-50%);width:240px;
  box-sizing:border-box;padding:10px 12px;background:rgba(255,255,255,0.92);
  border:1px solid #ddd;border-radius:8px;font:12px/1.3 -apple-system,system-ui,sans-serif;
  color:#333;z-index:10;backdrop-filter:blur(4px);transition:opacity .6s ease;}
@@ -56,8 +56,9 @@ export function createLoaderMenu(loader) {
         if (loader.paused) loader.resume(); else loader.pause();
     });
 
-    // Hide while flying, reappear on Esc — mirrors the #hint controls bar this
-    // panel sits above (see the pointerlockchange handler in main.js).
+    // Hide while flying, reappear on Esc — mirrors the #hint controls bar and
+    // #exit link this panel sits above (see the pointerlockchange handler in
+    // main.js).
     function onLock() {
         el.style.display = document.pointerLockElement ? 'none' : '';
     }
