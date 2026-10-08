@@ -19,11 +19,20 @@
             height: 100%;
             touch-action: none;
         }
-        #hint {
+        /* Bottom-centre stack shown while the pointer is released: exit link,
+           can loader (while streaming, inserted by loader-ui.js), controls hint. */
+        #menu {
             position: fixed;
-            left: 50%;
+            left: 0;
+            right: 0;
             bottom: 32px;
-            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            pointer-events: none;
+        }
+        #hint {
             font: 14px/1.4 -apple-system, system-ui, sans-serif;
             color: #555;
             background: rgba(255, 255, 255, 0.85);
@@ -39,10 +48,12 @@
 </head>
 <body>
     <canvas id="app"></canvas>
-    <div id="hint">
-        Click to fly &nbsp;·&nbsp; <b>Mouse</b> steer &nbsp;·&nbsp; <b>Q/E</b> roll &nbsp;·&nbsp;
-        <b>WASD</b> thrust &nbsp;·&nbsp; <b>R/F</b> up·down &nbsp;·&nbsp;
-        <b>Esc</b> to release &amp; tweak the panel
+    <div id="menu">
+        <div id="hint">
+            Click to fly &nbsp;·&nbsp; <b>Mouse</b> steer &nbsp;·&nbsp; <b>Q/E</b> roll &nbsp;·&nbsp;
+            <b>WASD</b> thrust &nbsp;·&nbsp; <b>R/F</b> up·down &nbsp;·&nbsp;
+            <b>Esc</b> to release &amp; tweak the panel
+        </div>
     </div>
     <script>window.SPAM_TWEAKS = true;</script>
     <script type="module" src="./src/main.js"></script>

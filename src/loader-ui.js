@@ -1,15 +1,15 @@
-// Loader menu: a small frosted panel (top-left, clear of the right-edge tweaks
-// sidebar) that reports the can stream as it downloads — cans loaded vs. to go,
+// Loader menu: a small frosted panel (in the bottom-centre #menu stack, just
+// above the controls hint) that reports the can stream as it downloads — cans loaded vs. to go,
 // MB loaded vs. total — and offers a Pause button that holds the download queue.
 // Driven entirely by the obstacles loader controller (see createObstacles): it
 // subscribes to onProgress and toggles pause()/resume(). Shown on every page;
 // it fades out and removes itself once the whole collection is in.
 
 const STYLE = `
-#loader{position:fixed;left:50%;bottom:186px;transform:translateX(-50%);width:240px;
+#loader{width:240px;pointer-events:auto;
  box-sizing:border-box;padding:10px 12px;background:rgba(255,255,255,0.92);
  border:1px solid #ddd;border-radius:8px;font:12px/1.3 -apple-system,system-ui,sans-serif;
- color:#333;z-index:10;backdrop-filter:blur(4px);transition:opacity .6s ease;}
+ color:#333;backdrop-filter:blur(4px);transition:opacity .6s ease;}
 #loader h2{margin:0 0 8px;font-size:11px;font-weight:600;text-transform:uppercase;
  letter-spacing:.06em;color:#888;}
 #loader .bar{height:4px;border-radius:2px;background:#e3e3e3;overflow:hidden;margin:0 0 8px;}
@@ -35,7 +35,7 @@ export function createLoaderMenu(loader) {
 
     const el = document.createElement('div');
     el.id = 'loader';
-    // Sibling of the canvas — swallow pointerdown so clicking Pause doesn't trip
+    // Outside the canvas — swallow pointerdown so clicking Pause doesn't trip
     // the canvas's click-to-fly pointer lock (matches the tweaks sidebar).
     el.addEventListener('pointerdown', (e) => e.stopPropagation());
     el.innerHTML = `
@@ -44,7 +44,8 @@ export function createLoaderMenu(loader) {
         <div class="line"><span class="cans"></span><span class="togo muted"></span></div>
         <div class="line"><span class="mb"></span><span class="muted">MB</span></div>
         <button type="button"></button>`;
-    document.body.appendChild(el);
+    const hint = document.getElementById('hint');
+    hint.parentNode.insertBefore(el, hint);
 
     const fill = el.querySelector('.bar > span');
     const cansEl = el.querySelector('.cans');
@@ -57,7 +58,7 @@ export function createLoaderMenu(loader) {
     });
 
     // Hide while flying, reappear on Esc — mirrors the #hint controls bar and
-    // #exit link this panel sits above (see the pointerlockchange handler in
+    // #exit link this panel sits between (see the pointerlockchange handler in
     // main.js).
     function onLock() {
         el.style.display = document.pointerLockElement ? 'none' : '';
