@@ -35,10 +35,37 @@
             user-select: none;
         }
         #hint b { color: #111; }
+        #exit {
+            position: fixed;
+            left: 50%;
+            top: 32px;
+            transform: translateX(-50%);
+            font: 14px/1.4 -apple-system, system-ui, sans-serif;
+            color: #555;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+            user-select: none;
+        }
+        #exit b {
+            display: block;
+            font-size: 32px;
+            line-height: 1.2;
+            color: #111;
+        }
+        #exit:hover { background: #fff; border-color: #bbb; }
     </style>
 </head>
 <body>
     <canvas id="app"></canvas>
+    <a id="exit" href="https://history.singularitymuseum.com/">
+        <b>Exit pavilion</b>
+        (go back to singularity museum main pavilion)
+    </a>
     <div id="hint">
         Click to fly &nbsp;·&nbsp; <b>Mouse</b> steer &nbsp;·&nbsp; <b>Q/E</b> roll &nbsp;·&nbsp;
         <b>WASD</b> thrust &nbsp;·&nbsp; <b>R/F</b> up·down &nbsp;·&nbsp;

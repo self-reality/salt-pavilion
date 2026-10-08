@@ -95,10 +95,14 @@ async function boot() {
         disco.update(dt);
     });
 
-    // Hide the "click to start" hint once the pointer is locked.
+    // Hide the "click to start" hint and the exit link once the pointer is
+    // locked. The exit link is only on the public index.html, not tweaks.html.
     const hint = document.getElementById('hint');
+    const exit = document.getElementById('exit');
     document.addEventListener('pointerlockchange', () => {
-        hint.style.display = document.pointerLockElement ? 'none' : '';
+        const display = document.pointerLockElement ? 'none' : '';
+        hint.style.display = display;
+        if (exit) exit.style.display = display;
     });
 
     console.log('[SPAM] ready: ship in, physics online, cans streaming');
