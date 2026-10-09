@@ -32,8 +32,10 @@ function sample(arr, count) {
     return a.slice(0, count);
 }
 
-function loadContainer(app, name, url) {
-    const asset = new pc.Asset(name, 'container', { url });
+// `contents` (optional) is the GLB's already-downloaded ArrayBuffer; with it the
+// engine skips its own fetch and parses straight from memory.
+function loadContainer(app, name, url, contents) {
+    const asset = new pc.Asset(name, 'container', { url, contents });
     return new Promise((resolve, reject) => {
         asset.once('load', () => resolve(asset));
         asset.once('error', reject);
@@ -72,6 +74,23 @@ function attachSharedMaps(materials, mrMap, normalMap) {
     }
 }
 
+// Hands out main-thread "turns", one per rendered frame. Building a can costs a
+// few ms in two lumps — parsing the GLB, then spawning it (entity + physics
+// body, with its 1024px texture uploading on the next draw). On a fast
+// connection several downloads finish inside the same frame, and paying for all
+// of them at once is what dropped frames while the collection streamed in (the
+// queued texture uploads also stall the GPU process). Each lump awaits a turn,
+// so a frame never carries more than one of them however fast the files arrive.
+// A hidden tab renders no frames, so a slow timer keeps the queue draining
+// there — loading carries on in a background tab as it did before.
+function createFrameQueue(app) {
+    const waiting = [];
+    const release = () => { const next = waiting.shift(); if (next) next(); };
+    app.on('frameend', release);
+    setInterval(() => { if (document.hidden) release(); }, 50);
+    return () => new Promise((resolve) => waiting.push(resolve));
+}
+
 // Builds one floating spam can: load the textured GLB, scale it so its longest
 // axis lands in [CAN_MIN_LEN, CAN_MAX_LEN], recenter on the rigidbody pivot, and
 // size a box collider from the scaled bounds (cans are box-ish tins). Keeps the
@@ -81,8 +100,16 @@ function colliderVolume(entity) {
     return 8 * he.x * he.y * he.z;
 }
 
-async function createCan(app, name, url, tuning, opts) {
-    const asset = await loadContainer(app, name, url);
+async function createCan(app, name, url, tuning, opts, turn) {
+    // Download the bytes ourselves (off the main thread, CAN_CONCURRENCY at a
+    // time) so the parse and the spawn can each wait for a frame turn.
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`can download failed (${res.status}): ${url}`);
+    const contents = await res.arrayBuffer();
+
+    await turn();
+    const asset = await loadContainer(app, name, url, contents);
+    await turn();
     const model = asset.resource.instantiateRenderEntity();
     const meshInstances = model.findComponents('render').flatMap((r) => r.meshInstances);
 
@@ -168,6 +195,7 @@ export function createObstacles(app, ship) {
     const boxes = [];
     const materials = [];
     const tuning = { canDensity: CAN_DENSITY, atmoDensity: ATMO_DENSITY };
+    const turn = createFrameQueue(app);
 
     function setCanDensity(density) {
         tuning.canDensity = density;
@@ -264,7 +292,9 @@ export function createObstacles(app, ship) {
         // CAN_CONCURRENCY workers pull from a shared cursor instead of firing all
         // downloads at once, so the loader menu's Pause can hold the queue: a
         // paused worker parks on a resume promise before claiming its next index,
-        // letting any in-flight createCan finish. Index 0 (the ?artist= hero when
+        // letting any in-flight createCan finish. The workers only bound the
+        // downloads; the main-thread work of each can is paced separately, one
+        // step per frame (see createFrameQueue). Index 0 (the ?artist= hero when
         // matched) is still claimed first, so it pops in first as before.
         let next = 0;
         async function worker() {
@@ -275,7 +305,7 @@ export function createObstacles(app, ship) {
                 const entry = picks[i];
                 const opts = (i === heroIndex)
                     ? { position: hero.position, eulerAngles: hero.eulerAngles } : null;
-                const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts);
+                const can = await createCan(app, 'obstacle_' + i, CAN_DIR + entry.base + '.glb', tuning, opts, turn);
                 attachSharedMaps(can.materials, mrMap, normalMap);
                 boxes.push(can.box);
                 materials.push(...can.materials);
